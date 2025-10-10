@@ -20,7 +20,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Simon Fontaine | Développeur Full-Stack",
   description:
-    "Portfolio de Simon Fontaine, développeur full-stack passionné par la création dapplications web modernes, performantes et bien pensées.",
+    "Portfolio de Simon Fontaine, développeur full-stack étudiant à l'EPHEC. Spécialisé en React, Node.js, PostgreSQL et technologies web modernes.",
+  keywords: ["développeur", "full-stack", "React", "Node.js", "portfolio"],
+  authors: [{ name: "Simon Fontaine" }],
+  openGraph: {
+    type: "website",
+    locale: "fr_BE",
+    title: "Simon Fontaine | Développeur Full-Stack",
+    description: "Portfolio de Simon Fontaine, développeur full-stack",
+  },
 };
 
 export default function RootLayout({
@@ -40,7 +48,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          {children}
+          <main className="pt-16">{children}</main>
+          <footer className="border-t py-8 text-center text-sm text-muted-foreground">
+            <p>
+              © {new Date().getFullYear()} Simon Fontaine. Tous droits réservés.
+            </p>
+          </footer>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
