@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -219,7 +219,10 @@ export function ProjectsSection() {
                           </CardDescription>
                         </CardHeader>
                         <CardContent className="flex-shrink-0 mt-auto pt-0">
-                          <ul className="flex flex-wrap gap-2 list-none">
+                          <ul
+                            className="flex flex-wrap gap-2 list-none"
+                            aria-label={`Technologies utilisées pour ${project.title}`}
+                          >
                             {project.technologies.map((tech) => (
                               <li key={tech}>
                                 <span className="px-3 py-1.5 rounded-full text-xs sm:text-sm bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors">
@@ -242,7 +245,10 @@ export function ProjectsSection() {
           </Carousel>
 
           {/* Pagination Indicator */}
-          <div className="flex items-center justify-center gap-4">
+          <fieldset
+            className="flex items-center justify-center gap-4"
+            aria-label="Navigation du carousel"
+          >
             <div className="flex gap-2">
               {Array.from({ length: count }, (_, index) => index).map(
                 (index) => (
@@ -256,13 +262,13 @@ export function ProjectsSection() {
                         : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
                     }`}
                     aria-label={`Aller au projet ${index + 1}`}
+                    aria-current={index === current - 1 ? "true" : "false"}
                   />
                 ),
               )}
             </div>
-          </div>
+          </fieldset>
         </motion.div>
-
         <div className="text-center text-muted-foreground py-8 mt-6">
           <p className="text-sm sm:text-base">
             D'autres projets personnels et académiques seront ajoutés

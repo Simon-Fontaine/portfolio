@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Calendar, GraduationCap, MapPin } from "lucide-react";
+import { motion } from "motion/react";
 import { SectionContainer } from "@/components/section-container";
 
 const educationData = [
