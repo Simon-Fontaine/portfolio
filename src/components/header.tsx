@@ -30,7 +30,7 @@ export function Header() {
             activeSection === "#hero" ? "text-primary" : "text-foreground"
           }`}
         >
-          SF
+          Simon
         </Link>
 
         <div className="hidden md:flex items-center gap-6">
