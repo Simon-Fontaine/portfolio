@@ -1,12 +1,82 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Download, Mail } from "lucide-react";
+import { motion } from "motion/react";
 import Link from "next/link";
+import { useState } from "react";
+import { toast } from "sonner";
 import { SectionContainer } from "@/components/section-container";
 import { Button } from "@/components/ui/button";
 
 export function InternshipSection() {
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  async function handleCVDownload(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+
+    if (isDownloading) return;
+
+    setIsDownloading(true);
+
+    try {
+      const response = await fetch("/api/cv", {
+        method: "GET",
+        headers: {
+          Accept: "application/pdf",
+        },
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+
+        if (response.status === 429) {
+          toast.error("Trop de tentatives", {
+            description: data.error || "Veuillez réessayer plus tard.",
+          });
+        } else {
+          toast.error("Erreur", {
+            description:
+              data.error ||
+              "Impossible de télécharger le CV. Veuillez réessayer.",
+          });
+        }
+        return;
+      }
+
+      const blob = await response.blob();
+
+      if (blob.type !== "application/pdf") {
+        throw new Error("Le fichier téléchargé n'est pas un PDF valide");
+      }
+
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "CV_Simon_Fontaine.pdf";
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+
+      // Cleanup
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+
+      toast.success("CV téléchargé !", {
+        description: "Le fichier a été téléchargé avec succès.",
+      });
+    } catch (error) {
+      console.error("CV download error:", error);
+      toast.error("Erreur", {
+        description:
+          error instanceof Error
+            ? error.message
+            : "Une erreur est survenue lors du téléchargement.",
+      });
+    } finally {
+      setIsDownloading(false);
+    }
+  }
+
   return (
     <SectionContainer
       id="stage"
@@ -38,10 +108,16 @@ export function InternshipSection() {
             size="lg"
             asChild
             className="w-full sm:w-auto"
+            disabled={isDownloading}
           >
-            <a href="/documents/cv.pdf" download>
+            <a
+              href="/api/cv"
+              onClick={handleCVDownload}
+              aria-disabled={isDownloading}
+              className={isDownloading ? "pointer-events-none opacity-50" : ""}
+            >
               <Download className="mr-2" aria-hidden="true" />
-              Télécharger mon CV
+              {isDownloading ? "Téléchargement..." : "Télécharger mon CV"}
             </a>
           </Button>
         </div>
