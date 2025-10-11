@@ -2,8 +2,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { InternshipAnnouncementBanner } from "@/components/announcement-banner";
 import { Header } from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -48,12 +50,17 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="pt-16">{children}</main>
-          <footer className="border-t py-8 text-center text-sm text-muted-foreground">
-            <p>
-              © {new Date().getFullYear()} Simon Fontaine. Tous droits réservés.
-            </p>
+          <InternshipAnnouncementBanner />
+          <main>{children}</main>
+          <footer className="border-t py-8 px-4 text-center text-sm text-muted-foreground">
+            <div className="container mx-auto max-w-7xl">
+              <p>
+                © {new Date().getFullYear()} Simon Fontaine. Tous droits
+                réservés.
+              </p>
+            </div>
           </footer>
+          <Toaster richColors position="top-right" />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
