@@ -1,18 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useActiveSection } from "@/hooks/use-active-section";
-
-const navItems = [
-  { href: "#about", label: "À propos" },
-  { href: "#skills", label: "Compétences" },
-  { href: "#formation", label: "Formation" },
-  { href: "#projets", label: "Projets" },
-  { href: "#contact", label: "Contact" },
-];
+import { NAV_ITEMS, SITE_CONFIG } from "@/lib/constants";
 
 export function Header() {
   const activeSection = useActiveSection();
@@ -30,11 +23,11 @@ export function Header() {
             activeSection === "#hero" ? "text-primary" : "text-foreground"
           }`}
         >
-          Simon
+          {SITE_CONFIG.name.split(" ")[0]}
         </Link>
 
         <div className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}

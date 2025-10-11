@@ -5,9 +5,9 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import { Mail } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SiGithub, SiLinkedin } from "react-icons/si";
 import { toast } from "sonner";
 import { SectionContainer } from "@/components/section-container";
+import { SocialLinks } from "@/components/social-links";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,14 +18,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/lib/actions";
+import { SITE_CONFIG } from "@/lib/constants";
 import { type ContactFormData, contactFormSchema } from "@/lib/validations";
-import { Spinner } from "../ui/spinner";
 
 export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string>("");
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -38,6 +40,12 @@ export function ContactSection() {
     },
   });
 
+  const resetTurnstile = () => {
+    if (turnstileWidgetId && window.turnstile) {
+      window.turnstile.reset(turnstileWidgetId);
+    }
+  };
+
   async function onSubmit(data: ContactFormData) {
     if (!turnstileToken) {
       toast.error("Erreur", {
@@ -47,6 +55,7 @@ export function ContactSection() {
     }
 
     setIsSubmitting(true);
+
     try {
       const result = await sendContactEmail({
         ...data,
@@ -59,15 +68,22 @@ export function ContactSection() {
         });
         form.reset();
         setTurnstileToken("");
+        resetTurnstile();
       } else {
         toast.error("Erreur", {
           description: result.error || "Une erreur est survenue",
         });
+        resetTurnstile();
       }
-    } catch {
+    } catch (error) {
+      console.error("Contact form error:", error);
+
       toast.error("Erreur", {
-        description: "Une erreur est survenue lors de l'envoi",
+        description:
+          "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       });
+
+      resetTurnstile();
     } finally {
       setIsSubmitting(false);
     }
@@ -185,6 +201,8 @@ export function ContactSection() {
                                   form.setValue("turnstileToken", token);
                                 }}
                                 onError={() => {
+                                  setTurnstileToken("");
+                                  form.setValue("turnstileToken", "");
                                   toast.error("Erreur", {
                                     description:
                                       "Erreur lors de la vérification. Veuillez réessayer.",
@@ -193,6 +211,9 @@ export function ContactSection() {
                                 onExpire={() => {
                                   setTurnstileToken("");
                                   form.setValue("turnstileToken", "");
+                                }}
+                                onWidgetLoad={(widgetId) => {
+                                  setTurnstileWidgetId(widgetId);
                                 }}
                               />
                             </div>
@@ -209,7 +230,7 @@ export function ContactSection() {
                       <Button
                         type="submit"
                         size="lg"
-                        className="w-full sm:w-auto sm:min-w-[180px] cursor-pointer"
+                        className="w-full sm:w-auto sm:min-w-[180px]"
                         disabled={isSubmitting || !turnstileToken}
                       >
                         {isSubmitting && <Spinner />}
@@ -236,11 +257,9 @@ export function ContactSection() {
                 asChild
                 className="w-full justify-start"
               >
-                <a href="mailto:contact@simonfontaine.com">
+                <a href={`mailto:${SITE_CONFIG.email}`}>
                   <Mail className="mr-2 size-4" aria-hidden="true" />
-                  <span className="truncate text-sm">
-                    contact@simonfontaine.com
-                  </span>
+                  <span className="truncate text-sm">{SITE_CONFIG.email}</span>
                 </a>
               </Button>
             </div>
@@ -252,29 +271,7 @@ export function ContactSection() {
                   Retrouvez-moi également sur
                 </p>
               </div>
-              <nav
-                className="flex items-center gap-3"
-                aria-label="Liens réseaux sociaux"
-              >
-                <a
-                  href="https://github.com/Simon-Fontaine"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center size-12 rounded-lg border bg-background text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  aria-label="Profil GitHub de Simon Fontaine"
-                >
-                  <SiGithub className="size-5" aria-hidden="true" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/fontaine-simon/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center size-12 rounded-lg border bg-background text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  aria-label="Profil LinkedIn de Simon Fontaine"
-                >
-                  <SiLinkedin className="size-5" aria-hidden="true" />
-                </a>
-              </nav>
+              <SocialLinks className="flex items-center gap-3" />
             </div>
           </div>
         </div>

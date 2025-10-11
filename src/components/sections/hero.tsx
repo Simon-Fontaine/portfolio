@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { motion } from "motion/react";
 import Link from "next/link";
-import { SiGithub, SiLinkedin } from "react-icons/si";
 import { SectionContainer } from "@/components/section-container";
+import { SocialLinks } from "@/components/social-links";
 import { Button } from "@/components/ui/button";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export function HeroSection() {
   return (
@@ -35,7 +36,7 @@ export function HeroSection() {
             Bonjour, je suis
           </motion.p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            Simon Fontaine
+            {SITE_CONFIG.name}
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-muted-foreground">
             Développeur Full-Stack
@@ -73,29 +74,7 @@ export function HeroSection() {
           </Button>
         </div>
 
-        <nav
-          className="flex items-center gap-3 pt-6"
-          aria-label="Liens réseaux sociaux"
-        >
-          <a
-            href="https://github.com/Simon-Fontaine"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center size-12 rounded-lg border bg-background text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            aria-label="Profil GitHub de Simon Fontaine"
-          >
-            <SiGithub className="size-5" aria-hidden="true" />
-          </a>
-          <a
-            href="https://linkedin.com/in/fontaine-simon/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center size-12 rounded-lg border bg-background text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            aria-label="Profil LinkedIn de Simon Fontaine"
-          >
-            <SiLinkedin className="size-5" aria-hidden="true" />
-          </a>
-        </nav>
+        <SocialLinks className="flex items-center gap-3 pt-6" />
       </motion.div>
     </SectionContainer>
   );

@@ -13,14 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useActiveSection } from "@/hooks/use-active-section";
-
-const navItems = [
-  { href: "#about", label: "À propos" },
-  { href: "#skills", label: "Compétences" },
-  { href: "#formation", label: "Formation" },
-  { href: "#projets", label: "Projets" },
-  { href: "#contact", label: "Contact" },
-];
+import { NAV_ITEMS } from "@/lib/constants";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -42,7 +35,7 @@ export function MobileNav() {
           </SheetDescription>
         </SheetHeader>
         <nav className="flex flex-col gap-1.5 p-4">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
