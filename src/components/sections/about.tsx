@@ -22,15 +22,18 @@ export function AboutSection() {
         </div>
         <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-muted-foreground max-w-3xl">
           <p>
-            Développeur full-stack passionné, je suis actuellement en 3ème année
-            de Bachelier en Technologies de l'Informatique à l'EPHEC
-            (Louvain-la-Neuve).
+            Développeur full-stack passionné, actuellement en troisième année de
+            Bachelier en Technologies de l'Informatique à l'EPHEC. J'aime
+            concevoir des applications modernes, performantes et bien
+            structurées, en mettant l'accent sur la qualité du code et
+            l'expérience utilisateur.
           </p>
           <p>
-            Au cours de ma formation, j'ai développé de solides compétences en
-            développement web moderne, avec une spécialisation dans les
-            technologies React, Node.js, et PostgreSQL. J'aime créer des
-            applications performantes et bien architecturées.
+            Au fil de mes projets, j'ai acquis une bonne maîtrise de React,
+            Node.js et PostgreSQL, ainsi que d'outils plus récents comme Next.js
+            et Prisma. Je m'intéresse aussi beaucoup à l'architecture backend, à
+            la sécurité des applications web et à l'auto-hébergement de mes
+            propres services.
           </p>
         </div>
       </motion.div>

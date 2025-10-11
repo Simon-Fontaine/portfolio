@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import { Calendar, GraduationCap, MapPin } from "lucide-react";
 import { SectionContainer } from "@/components/section-container";
 
-// Structure de données pour les formations
-// Pour ajouter une nouvelle formation, ajoutez simplement un objet dans ce tableau
 const educationData = [
   {
     id: 1,
@@ -139,7 +137,7 @@ export function EducationSection() {
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
                         {edu.highlights.map((highlight, i) => (
                           <li
-                            key={i}
+                            key={`${edu.id}-highlight-${i}-${highlight.slice(0, 20)}`}
                             className="flex items-start gap-2 text-sm sm:text-base text-muted-foreground"
                           >
                             <span className="text-primary mt-1 flex-shrink-0 font-bold">

@@ -12,13 +12,18 @@ export function HeroSection() {
     <SectionContainer
       id="hero"
       ariaLabel="Section d'introduction"
-      className="pt-32 sm:pt-36 lg:pt-40"
+      className="pt-32 sm:pt-36 lg:pt-40 relative overflow-hidden"
     >
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="space-y-6 max-w-4xl"
+        className="space-y-6 max-w-4xl relative z-10"
       >
         <div className="space-y-2">
           <motion.p
