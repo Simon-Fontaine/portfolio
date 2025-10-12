@@ -1,8 +1,8 @@
 "use client";
 
 import { Rocket, X } from "lucide-react";
-import { motion } from "motion/react";
-import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 interface AnnouncementBannerProps {
@@ -32,65 +32,88 @@ export function AnnouncementBanner({
   ctaLabel,
   ctaHref,
 }: AnnouncementBannerProps) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
 
-  if (!isVisible) return null;
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem("banner-dismissed");
+    if (!dismissed) {
+      setIsVisible(true);
+    } else {
+      setIsDismissed(true);
+    }
+  }, []);
+
+  const handleDismiss = () => {
+    setIsVisible(false);
+    setIsDismissed(true);
+    if (dismissible) {
+      sessionStorage.setItem("banner-dismissed", "true");
+    }
+  };
+
+  if (isDismissed) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className={`fixed top-16 left-0 right-0 z-40 border-b backdrop-blur-sm ${variantStyles[variant]}`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 py-3 sm:py-4">
-          {/* Icon and message group */}
-          <div className="flex items-center gap-3 justify-center">
-            {icon && (
-              <span className="flex-shrink-0" aria-hidden="true">
-                {icon}
-              </span>
-            )}
-            <p className="text-sm sm:text-base font-medium text-center">
-              {message}
-            </p>
-          </div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+          className={`fixed top-16 left-0 right-0 z-40 border-b backdrop-blur-sm ${variantStyles[variant]}`}
+        >
+          <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
+            <div className="relative flex items-center justify-between gap-2 py-2.5 sm:py-3">
+              {/* Contenu principal */}
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                {icon && (
+                  <span
+                    className="flex-shrink-0 hidden xs:block"
+                    aria-hidden="true"
+                  >
+                    {icon}
+                  </span>
+                )}
+                <p className="text-xs sm:text-sm font-medium leading-tight flex-1 min-w-0">
+                  <span className="block sm:inline">{message}</span>
+                  {ctaLabel && ctaHref && (
+                    <a
+                      href={ctaHref}
+                      className="block sm:inline sm:ml-2 mt-1 sm:mt-0 text-primary hover:underline underline-offset-2 font-semibold"
+                    >
+                      {ctaLabel} →
+                    </a>
+                  )}
+                </p>
+              </div>
 
-          {/* Actions group */}
-          <div className="flex items-center gap-2">
-            {ctaLabel && ctaHref && (
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="bg-background/50 hover:bg-background"
-              >
-                <a href={ctaHref}>{ctaLabel}</a>
-              </Button>
-            )}
-            {dismissible && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsVisible(false)}
-                aria-label="Fermer l'annonce"
-                className="size-8 cursor-pointer"
-              >
-                <X className="size-4" />
-              </Button>
-            )}
+              {/* Bouton de fermeture */}
+              {dismissible && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleDismiss}
+                  aria-label="Masquer pour cette session"
+                  title="Masquer pour cette session"
+                  className="size-7 sm:size-8 flex-shrink-0 hover:bg-background/50"
+                >
+                  <X className="size-3.5 sm:size-4" />
+                </Button>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
-    </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
 export function InternshipAnnouncementBanner() {
   return (
     <AnnouncementBanner
-      icon={<Rocket className="size-5" />}
+      icon={<Rocket className="size-4 sm:size-5" />}
       message="À la recherche d'un stage de fin d'études (février - mai 2026)"
       variant="warning"
       ctaLabel="En savoir plus"
