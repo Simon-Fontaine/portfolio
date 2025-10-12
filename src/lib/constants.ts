@@ -11,8 +11,8 @@ export const SITE_CONFIG = {
 
 export const NAV_ITEMS = [
   { href: "#about", label: "À propos" },
-  { href: "#skills", label: "Compétences" },
   { href: "#formation", label: "Formation" },
+  { href: "#skills", label: "Compétences" },
   { href: "#projets", label: "Projets" },
   { href: "#contact", label: "Contact" },
 ] as const;
