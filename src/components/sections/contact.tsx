@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Turnstile } from "@marsidev/react-turnstile";
-import { Mail } from "lucide-react";
+import { AlertCircle, Mail } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -28,6 +28,7 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [turnstileWidgetId, setTurnstileWidgetId] = useState<string>("");
+  const [turnstileError, setTurnstileError] = useState(false);
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -44,12 +45,15 @@ export function ContactSection() {
     if (turnstileWidgetId && window.turnstile) {
       window.turnstile.reset(turnstileWidgetId);
     }
+    setTurnstileToken("");
+    setTurnstileError(false);
   };
 
   async function onSubmit(data: ContactFormData) {
     if (!turnstileToken) {
-      toast.error("Erreur", {
-        description: "Veuillez vérifier que vous êtes humain",
+      setTurnstileError(true);
+      toast.error("Vérification requise", {
+        description: "Veuillez compléter la vérification anti-robot",
       });
       return;
     }
@@ -65,13 +69,15 @@ export function ContactSection() {
       if (result.success) {
         toast.success("Message envoyé !", {
           description: "Je vous répondrai dans les plus brefs délais.",
+          duration: 5000,
         });
         form.reset();
         setTurnstileToken("");
         resetTurnstile();
       } else {
-        toast.error("Erreur", {
+        toast.error("Erreur d'envoi", {
           description: result.error || "Une erreur est survenue",
+          duration: 5000,
         });
         resetTurnstile();
       }
@@ -81,6 +87,7 @@ export function ContactSection() {
       toast.error("Erreur", {
         description:
           "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+        duration: 5000,
       });
 
       resetTurnstile();
@@ -118,7 +125,11 @@ export function ContactSection() {
                         <FormItem>
                           <FormLabel>Nom</FormLabel>
                           <FormControl>
-                            <Input placeholder="Votre nom" {...field} />
+                            <Input
+                              placeholder="Votre nom"
+                              {...field}
+                              disabled={isSubmitting}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -136,6 +147,7 @@ export function ContactSection() {
                               type="email"
                               placeholder="votre@email.com"
                               {...field}
+                              disabled={isSubmitting}
                             />
                           </FormControl>
                           <FormMessage />
@@ -154,6 +166,7 @@ export function ContactSection() {
                           <Input
                             placeholder="Sujet de votre message"
                             {...field}
+                            disabled={isSubmitting}
                           />
                         </FormControl>
                         <FormMessage />
@@ -172,6 +185,7 @@ export function ContactSection() {
                             placeholder="Décrivez votre projet, opportunité ou question..."
                             className="min-h-[180px] resize-y"
                             {...field}
+                            disabled={isSubmitting}
                           />
                         </FormControl>
                         <FormMessage />
@@ -179,43 +193,61 @@ export function ContactSection() {
                     )}
                   />
 
-                  <div className="space-y-6 pt-2">
+                  <div className="space-y-4 pt-2">
                     <FormField
                       control={form.control}
                       name="turnstileToken"
                       render={() => (
                         <FormItem>
                           <FormControl>
-                            <div className="flex items-center justify-start">
-                              <Turnstile
-                                siteKey={
-                                  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
-                                  ""
-                                }
-                                options={{
-                                  theme: "auto",
-                                  size: "normal",
-                                }}
-                                onSuccess={(token) => {
-                                  setTurnstileToken(token);
-                                  form.setValue("turnstileToken", token);
-                                }}
-                                onError={() => {
-                                  setTurnstileToken("");
-                                  form.setValue("turnstileToken", "");
-                                  toast.error("Erreur", {
-                                    description:
-                                      "Erreur lors de la vérification. Veuillez réessayer.",
-                                  });
-                                }}
-                                onExpire={() => {
-                                  setTurnstileToken("");
-                                  form.setValue("turnstileToken", "");
-                                }}
-                                onWidgetLoad={(widgetId) => {
-                                  setTurnstileWidgetId(widgetId);
-                                }}
-                              />
+                            <div className="space-y-2">
+                              <div className="flex items-center justify-start">
+                                <Turnstile
+                                  siteKey={
+                                    process.env
+                                      .NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""
+                                  }
+                                  options={{
+                                    theme: "auto",
+                                    size: "normal",
+                                  }}
+                                  onSuccess={(token) => {
+                                    setTurnstileToken(token);
+                                    setTurnstileError(false);
+                                    form.setValue("turnstileToken", token);
+                                    form.clearErrors("turnstileToken");
+                                  }}
+                                  onError={() => {
+                                    setTurnstileToken("");
+                                    setTurnstileError(true);
+                                    form.setValue("turnstileToken", "");
+                                    toast.error("Erreur de vérification", {
+                                      description:
+                                        "Erreur lors de la vérification. Veuillez réessayer.",
+                                    });
+                                  }}
+                                  onExpire={() => {
+                                    setTurnstileToken("");
+                                    setTurnstileError(true);
+                                    form.setValue("turnstileToken", "");
+                                    toast.warning("Vérification expirée", {
+                                      description:
+                                        "Veuillez vérifier à nouveau.",
+                                    });
+                                  }}
+                                  onWidgetLoad={(widgetId) => {
+                                    setTurnstileWidgetId(widgetId);
+                                  }}
+                                />
+                              </div>
+                              {turnstileError && (
+                                <div className="flex items-center gap-2 text-sm text-destructive">
+                                  <AlertCircle className="size-4" />
+                                  <span>
+                                    Veuillez compléter la vérification
+                                  </span>
+                                </div>
+                              )}
                             </div>
                           </FormControl>
                           <FormMessage />
