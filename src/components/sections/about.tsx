@@ -25,8 +25,8 @@ export function AboutSection() {
             Développeur full-stack passionné, je suis actuellement en troisième
             année de Bachelier en Technologies de l'Informatique à l'EPHEC.
             J'aime concevoir des applications modernes, performantes, et bien
-            structurées - notament en mettant l'accent sur la qualité du code et
-            l'expérience utilisateur.
+            structurées - notamment en mettant l'accent sur la qualité du code
+            et l'expérience utilisateur.
           </p>
           <p>
             Au fil de mes projets, j'ai acquis une bonne maîtrise de React,
@@ -34,7 +34,7 @@ export function AboutSection() {
             et Prisma.
           </p>
           <p>
-            Enfin, je m'intéresse beaucoup à l'architecture backend, à la
+            En outre, je m'intéresse beaucoup à l'architecture backend, à la
             sécurité des applications web, et à l'auto-hébergement de mes
             propres services.
           </p>
