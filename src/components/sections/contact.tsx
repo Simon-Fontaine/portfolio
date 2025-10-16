@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/lib/actions";
+import { celebrate } from "@/lib/confetti";
 import { SITE_CONFIG } from "@/lib/constants";
 import { type ContactFormData, contactFormSchema } from "@/lib/validations";
 
@@ -71,6 +72,7 @@ export function ContactSection() {
           description: "Je vous répondrai dans les plus brefs délais.",
           duration: 5000,
         });
+        celebrate();
         form.reset();
         setTurnstileToken("");
         resetTurnstile();

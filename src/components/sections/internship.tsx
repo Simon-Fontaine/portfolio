@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { SectionContainer } from "@/components/section-container";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import { celebrate } from "@/lib/confetti";
 
 export function InternshipSection() {
   const [isDownloading, setIsDownloading] = useState(false);
@@ -82,6 +83,7 @@ export function InternshipSection() {
         description: "Le fichier a été téléchargé avec succès.",
         duration: 3000,
       });
+      celebrate();
 
       setTimeout(() => setDownloadSuccess(false), 3000);
     } catch (error) {
