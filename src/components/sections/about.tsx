@@ -16,23 +16,26 @@ export function AboutSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             À propos
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
+          <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
             Mon parcours et ma passion pour le développement
           </p>
         </div>
         <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-muted-foreground max-w-3xl">
           <p>
-            Développeur full-stack passionné, actuellement en troisième année de
-            Bachelier en Technologies de l'Informatique à l'EPHEC. J'aime
-            concevoir des applications modernes, performantes et bien
-            structurées, en mettant l'accent sur la qualité du code et
+            Développeur full-stack passionné, je suis actuellement en troisième
+            année de Bachelier en Technologies de l'Informatique à l'EPHEC.
+            J'aime concevoir des applications modernes, performantes, et bien
+            structurées - notament en mettant l'accent sur la qualité du code et
             l'expérience utilisateur.
           </p>
           <p>
             Au fil de mes projets, j'ai acquis une bonne maîtrise de React,
             Node.js et PostgreSQL, ainsi que d'outils plus récents comme Next.js
-            et Prisma. Je m'intéresse aussi beaucoup à l'architecture backend, à
-            la sécurité des applications web et à l'auto-hébergement de mes
+            et Prisma.
+          </p>
+          <p>
+            Enfin, je m'intéresse beaucoup à l'architecture backend, à la
+            sécurité des applications web, et à l'auto-hébergement de mes
             propres services.
           </p>
         </div>
