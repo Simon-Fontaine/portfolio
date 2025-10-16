@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -128,7 +128,7 @@ export function ProjectsSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             Projets
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
+          <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
             Une sélection de mes réalisations récentes
           </p>
         </div>
@@ -264,7 +264,7 @@ export function ProjectsSection() {
                     aria-label={`Aller au projet ${index + 1}`}
                     aria-current={index === current - 1 ? "true" : "false"}
                   />
-                ),
+                )
               )}
             </div>
           </fieldset>

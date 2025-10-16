@@ -53,7 +53,7 @@ export function SkillsSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             Compétences
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
+          <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
             Mes expertises techniques et humaines
           </p>
         </div>

@@ -110,7 +110,7 @@ export function InternshipSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             Recherche de stage
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
+          <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
             Je recherche un stage de fin d'études en développement web
           </p>
         </div>

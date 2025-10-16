@@ -103,7 +103,7 @@ export function ContactSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             Contactez-moi
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
+          <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
             Une opportunité de stage ? Un projet ? N'hésitez pas à me contacter
             !
           </p>

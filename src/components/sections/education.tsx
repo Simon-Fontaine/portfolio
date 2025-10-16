@@ -66,7 +66,7 @@ export function EducationSection() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
               Formation
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
+            <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
               Mon parcours académique et mes certifications
             </p>
           </div>
@@ -133,7 +133,10 @@ export function EducationSection() {
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
                         {edu.highlights.map((highlight, i) => (
                           <li
-                            key={`${edu.id}-highlight-${i}-${highlight.slice(0, 20)}`}
+                            key={`${edu.id}-highlight-${i}-${highlight.slice(
+                              0,
+                              20
+                            )}`}
                             className="flex items-start gap-2 text-sm sm:text-base text-muted-foreground"
                           >
                             <span className="text-primary mt-1 flex-shrink-0 font-bold">
