@@ -150,44 +150,60 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Projet Fisheye",
+    description:
+      "Système IoT connectant les calendriers des professeurs à un panneau d'affichage LED et une sonnette intelligente. Développé sur Raspberry Pi avec une interface de gestion web.",
+    technologies: ["IoT", "Raspberry Pi", "Node.js", "MQTT", "PostgreSQL"],
+    githubUrl:
+      "https://github.com/bpatureau/Projet-d-integration-groupe-fisheye/tree/dev-backend-new/backend",
+    image: "/images/projects/fisheye.png",
+    imageAlt: "Système IoT Fisheye",
+  },
+  {
     title: "Book Worm",
     description:
-      "Développement d'une application mobile multiplateforme en React Native dans le cadre d'une équipe internationale (Belgique, Canada, Danemark). Conception d'une interface moderne, intégration d'une API externe et mise en place d'un système d'authentification via Supabase.",
-    technologies: ["React Native", "TypeScript", "Supabase", "Expo"],
+      "Application mobile développée en équipe internationale (Canada, Danemark, Belgique) avec React Native et Supabase. Permet aux utilisateurs de suivre leurs lectures, noter des livres et découvrir de nouveaux ouvrages.",
+    technologies: ["React Native", "Supabase", "Mobile"],
     githubUrl:
       "https://github.com/Simon-Fontaine/rnss25-group-7-simon-guillaume-rehat-mostafa",
     image: "/images/projects/book-worm.png",
-    imageAlt: "Capture d'écran de l'application Book Worm",
+    imageAlt: "Application Book Worm",
   },
   {
     title: "MadBracket",
     description:
-      "Création d'une plateforme web complète pour l'organisation et la gestion de tournois en ligne. Développement en React.js (front-end) et Node.js / Express (back-end) avec base de données SQL, mise en place d'une architecture REST et d'un système de gestion des utilisateurs.",
-    technologies: ["React.js", "Node.js", "Express", "PostgreSQL"],
+      "Plateforme web complète pour la gestion de tournois. Gère la création d'équipes, les profils des joueurs et le suivi des compétitions.",
+    technologies: ["React.js", "Express", "Node.js", "PostgreSQL"],
     githubUrl: "https://github.com/Bistouflere/Dev-Web-2024",
     imageLight: "/images/projects/madbracket-light.png",
     imageDark: "/images/projects/madbracket-dark.png",
-    imageAlt: "Capture d'écran de la plateforme MadBracket",
+    imageAlt: "Interface MadBracket",
   },
   {
     title: "Portfolio Personnel",
     description:
-      "Portfolio moderne développé avec Next.js 15, TypeScript et Tailwind CSS. Intègre des animations fluides avec Motion et supporte le thème sombre/clair.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Motion"],
+      "Site personnel moderne construit avec Next.js et hébergé sur Vercel. Intègre un rate-limit Redis pour le formulaire de contact et Vercel Blob pour la gestion du CV.",
+    technologies: [
+      "Next.js",
+      "Redis",
+      "Vercel Blob",
+      "TypeScript",
+      "Tailwind CSS",
+    ],
     githubUrl: "https://github.com/Simon-Fontaine/portfolio",
     liveUrl: "https://simonfontaine.com",
     imageLight: "/images/projects/portfolio-light.png",
     imageDark: "/images/projects/portfolio-dark.png",
-    imageAlt: "Capture d'écran du portfolio personnel",
+    imageAlt: "Portfolio personnel",
   },
   {
-    title: "SurvieCraft Bot Discord",
+    title: "SurvieCraft Bot",
     description:
-      "Bot Discord complet pour la gestion d'une communauté Minecraft de 2 000+ membres. Système avancé de modération avec auto-modération, tickets joueurs/staff avec transcriptions HTML, giveaways interactifs, système de rôles personnalisables, statistiques en temps réel et logs détaillés. Interface moderne avec slash commands, boutons interactifs et menus déroulants.",
-    technologies: ["Node.js", "Discord.js v14", "MongoDB", "Mongoose"],
+      "Bot Discord en TypeScript pour un serveur de 2000+ membres. Gère les tickets support, la modération automatique et les événements communautaires via une base de données MongoDB.",
+    technologies: ["TypeScript", "Discord.js", "MongoDB", "Node.js"],
     githubUrl: "https://github.com/Simon-Fontaine/SurvieCraft-V3",
     liveUrl: "https://scbots.gitbook.io/surviecraft/",
     image: "/images/projects/surviecraft.png",
-    imageAlt: "Logo du bot Discord SurvieCraft",
+    imageAlt: "Bot SurvieCraft",
   },
 ];
