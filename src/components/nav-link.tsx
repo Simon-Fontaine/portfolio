@@ -9,31 +9,23 @@ interface NavLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode;
 }
 
-export function NavLink({ href, children, className, ...props }: NavLinkProps) {
+export function NavLink({
+  href,
+  children,
+  className,
+  onClick,
+  ...props
+}: NavLinkProps) {
   const activeSection = useActiveSection();
-
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const targetId = href.replace(/.*#/, "");
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop,
-        behavior: "smooth",
-      });
-    }
-  };
+  const isActive = activeSection === href;
 
   return (
     <a
       href={href}
-      onClick={handleClick}
+      onClick={onClick}
       className={cn(
-        `text-sm transition-colors ${
-          activeSection === href
-            ? "text-primary font-medium"
-            : "text-muted-foreground hover:text-foreground"
-        }`,
+        "text-sm transition-colors duration-200 hover:text-foreground",
+        isActive ? "text-primary font-medium" : "text-muted-foreground",
         className,
       )}
       {...props}

@@ -20,25 +20,29 @@ export function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          aria-label="Ouvrir le menu"
+        >
           <Menu className="size-5" />
-          <span className="sr-only">Ouvrir le menu</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px] sm:w-[400px]">
         <SheetHeader>
-          <SheetTitle>Navigation</SheetTitle>
+          <SheetTitle className="text-left">Menu</SheetTitle>
           <SheetDescription className="sr-only">
-            Menu de navigation principal du site
+            Navigation principale pour mobile
           </SheetDescription>
         </SheetHeader>
-        <nav className="flex flex-col gap-1.5 p-4">
+        <nav className="flex flex-col gap-4 p-4 mt-8">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="text-lg font-medium py-2"
+              className="text-lg font-medium py-2 block border-b border-border/50 last:border-0"
             >
               {item.label}
             </NavLink>
