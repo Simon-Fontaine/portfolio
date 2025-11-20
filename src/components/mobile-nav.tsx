@@ -1,8 +1,8 @@
 "use client";
 
 import { Menu } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
+import { NavLink } from "@/components/nav-link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,12 +12,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useActiveSection } from "@/hooks/use-active-section";
 import { NAV_ITEMS } from "@/lib/constants";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
-  const activeSection = useActiveSection();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -36,18 +34,14 @@ export function MobileNav() {
         </SheetHeader>
         <nav className="flex flex-col gap-1.5 p-4">
           {NAV_ITEMS.map((item) => (
-            <Link
+            <NavLink
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className={`text-lg font-medium py-2 transition-colors ${
-                activeSection === item.href
-                  ? "text-primary"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
+              className="text-lg font-medium py-2"
             >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
       </SheetContent>

@@ -2,6 +2,11 @@
 
 import { motion } from "motion/react";
 import { SectionContainer } from "@/components/section-container";
+import {
+  ABOUT_CONTENT,
+  ABOUT_HEADING,
+  ABOUT_SUBHEADING,
+} from "@/lib/constants";
 
 export function AboutSection() {
   return (
@@ -14,30 +19,16 @@ export function AboutSection() {
       >
         <div className="space-y-4 mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            À propos
+            {ABOUT_HEADING}
           </h2>
           <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
-            Mon parcours et ma passion pour le développement
+            {ABOUT_SUBHEADING}
           </p>
         </div>
         <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-muted-foreground max-w-3xl">
-          <p>
-            Développeur full-stack passionné, je suis actuellement en troisième
-            année de Bachelier en Technologies de l'Informatique à l'EPHEC.
-            J'aime concevoir des applications modernes, performantes, et bien
-            structurées - notamment en mettant l'accent sur la qualité du code
-            et l'expérience utilisateur.
-          </p>
-          <p>
-            Au fil de mes projets, j'ai acquis une bonne maîtrise de React,
-            Node.js et PostgreSQL, ainsi que d'outils plus récents comme Next.js
-            et Prisma.
-          </p>
-          <p>
-            En outre, je m'intéresse beaucoup à l'architecture backend, à la
-            sécurité des applications web, et à l'auto-hébergement de mes
-            propres services.
-          </p>
+          {ABOUT_CONTENT.map((paragraph, _index) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
       </motion.div>
     </SectionContainer>
