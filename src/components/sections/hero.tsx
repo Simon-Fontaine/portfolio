@@ -2,7 +2,7 @@
 
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import Link from "next/link";
+import { NavLink } from "@/components/nav-link";
 import { SectionContainer } from "@/components/section-container";
 import { SocialLinks } from "@/components/social-links";
 import { Button } from "@/components/ui/button";
@@ -145,10 +145,10 @@ export function HeroSection() {
             asChild
             className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-all"
           >
-            <Link href="#projets">
+            <NavLink href="#projets">
               Voir mes projets
               <ArrowRight className="ml-2" aria-hidden="true" />
-            </Link>
+            </NavLink>
           </Button>
           <Button
             variant="outline"
@@ -156,10 +156,10 @@ export function HeroSection() {
             asChild
             className="w-full sm:w-auto border-2 hover:bg-primary/10 hover:border-primary transition-all"
           >
-            <Link href="#contact">
+            <NavLink href="#contact">
               <Mail className="mr-2" aria-hidden="true" />
               Me contacter
-            </Link>
+            </NavLink>
           </Button>
         </motion.div>
 

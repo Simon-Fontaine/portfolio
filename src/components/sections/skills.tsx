@@ -1,45 +1,8 @@
 "use client";
 
-import { Code2, Cog, Server, Users } from "lucide-react";
 import { motion } from "motion/react";
 import { SectionContainer } from "@/components/section-container";
-
-const skillsData = [
-  {
-    title: "Frontend",
-    icon: Code2,
-    skills: [
-      "JavaScript",
-      "React.js",
-      "HTML5",
-      "CSS3",
-      "TypeScript",
-      "Next.js",
-      "Tailwind CSS",
-    ],
-  },
-  {
-    title: "Backend",
-    icon: Server,
-    skills: ["Node.js", "Express.js", "REST APIs", "SQL", "Python", "Go"],
-  },
-  {
-    title: "DevOps & Infrastructure",
-    icon: Cog,
-    skills: ["Docker", "Linux", "Git", "Nginx", "CI/CD", "Agile / Scrum"],
-  },
-  {
-    title: "Soft Skills",
-    icon: Users,
-    skills: [
-      "Résolution de problèmes",
-      "Travail en équipe",
-      "Autonomie",
-      "Curiosité technique",
-      "Apprentissage rapide",
-    ],
-  },
-];
+import { SKILLS_HEADING, SKILLS_SUBHEADING, skillsData } from "@/lib/constants";
 
 export function SkillsSection() {
   return (
@@ -51,10 +14,10 @@ export function SkillsSection() {
       <div className="max-w-6xl mx-auto">
         <div className="space-y-4 mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            Compétences
+            {SKILLS_HEADING}
           </h2>
           <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
-            Mes expertises techniques et humaines
+            {SKILLS_SUBHEADING}
           </p>
         </div>
 
@@ -67,9 +30,10 @@ export function SkillsSection() {
                 key={category.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.4 }}
                 className="group relative"
+                style={{ willChange: "transform, opacity" }}
               >
                 <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
                   {/* Icône et titre */}
@@ -86,22 +50,24 @@ export function SkillsSection() {
                   <div className="hidden sm:block w-px bg-border self-stretch" />
 
                   {/* Liste des compétences */}
-                  <div className="flex-1">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                    className="flex-1"
+                  >
                     <div className="flex flex-wrap gap-2.5">
-                      {category.skills.map((skill, i) => (
-                        <motion.span
+                      {category.skills.map((skill) => (
+                        <span
                           key={skill}
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: i * 0.05, duration: 0.3 }}
                           className="px-4 py-2 rounded-lg bg-muted/50 border border-border text-sm font-medium hover:bg-muted hover:border-primary/30 transition-all duration-200"
                         >
                           {skill}
-                        </motion.span>
+                        </span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Ligne de séparation entre sections (sauf dernière) */}

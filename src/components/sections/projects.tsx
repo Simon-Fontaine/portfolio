@@ -23,62 +23,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-interface Project {
-  title: string;
-  description: string;
-  technologies: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  image?: string;
-  imageLight?: string;
-  imageDark?: string;
-  imageAlt?: string;
-}
-
-const projects: Project[] = [
-  {
-    title: "Book Worm",
-    description:
-      "Développement d'une application mobile multiplateforme en React Native dans le cadre d'une équipe internationale (Belgique, Canada, Danemark). Conception d'une interface moderne, intégration d'une API externe et mise en place d'un système d'authentification via Supabase.",
-    technologies: ["React Native", "TypeScript", "Supabase", "Expo"],
-    githubUrl:
-      "https://github.com/Simon-Fontaine/rnss25-group-7-simon-guillaume-rehat-mostafa",
-    image: "/images/projects/book-worm.png",
-    imageAlt: "Capture d'écran de l'application Book Worm",
-  },
-  {
-    title: "MadBracket",
-    description:
-      "Création d'une plateforme web complète pour l'organisation et la gestion de tournois en ligne. Développement en React.js (front-end) et Node.js / Express (back-end) avec base de données SQL, mise en place d'une architecture REST et d'un système de gestion des utilisateurs.",
-    technologies: ["React.js", "Node.js", "Express", "PostgreSQL"],
-    githubUrl: "https://github.com/Bistouflere/Dev-Web-2024",
-    imageLight: "/images/projects/madbracket-light.png",
-    imageDark: "/images/projects/madbracket-dark.png",
-    imageAlt: "Capture d'écran de la plateforme MadBracket",
-  },
-  {
-    title: "Portfolio Personnel",
-    description:
-      "Portfolio moderne développé avec Next.js 15, TypeScript et Tailwind CSS. Intègre des animations fluides avec Framer Motion et supporte le thème sombre/clair.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    githubUrl: "https://github.com/Simon-Fontaine/portfolio",
-    liveUrl: "https://simonfontaine.com",
-    imageLight: "/images/projects/portfolio-light.png",
-    imageDark: "/images/projects/portfolio-dark.png",
-    imageAlt: "Capture d'écran du portfolio personnel",
-  },
-  {
-    title: "SurvieCraft Bot Discord",
-    description:
-      "Bot Discord complet pour la gestion d'une communauté Minecraft de 20 000+ membres. Système avancé de modération avec auto-modération, tickets joueurs/staff avec transcriptions HTML, giveaways interactifs, système de rôles personnalisables, statistiques en temps réel et logs détaillés. Interface moderne avec slash commands, boutons interactifs et menus déroulants.",
-    technologies: ["Node.js", "Discord.js v14", "MongoDB", "Mongoose"],
-    githubUrl: "https://github.com/Simon-Fontaine/SurvieCraft-V3",
-    liveUrl: "https://scbots.gitbook.io/surviecraft/",
-    image: "/images/projects/surviecraft.png",
-    imageAlt: "Logo du bot Discord SurvieCraft",
-  },
-];
+import {
+  PROJECTS_HEADING,
+  PROJECTS_OTHER,
+  PROJECTS_SUBHEADING,
+  type Project,
+  projects,
+} from "@/lib/constants";
 
 export function ProjectsSection() {
   const { theme, resolvedTheme } = useTheme();
@@ -122,14 +73,14 @@ export function ProjectsSection() {
   };
 
   return (
-    <SectionContainer id="projets" ariaLabel="Mes projets">
+    <SectionContainer id="projects" ariaLabel="Mes projets">
       <div className="max-w-6xl mx-auto">
         <div className="space-y-4 mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            Projets
+            {PROJECTS_HEADING}
           </h2>
           <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
-            Une sélection de mes réalisations récentes
+            {PROJECTS_SUBHEADING}
           </p>
         </div>
 
@@ -264,16 +215,13 @@ export function ProjectsSection() {
                     aria-label={`Aller au projet ${index + 1}`}
                     aria-current={index === current - 1 ? "true" : "false"}
                   />
-                )
+                ),
               )}
             </div>
           </fieldset>
         </motion.div>
         <div className="text-center text-muted-foreground py-8 mt-6">
-          <p className="text-sm sm:text-base">
-            D'autres projets personnels et académiques seront ajoutés
-            prochainement.
-          </p>
+          <p className="text-sm sm:text-base">{PROJECTS_OTHER}</p>
         </div>
       </div>
     </SectionContainer>
