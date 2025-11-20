@@ -145,7 +145,7 @@ export function HeroSection() {
             asChild
             className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-all"
           >
-            <NavLink href="#projets">
+            <NavLink href="#projects">
               Voir mes projets
               <ArrowRight className="ml-2" aria-hidden="true" />
             </NavLink>

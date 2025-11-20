@@ -103,7 +103,7 @@ export function InternshipSection() {
 
   return (
     <SectionContainer
-      id="stage"
+      id="internship"
       ariaLabel="Recherche de stage"
       background="muted"
     >
