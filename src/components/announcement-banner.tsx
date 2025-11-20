@@ -117,7 +117,7 @@ export function InternshipAnnouncementBanner() {
       message="À la recherche d'un stage de fin d'études (février - mai 2026)"
       variant="warning"
       ctaLabel="En savoir plus"
-      ctaHref="#stage"
+      ctaHref="#internship"
       dismissible
     />
   );

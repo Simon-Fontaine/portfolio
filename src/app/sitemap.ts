@@ -22,13 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${SITE_CONFIG.url}#formation`,
+      url: `${SITE_CONFIG.url}#education`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${SITE_CONFIG.url}#projets`,
+      url: `${SITE_CONFIG.url}#projects`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
