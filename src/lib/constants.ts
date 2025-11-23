@@ -26,7 +26,7 @@ export const SOCIAL_LINKS = [
   },
   {
     name: "linkedin",
-    url: "https://www.linkedin.com/in/simon-fontaine/",
+    url: "https://www.linkedin.com/in/fontaine-simon/",
     icon: "linkedin",
     label: "LinkedIn",
   },
