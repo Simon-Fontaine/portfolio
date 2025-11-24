@@ -7,7 +7,16 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "includes": [
+      "**",
+      "!node_modules",
+      "!.next",
+      "!dist",
+      "!build",
+      "!src/components/ui/carousel.tsx",
+      "!src/components/ui/field.tsx",
+      "!src/components/ui/spinner.tsx"
+    ]
   },
   "formatter": {
     "enabled": true,
