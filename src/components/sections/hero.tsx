@@ -96,16 +96,16 @@ export function HeroSection() {
             Bonjour, je suis
           </motion.p>
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ delay: 0.2 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
           >
             {SITE_CONFIG.name}
           </motion.h1>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ delay: 0.3 }}
             className="text-2xl sm:text-3xl md:text-4xl font-bold text-muted-foreground"
           >
