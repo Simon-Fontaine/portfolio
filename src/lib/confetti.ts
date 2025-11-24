@@ -1,8 +1,7 @@
-import confetti from "canvas-confetti";
-
 const THEME_COLORS = ["#f97316", "#fb923c", "#fdba74", "#fed7aa", "#ffedd5"];
 
-export const celebrate = () => {
+export const celebrate = async () => {
+  const confetti = (await import("canvas-confetti")).default;
   const duration = 3000;
   const animationEnd = Date.now() + duration;
   const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
