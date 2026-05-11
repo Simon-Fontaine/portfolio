@@ -45,18 +45,18 @@ function ProofItem({ proof }: { proof: Proof }) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2 text-sm text-primary hover:underline underline-offset-2"
+        className="flex min-w-0 items-center gap-2 text-sm text-primary hover:underline underline-offset-2"
       >
         <ExternalLink className="size-3.5 shrink-0" aria-hidden="true" />
-        {proof.label}
+        <span className="min-w-0 break-words">{proof.label}</span>
       </a>
     );
   }
 
   return (
-    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+    <div className="flex min-w-0 items-start gap-2 text-sm text-muted-foreground">
       <FileText className="size-3.5 shrink-0" aria-hidden="true" />
-      <span>{proof.label}</span>
+      <span className="min-w-0 break-words">{proof.label}</span>
       {proof.description && (
         <span className="text-xs opacity-70">— {proof.description}</span>
       )}
@@ -90,7 +90,7 @@ export function ActivityModal({
       <DialogContent className="max-h-[90vh] overflow-y-auto gap-0 p-0">
         <div
           className={cn(
-            "px-6 pt-6 pb-4",
+            "px-4 pt-5 pb-4 sm:px-6 sm:pt-6",
             theme?.colorClasses.bg ?? "bg-muted/50",
           )}
         >
@@ -113,16 +113,16 @@ export function ActivityModal({
                 {ACTIVITY_TYPE_LABELS[activity.type]}
               </Badge>
             </div>
-            <DialogTitle className="text-lg leading-snug pr-8">
+            <DialogTitle className="pr-10 text-left text-lg leading-snug">
               {activity.title}
             </DialogTitle>
-            <div className="flex flex-wrap gap-3 mt-2 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <Clock className="size-4" aria-hidden="true" />
+            <div className="mt-2 flex flex-wrap gap-x-3 gap-y-2 text-left text-sm text-muted-foreground">
+              <span className="flex items-center gap-1.5 whitespace-nowrap">
+                <Clock className="size-4 shrink-0" aria-hidden="true" />
                 {activity.hours}h
               </span>
-              <span className="flex items-center gap-1.5">
-                <Calendar className="size-4" aria-hidden="true" />
+              <span className="flex min-w-0 items-center gap-1.5">
+                <Calendar className="size-4 shrink-0" aria-hidden="true" />
                 {formatDate(activity.date)}
               </span>
               {activity.proofs.map((proof) => (
@@ -132,7 +132,7 @@ export function ActivityModal({
           </DialogHeader>
         </div>
 
-        <div className="px-6 py-4 space-y-5">
+        <div className="space-y-5 px-4 py-4 sm:px-6">
           {real(activity.context) && (
             <Section title="Contexte">
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -252,11 +252,11 @@ function ProofHeaderLink({ proof }: { proof: Proof }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-1.5 hover:text-primary transition-colors"
+      className="flex min-w-0 items-center gap-1.5 transition-colors hover:text-primary"
       title={proof.label}
     >
-      <ExternalLink className="size-4" aria-hidden="true" />
-      <span className="text-xs">{proof.label}</span>
+      <ExternalLink className="size-4 shrink-0" aria-hidden="true" />
+      <span className="min-w-0 break-words text-xs">{proof.label}</span>
     </a>
   );
 }
