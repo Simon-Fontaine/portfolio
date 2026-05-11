@@ -30,7 +30,6 @@ export function EducationSection() {
         </motion.div>
 
         <div className="relative">
-          {/* Ligne verticale de la timeline */}
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30 hidden sm:block" />
 
           <div className="space-y-8 sm:space-y-12">
@@ -44,12 +43,9 @@ export function EducationSection() {
                 className="relative sm:pl-10 border-l-2 border-primary sm:border-none pl-4"
                 style={{ willChange: "transform, opacity" }}
               >
-                {/* Point sur la timeline (desktop uniquement) */}
                 <div className="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary border-4 border-background -translate-x-[7px] hidden sm:block" />
 
-                {/* Contenu */}
                 <div className="space-y-3">
-                  {/* Période */}
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                     <span className="text-sm sm:text-base font-semibold text-muted-foreground">
@@ -57,7 +53,6 @@ export function EducationSection() {
                     </span>
                   </div>
 
-                  {/* Diplôme */}
                   <div className="flex items-start gap-2">
                     <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7 text-primary mt-0.5 flex-shrink-0" />
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight">
@@ -65,7 +60,6 @@ export function EducationSection() {
                     </h3>
                   </div>
 
-                  {/* Établissement et localisation */}
                   <div className="ml-8 sm:ml-9 space-y-1">
                     <p className="text-base sm:text-lg text-primary font-semibold">
                       {edu.institution}
@@ -78,14 +72,12 @@ export function EducationSection() {
                     </div>
                   </div>
 
-                  {/* Description */}
                   {edu.description && (
                     <p className="text-sm sm:text-base text-muted-foreground italic ml-8 sm:ml-9 mt-2">
                       {edu.description}
                     </p>
                   )}
 
-                  {/* Points clés */}
                   {edu.highlights && edu.highlights.length > 0 && (
                     <div className="mt-4 ml-8 sm:ml-9">
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">

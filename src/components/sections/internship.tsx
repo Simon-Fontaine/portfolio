@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Download, Mail, Sparkles } from "lucide-react";
+import { CheckCircle2, Download, GraduationCap, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -104,16 +104,16 @@ export function InternshipSection() {
   return (
     <SectionContainer
       id="internship"
-      ariaLabel="Recherche de stage"
+      ariaLabel="Mon expérience de stage"
       background="muted"
     >
       <div className="max-w-6xl mx-auto">
         <div className="space-y-4 mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            Recherche de stage
+            Mon expérience de stage
           </h2>
           <p className="text-base font-bold sm:text-lg text-muted-foreground max-w-2xl">
-            Je recherche un stage de fin d'études en développement web
+            Développeur web chez 3D-Side
           </p>
         </div>
 
@@ -122,9 +122,7 @@ export function InternshipSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          {/* Carte avec fond attractif */}
           <div className="relative overflow-hidden rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-primary/10 via-background to-primary/5 shadow-xl">
-            {/* Effets de fond animés */}
             <div className="absolute inset-0 bg-grid-pattern opacity-5" />
             <motion.div
               className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-3xl"
@@ -151,21 +149,18 @@ export function InternshipSection() {
               }}
             />
 
-            {/* Contenu simplifié */}
             <div className="relative p-6 sm:p-8 lg:p-10 text-center space-y-6">
-              {/* Badge */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary font-semibold text-sm border border-primary/30"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 text-green-700 dark:text-green-400 font-semibold text-sm border border-green-500/30"
               >
-                <Sparkles className="size-4" />
-                Disponible
+                <GraduationCap className="size-4" />
+                Réalisé
               </motion.div>
 
-              {/* Description détaillée */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -174,12 +169,14 @@ export function InternshipSection() {
                 className="space-y-3"
               >
                 <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Stage de fin d'études en développement web (4 jours/semaine)
-                  pour la période février - mai 2026.
+                  Stage de fin d&apos;études (4 jours/semaine, fév.&ndash;mai
+                  2026) chez{" "}
+                  <span className="text-foreground font-medium">3D-Side</span>,
+                  PME belge spécialisée dans l&apos;impression 3D médicale.
+                  Stack : TypeScript, Vue.js, GitLab CI/CD, Vitest.
                 </p>
               </motion.div>
 
-              {/* Boutons */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
