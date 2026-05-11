@@ -8,14 +8,15 @@ export const competencesData: CompetencesData = {
   },
 
   strengths: [
-    "Autonome et autodidacte, j'apprends seul sans attendre un cours",
-    "Forte curiosité technique, j'explore régulièrement de nouveaux langages et outils",
-    "À l'aise avec les environnements Linux, Docker et les outils DevOps",
+    "J'apprends facilement en autonomie, surtout quand je peux appliquer directement ce que je découvre dans un projet.",
+    "Je fais assez vite le lien entre front-end, back-end, base de données et infrastructure.",
+    "Je prends le temps de comprendre les mécanismes techniques au lieu de rester à la surface des outils.",
   ],
 
   weaknesses: [
-    "Peu à l'aise à l'oral et dans les présentations formelles",
-    "Tendance à approfondir un sujet au-delà du nécessaire avant de passer à l'implémentation",
+    "Je dois encore gagner en aisance dans les présentations orales et les échanges formels.",
+    "Je peux passer trop de temps à analyser ou modéliser avant de livrer une première version.",
+    "Je dois mieux documenter mes choix quand un projet prend de l'ampleur.",
   ],
 
   themes: [
@@ -129,9 +130,9 @@ export const competencesData: CompetencesData = {
       date: { start: "Été 2025", end: "Été 2025" },
       hours: 10,
       context:
-        "Programme de deux semaines au Seneca Polytechnic à Toronto, dans le cadre de la semaine internationale de l'EPHEC. Notre équipe réunissait Simon Fontaine et Guillaume Delferiere côté belge, Mostafa Shahrabadi et Rehatpreet Kaur côté canadien. La première semaine portait sur React Native et Expo ; la deuxième sur la création de Book Worm.",
+        "Programme de deux semaines au Seneca Polytechnic à Toronto, dans le cadre de la semaine internationale de l'EPHEC. La première semaine était consacrée à React Native et Expo. La deuxième semaine, notre équipe a développé Book Worm, une application mobile autour du suivi et du partage de livres.",
       learnings:
-        "J'ai appris les bases du développement mobile avec React Native et Expo, puis utilisé Supabase pour l'authentification et les données. Le délai court m'a surtout obligé à choisir ce qui devait être terminé en priorité.",
+        "J'ai travaillé sur toute la logique d'authentification avec Supabase, une partie de l'interface, la découverte de livres et la carte. J'ai aussi mieux compris les contraintes d'une application mobile : navigation, état, données utilisateur et intégration d'API externe.",
       skills: [
         "React Native",
         "Expo",
@@ -142,11 +143,17 @@ export const competencesData: CompetencesData = {
         "Gestion des priorités",
       ],
       professionalProjectLink:
-        "Cette expérience se rapproche d'un contexte professionnel : livrer une version utilisable dans un délai court, avec une équipe qu'on apprend à connaître en travaillant.",
+        "Cette activité m'a surtout appris à livrer une version utilisable avec un délai court. C'est proche d'un vrai contexte projet : il faut choisir, couper certaines idées et garder ce qui apporte le plus à l'utilisateur.",
       reflection:
-        "J'ai choisi cette Summer School parce que je n'avais jamais vraiment travaillé sur mobile. Deux semaines, c'est peu pour apprendre un framework et livrer une application, mais c'est justement ce qui rendait l'exercice utile.\n\nReact Native ressemble à React, mais les contraintes changent vite : pas de DOM, des composants natifs, et une autre manière de penser l'interface. Supabase nous a permis d'aller vite pour l'authentification et les données, sans construire tout le back-end.\n\nLa difficulté principale n'a pas été le code. C'était de se mettre d'accord sur les priorités. Dans une équipe avec des niveaux et des habitudes différents, « fini » ne veut pas dire la même chose pour tout le monde.\n\nOn a livré une application fonctionnelle. Elle aurait pu être plus propre sur certains détails, mais l'objectif était de livrer. Depuis, j'essaie de mieux distinguer ce qui doit être terminé de ce qui peut attendre.",
-      strengths: ["Autonome et autodidacte", "Forte curiosité technique"],
-      weaknesses: ["Tendance à trop approfondir avant d'implémenter"],
+        "J'ai pris en charge toute l'authentification, avec Supabase pour les comptes et les données liées aux utilisateurs. J'ai aussi travaillé sur les listes de livres, les profils, les notes, le suivi des pages et une bonne partie de la carte.\n\nLa carte est la partie dont je suis le plus satisfait. L'idée était de permettre aux utilisateurs de créer des boîtes à livres communautaires pour partager des livres autour d'eux. C'était plus concret qu'une simple liste de livres.\n\nOn a fini avec une application qui permettait de chercher des livres, de les ajouter à des listes comme « à lire », « lu » ou « favoris », et de suivre sa lecture. Par contre, on a manqué de temps pour rendre la recommandation et la navigation vraiment propres. L'API Google Books fonctionne, mais elle n'était pas toujours agréable pour ce qu'on voulait construire.",
+      strengths: [
+        "J'ai livré une partie centrale de l'application : auth, données utilisateur, profils et listes.",
+        "J'ai réussi à construire une fonctionnalité de carte utile dans un délai court.",
+      ],
+      weaknesses: [
+        "On aurait dû réduire plus tôt le périmètre de la découverte de livres.",
+        "La partie recommandation aurait demandé plus de temps et une API mieux adaptée.",
+      ],
       proofs: [
         {
           type: "link",
@@ -163,9 +170,9 @@ export const competencesData: CompetencesData = {
       date: "Septembre 2025",
       hours: 5,
       context:
-        "Formation Frontend Masters suivie avant mes projets React personnels. Le cours couvre les hooks, la composition de composants, la gestion d'état et l'intégration de TypeScript.",
+        "Formation Frontend Masters suivie grâce à l'accès étudiant gratuit. Je voulais apprendre React avec un cours structuré, donné par un professionnel, plutôt qu'en enchaînant seulement des tutoriels ou de la documentation.",
       learnings:
-        "J'ai mieux compris les hooks, le context, la composition de composants et le typage des props. Le cours m'a surtout donné une base plus organisée que des lectures dispersées de documentation.",
+        "J'ai revu les bases de React, surtout l'état, les hooks et le fonctionnement général du framework. Le cours m'a aussi donné des habitudes de structure et de design que j'ai réutilisées dans mes projets.",
       skills: [
         "React",
         "JSX",
@@ -175,11 +182,16 @@ export const competencesData: CompetencesData = {
         "Context API",
       ],
       professionalProjectLink:
-        "React reste une base importante dans mes projets personnels. Les notions de composants, props et état m'ont aussi aidé à m'adapter à Vue.js pendant mon stage.",
+        "React reste une base importante dans mon parcours full-stack. Comprendre les composants, l'état et les hooks m'aide aussi à passer plus facilement d'un framework front-end à un autre.",
       reflection:
-        "J'ai suivi ce cours parce que je voulais comprendre React correctement, pas seulement reproduire des exemples qui fonctionnent.\n\nAvant, j'utilisais useState et useEffect de manière assez mécanique. Le cours m'a aidé à comprendre ce que React fait entre deux rendus et pourquoi la structure des composants compte autant.\n\nLa partie TypeScript m'a aussi été utile. Typer des props, des hooks personnalisés et des contexts m'a donné des habitudes que j'applique encore aujourd'hui.\n\nMême si mon stage chez 3D-Side utilisait Vue.js, cette formation m'a aidé à faire la transition. Les frameworks changent, mais les idées de composants, d'état et de données qui descendent restent proches.",
-      strengths: ["Autonome et autodidacte", "Forte curiosité technique"],
-      weaknesses: [],
+        "J'ai suivi ce cours parce que je voulais apprendre React proprement. À ce moment-là, je savais déjà faire fonctionner des composants, mais je voulais mieux comprendre les bases et les bonnes pratiques.\n\nCe qui m'a le plus aidé, c'est la partie sur l'état, les hooks et useEffect. Avant, j'utilisais parfois ces outils de manière mécanique. Le cours m'a donné une meilleure idée de ce qui se passe entre les rendus.\n\nLe cours reste assez accessible et beginner-friendly. Il ne va pas très loin dans l'architecture ou les patterns complexes, mais il m'a donné une base plus propre pour mes projets suivants.",
+      strengths: [
+        "J'ai consolidé mes bases React avant de les réutiliser dans mes projets.",
+        "J'ai pris de meilleures habitudes sur la structure des composants et l'utilisation des hooks.",
+      ],
+      weaknesses: [
+        "Le cours ne couvre pas vraiment les problèmes d'architecture front-end plus avancés.",
+      ],
       proofs: [
         {
           type: "certificate",
@@ -198,9 +210,9 @@ export const competencesData: CompetencesData = {
       date: "Avril 2025",
       hours: 10,
       context:
-        "Deux formations Frontend Masters suivies pour mieux comprendre JavaScript. JavaScript: The Hard Parts, v2 aborde le contexte d'exécution, les closures et l'asynchronicité. Deep JavaScript Foundations, v3 traite les types, la coercition, le scope et la prototype chain.",
+        "Deux formations Frontend Masters suivies parce que je voulais aller plus loin que ce qui était vu à l'école. JavaScript: The Hard Parts, v2 aborde le scope, les closures, les promises et l'asynchronicité. Deep JavaScript Foundations, v3 revient sur les types, la coercition et certains comportements parfois surprenants du langage.",
       learnings:
-        "J'ai clarifié la call stack, les closures, l'event loop, les microtasks et macrotasks. J'ai aussi revu la coercition, les différences entre == et ===, le scope lexical et certains choix de design du langage.",
+        "J'ai surtout renforcé ma représentation mentale de JavaScript : scope, closures, promises, event loop et coercition. Certains passages étaient répétitifs, mais cette répétition aide à comprendre comment le langage fonctionne vraiment.",
       skills: [
         "JavaScript avancé",
         "Closures",
@@ -211,11 +223,16 @@ export const competencesData: CompetencesData = {
         "Scope & closures",
       ],
       professionalProjectLink:
-        "Ces bases m'aident à déboguer plus vite et à utiliser les frameworks avec plus de recul. Elles sont aussi utiles pour comprendre certains problèmes de sécurité côté client.",
+        "Ces bases me permettent d'utiliser JavaScript avec plus de recul. Pour un profil full-stack, comprendre les bizarreries du langage aide à écrire du code plus prévisible et à mieux lire les erreurs.",
       reflection:
-        "Ces deux formations ont changé ma manière de lire du JavaScript. Avant, je savais écrire du code qui fonctionnait. Après, je comprenais mieux pourquoi il fonctionnait, et pourquoi il cassait parfois.\n\nLe déclic principal a été le contexte d'exécution. Les closures sont devenues beaucoup moins mystérieuses : une fonction garde accès à l'environnement dans lequel elle a été créée. L'asynchronicité est devenue plus claire aussi, notamment l'ordre entre promises, microtasks et setTimeout.\n\nDeep JavaScript Foundations m'a surtout fait revoir la coercition. Je n'utilise pas == partout pour autant, mais comprendre les règles rend les choix de style moins automatiques.\n\nCes cours correspondent bien à ma manière d'apprendre : je préfère comprendre le mécanisme avant d'empiler les outils. Ce n'est pas toujours le chemin le plus rapide, mais ça m'aide beaucoup au moment de déboguer.",
-      strengths: ["Autonome et autodidacte", "Forte curiosité technique"],
-      weaknesses: ["Tendance à trop approfondir avant d'implémenter"],
+        "J'ai suivi ces cours parce que je voulais comprendre JavaScript plus en profondeur. À l'école, on apprend surtout à utiliser le langage. Ici, l'objectif était plutôt de comprendre pourquoi il réagit parfois d'une manière inattendue.\n\nLes parties sur le scope, les closures et les promises m'ont le plus marqué. Je n'ai pas un bug précis à citer, mais ces notions m'aident à lire du code asynchrone avec moins d'approximation.\n\nTout n'était pas passionnant du début à la fin. Certains concepts reviennent plusieurs fois, parfois trop. Mais pour construire une bonne représentation mentale du langage, cette répétition a quand même été utile.",
+      strengths: [
+        "J'ai pris le temps de comprendre le langage au-delà de son utilisation quotidienne.",
+        "J'ai développé plus de recul sur les comportements parfois surprenants de JavaScript.",
+      ],
+      weaknesses: [
+        "Je dois faire attention à ne pas passer trop de temps sur la théorie quand une solution simple suffit.",
+      ],
       proofs: [
         {
           type: "certificate",
@@ -240,9 +257,9 @@ export const competencesData: CompetencesData = {
       date: "Septembre 2025",
       hours: 9,
       context:
-        "Apprentissage de Go via deux formations Frontend Masters, Go Basics puis Complete Intro to Go. J'ai appliqué le cours dans une API REST de gestion d'entraînements sportifs avec PostgreSQL et Docker.",
+        "Apprentissage de Go via deux formations Frontend Masters, Go Basics puis Complete Intro to Go. J'ai appliqué le cours dans une petite API REST pour une fausse application de suivi d'entraînements, avec de l'authentification et plusieurs endpoints CRUD.",
       learnings:
-        "J'ai travaillé les types, structs, interfaces, goroutines et la gestion explicite des erreurs. Le projet m'a aussi fait pratiquer les handlers, middleware, migrations PostgreSQL et l'environnement Docker.",
+        "J'ai travaillé les types, structs, interfaces et la gestion explicite des erreurs. Le projet m'a aussi fait pratiquer les handlers, middleware, routes protégées, endpoints CRUD, PostgreSQL et Docker.",
       skills: [
         "Go",
         "REST API",
@@ -253,11 +270,16 @@ export const competencesData: CompetencesData = {
         "Interfaces",
       ],
       professionalProjectLink:
-        "J'ai appris Go pour sortir de l'écosystème JavaScript et élargir ma pratique back-end. C'est aussi un langage pertinent pour l'infrastructure et les systèmes distribués.",
+        "J'ai appris Go par curiosité, pour sortir de l'écosystème JavaScript et essayer un langage compilé, rapide et souvent utilisé côté back-end.",
       reflection:
-        "J'ai choisi Go parce que je voulais sortir de JavaScript. Node.js reste utile, mais je voulais voir une autre manière de construire un back-end.\n\nLe changement le plus visible a été la gestion des erreurs. Pas d'exceptions : on retourne l'erreur et on la traite. Au début, ça paraît verbeux. Ensuite, ça force à être explicite.\n\nLe projet d'API REST m'a permis d'aller plus loin que les exercices : handlers, middleware, migrations PostgreSQL et Docker. Le dépôt fem-learning-go garde la trace de cet apprentissage.\n\nCe format me correspond bien : suivre un cours, puis l'appliquer tout de suite. L'apprentissage tient mieux quand il y a un projet derrière.",
-      strengths: ["Autonome et autodidacte", "Forte curiosité technique"],
-      weaknesses: [],
+        "J'ai choisi Go surtout par curiosité. J'en avais entendu parler comme d'un langage rapide et assez simple à déployer, donc je voulais voir ce que ça donnait en dehors de JavaScript.\n\nJe n'ai pas eu énormément de difficulté parce que les cours étaient bien construits. Le changement principal, c'était la manière de penser les erreurs et la structure du code. Go force à être plus explicite que ce que je fais souvent en JavaScript.\n\nLe projet reste un projet d'apprentissage. J'ai construit une petite API avec de l'authentification et des endpoints CRUD pour une fausse application de suivi d'entraînements, mais je n'ai pas encore utilisé Go dans un vrai projet personnel plus large.",
+      strengths: [
+        "J'ai essayé un langage différent sans attendre qu'il soit imposé par un cours.",
+        "J'ai appliqué rapidement les notions du cours dans une API avec auth et base de données.",
+      ],
+      weaknesses: [
+        "Je dois encore utiliser Go dans un projet plus complet pour dépasser le stade de l'exercice guidé.",
+      ],
       proofs: [
         {
           type: "certificate",
@@ -286,9 +308,9 @@ export const competencesData: CompetencesData = {
       date: { start: "Février 2026", end: "Mai 2026" },
       hours: 10,
       context:
-        "Stage de fin d'études chez 3D-Side, quatre jours par semaine de février à mai 2026. En plus du développement front-end avec Vue.js et TypeScript, j'ai travaillé sur une pipeline GitLab CI/CD et sur l'ajout de tests unitaires Vitest pour le code Vue et TypeScript.",
+        "Stage de fin d'études chez 3D-Side, sur la plateforme Customize liée à l'impression 3D médicale et à la planification de chirurgie. En plus de tâches front-end en Vue.js et TypeScript, j'ai travaillé sur les tests Vitest et leur exécution dans GitLab CI avant la validation des merge requests.",
       learnings:
-        "J'ai appris à intégrer des tests dans un workflow GitLab existant, à écrire des tests Vitest sur des composants Vue et des fonctions utilitaires, et à intervenir dans une codebase répartie sur plusieurs dépôts.",
+        "J'ai appris à intégrer des tests dans un workflow GitLab existant, à tester une partie du dossier médical et à travailler dans une codebase séparée en plusieurs dépôts qui dépendent les uns des autres.",
       skills: [
         "GitLab CI/CD",
         "Vitest",
@@ -298,14 +320,17 @@ export const competencesData: CompetencesData = {
         "Intégration continue",
       ],
       professionalProjectLink:
-        "Cette expérience relie développement, tests et livraison. Elle m'a montré que la qualité ne dépend pas seulement du code écrit, mais aussi de la manière dont il est vérifié avant d'être intégré.",
+        "Ce stage m'a montré un contexte plus proche du travail réel : du code existant, des contraintes de compatibilité, des merge requests et des tests qui doivent tourner avant l'intégration.",
       reflection:
-        "Mon stage chez 3D-Side s'est déroulé sur quatre jours par semaine, le vendredi étant réservé à mon TFE. La partie CI/CD et tests unitaires a été l'une des plus formatrices.\n\nEn arrivant, une pipeline existait déjà pour les tests PHP et le lint, mais pas pour les composants Vue ni pour les fonctions TypeScript. Avant de modifier quoi que ce soit, j'ai dû comprendre l'organisation des dépôts, le code legacy et les conventions déjà en place.\n\nMettre en place Vitest ne consistait pas seulement à ajouter une commande dans GitLab. Il fallait choisir quoi tester, écrire des tests utiles et les intégrer dans un workflow que l'équipe utilisait déjà.\n\nCe stage m'a surtout appris la rigueur : tester avant de proposer, respecter les conventions, accepter les retours et améliorer une première version. C'est différent d'un projet personnel où je décide seul.",
+        "J'ai travaillé sur Customize, une plateforme utilisée dans un contexte médical. Une partie de mon travail consistait à ajouter des tests Vitest, notamment sur le dossier médical, et à faire tourner ces tests dans la pipeline avant la validation des merge requests.\n\nLa difficulté principale venait de l'organisation du projet. Les dépôts étaient séparés mais liés entre eux, et une partie du code legacy restait nécessaire pour garder la compatibilité avec l'ancienne planification.\n\nJ'ai aussi travaillé sur des corrections de bugs et des fonctionnalités liées au viewer 3D prévues pour la release suivante. Le retour de l'équipe était positif, ce qui m'a confirmé que mon travail était utile sans devoir le présenter comme plus gros qu'il ne l'était.",
       strengths: [
-        "Autonome et autodidacte",
-        "À l'aise avec Linux, Docker et les outils DevOps",
+        "J'ai réussi à intervenir dans une codebase existante avec plusieurs dépôts liés.",
+        "J'ai ajouté des tests dans un workflow de merge request utilisé par l'équipe.",
       ],
-      weaknesses: ["Tendance à trop approfondir avant d'implémenter"],
+      weaknesses: [
+        "J'ai dû prendre du temps pour comprendre les liens entre les dépôts et le code legacy.",
+        "Je dois encore gagner en vitesse dans des bases de code qui n'ont pas toujours une documentation claire.",
+      ],
       proofs: [
         {
           type: "capture",
@@ -331,9 +356,9 @@ export const competencesData: CompetencesData = {
       date: { start: "Février 2026", end: "En cours" },
       hours: 10,
       context:
-        "Projet personnel développé le vendredi en parallèle de mon stage, depuis février 2026. Scrimflow est une plateforme web pour coordonner une équipe Overwatch 2 : scrimmages, disponibilités et communication. Le projet est déployé sur scrimflow.com et continue d'évoluer.",
+        "Projet personnel développé en parallèle de mon stage, depuis février 2026. Scrimflow est une plateforme pour centraliser la recherche de scrims, d'équipes, de joueurs et de staff sur Overwatch 2, au lieu de dépendre uniquement de serveurs Discord ou de contacts entre managers.",
       learnings:
-        "J'ai conçu le schéma de base de données, les flux utilisateurs et l'architecture monorepo avec Turborepo. L'infrastructure utilise PostgreSQL, Redis, MinIO, Caddy et Docker Compose.",
+        "J'ai conçu une base de données assez large, avec beaucoup de tables liées entre elles. Le projet couvre déjà la gestion d'équipes et d'organisations, la recherche de scrims, le suivi des résultats et les profils joueurs/staff.",
       skills: [
         "Next.js",
         "Node.js",
@@ -345,11 +370,17 @@ export const competencesData: CompetencesData = {
         "MinIO",
       ],
       professionalProjectLink:
-        "Scrimflow me fait travailler l'architecture, le back-end, le front-end et l'infrastructure sur un même projet. C'est proche de ma manière d'envisager le full-stack : comprendre chaque couche et les liens entre elles.",
+        "Scrimflow me fait travailler le full-stack dans un cas que je connais bien : produit, base de données, back-end, front-end, déploiement et choix d'architecture.",
       reflection:
-        "Scrimflow est parti d'un besoin que je connaissais bien : organiser une équipe Overwatch 2 uniquement avec Discord devient vite lourd. J'ai donc commencé une plateforme dédiée.\n\nLa partie la plus importante a été la modélisation. Avant d'écrire le code, j'ai défini les équipes, joueurs, disponibilités, scrimmages et invitations. Un mauvais schéma de base de données bloque vite le reste du projet.\n\nTechniquement, le projet m'a permis de travailler à une échelle plus large que mes projets scolaires : monorepo Turborepo, PostgreSQL, Redis, MinIO, Caddy et Docker Compose. Le site est en ligne, mais je continue à l'améliorer.\n\nLe piloter seul m'oblige à trancher moi-même. C'est motivant, mais ça montre aussi mes limites : je peux passer trop de temps à concevoir avant de livrer une fonctionnalité.",
-      strengths: ["Autonome et autodidacte", "Forte curiosité technique"],
-      weaknesses: ["Tendance à trop approfondir avant d'implémenter"],
+        "L'idée vient d'un problème assez simple : pour trouver un scrim, une équipe ou des joueurs, il faut souvent connaître un manager ou poster une annonce dans un serveur Discord. Je voulais créer une plateforme plus centrale.\n\nLe projet contient déjà la recherche de teams, players, staff et scrims, la gestion d'équipes et d'organisations, ainsi que le suivi des résultats de scrim. Certaines parties, comme le SR interne, ne sont pas encore totalement prêtes.\n\nJ'ai choisi une stack assez riche parce que je voulais travailler sur un projet plus proche d'un vrai produit : monorepo, PostgreSQL, Redis, MinIO, Caddy et Docker Compose. Le plus difficile reste le modèle de données. Il y a beaucoup de tables liées, et chaque changement peut avoir des effets ailleurs.\n\nPour l'instant, il n'y a pas encore de vrais utilisateurs. Le site est en ligne, mais je dois encore le faire tester par des équipes.",
+      strengths: [
+        "J'ai construit un projet complet autour d'un problème que je connais vraiment.",
+        "J'ai travaillé une base de données large avec beaucoup de relations entre les entités.",
+      ],
+      weaknesses: [
+        "La stack est riche, donc je dois faire attention à ne pas complexifier sans raison.",
+        "Le projet doit encore être testé par de vraies équipes pour valider les choix produit.",
+      ],
       proofs: [
         {
           type: "link",
@@ -366,9 +397,9 @@ export const competencesData: CompetencesData = {
       date: "28 février 2023",
       hours: 3,
       context:
-        "Labo pratique organisé à l'EPHEC le 28 février 2023, de 9h à 12h30, dans la salle L118. L'activité était volontaire et se faisait sur du matériel Cisco : routeurs, switchs et ordinateurs. Un défi NAT était proposé aux étudiants ayant déjà vu la matière de deuxième année.",
+        "Labo pratique organisé à l'EPHEC le 28 février 2023, de 9h à 12h30, dans la salle L118. L'activité était volontaire. Le mail d'inscription annonçait un labo niveau première année avec routeurs, switchs et ordinateurs, ainsi qu'un défi NAT pour les étudiants ayant déjà vu cette matière.",
       learnings:
-        "J'ai configuré l'adressage IP, les passerelles, le routage statique et les switchs. Le défi avancé portait sur la NAT et l'interconnexion de plusieurs réseaux avec accès Internet.",
+        "Je ne me souviens plus de tous les détails du labo, donc je garde ici ce que je peux affirmer : l'activité portait sur la configuration de matériel réseau physique, avec routeurs, switchs, ordinateurs, adressage IP et éventuellement NAT selon le niveau.",
       skills: [
         "Réseaux IP",
         "Routage statique",
@@ -378,11 +409,16 @@ export const competencesData: CompetencesData = {
         "Infrastructure physique",
       ],
       professionalProjectLink:
-        "Les réseaux sont une base importante pour la cybersécurité. Ce labo m'a aidé à relier les notions théoriques à ce qui se passe sur du matériel physique.",
+        "Même si ce n'était pas une activité de cybersécurité, elle reste liée à mon projet professionnel : comprendre les réseaux est une base nécessaire avant de parler de sécurité.",
       reflection:
-        "J'ai participé à ce labo parce que je voulais manipuler autre chose qu'un simulateur. Les réseaux sont plus faciles à comprendre quand une erreur de câble, d'adresse ou de route produit un problème visible immédiatement.\n\nSur du matériel Cisco, on ne peut pas vraiment tricher. Si l'interface n'est pas activée ou si la passerelle est mauvaise, le ping ne passe pas. Ce retour direct rend les erreurs plus utiles.\n\nLa configuration de base semblait simple : deux routeurs, un switch et deux ordinateurs. En pratique, chaque détail compte. Le défi NAT allait plus loin, car il fallait relier plusieurs réseaux entre eux pour obtenir un accès Internet commun.\n\nCette activité m'a confirmé que la sécurité ne peut pas être séparée des bases réseau. Pour protéger un système, il faut d'abord comprendre comment il communique.",
-      strengths: ["Forte curiosité technique"],
-      weaknesses: [],
+        "Je n'ai plus assez de souvenirs précis pour détailler toute la topologie. Ce que je sais, c'est que le labo permettait de travailler sur du vrai matériel Cisco, avec au minimum des routeurs, des switchs et des ordinateurs à configurer.\n\nLe mail annonçait aussi un défi plus avancé avec de la NAT. Si le temps le permettait, l'idée était de connecter les routeurs du labo de base au routeur configuré par les étudiants avancés pour obtenir un vrai accès Internet.\n\nL'intérêt principal, pour moi, était de sortir du simulateur. Sur du matériel physique, une erreur de câble, d'adresse ou de configuration se voit directement. C'est une manière plus concrète d'apprendre les bases réseau.",
+      strengths: [
+        "J'ai cherché à pratiquer les réseaux sur du matériel réel, pas seulement en théorie.",
+        "J'ai pu relier les notions de routeurs, switchs et adressage à une manipulation physique.",
+      ],
+      weaknesses: [
+        "Je n'ai pas gardé assez de notes sur cette activité, ce qui rend la réflexion moins précise aujourd'hui.",
+      ],
       proofs: [
         {
           type: "attestation",
@@ -401,9 +437,9 @@ export const competencesData: CompetencesData = {
       date: { start: "24 octobre 2025", end: "26 octobre 2025" },
       hours: 10,
       context:
-        "Hackathon organisé du vendredi 24 octobre 2025 à 17h30 au dimanche 26 octobre vers 15h00. Le défi était de construire quelque chose à partir de matériel de récupération. Notre équipe a transformé un hoverboard en kart avec des clignotants pilotés par un Raspberry Pi Pico.",
+        "Hackathon organisé du vendredi 24 octobre 2025 à 17h30 au dimanche 26 octobre vers 15h00. Le défi était de construire quelque chose à partir de matériel de récupération. Notre équipe a transformé un hoverboard en kart, avec des boutons et des rubans LED pilotés par un Raspberry Pi Pico.",
       learnings:
-        "J'ai programmé un Raspberry Pi Pico pour piloter des rubans LED, avec des séquences de clignotants et des timings précis. Le format hackathon m'a aussi appris à privilégier ce qui fonctionne.",
+        "J'ai travaillé sur le Raspberry Pi Pico, le code Python, les boutons, les LED, l'électronique et la soudure. J'ai aussi codé les animations avec un coéquipier.",
       skills: [
         "Raspberry Pi Pico",
         "Systèmes embarqués",
@@ -413,11 +449,16 @@ export const competencesData: CompetencesData = {
         "Hackathon",
       ],
       professionalProjectLink:
-        "Ce hackathon m'a confronté à une contrainte différente du web : quand le matériel ne réagit pas, il faut vérifier à la fois le code, le câblage et l'alimentation.",
+        "Cette activité m'a fait travailler autrement que sur du web. Le résultat dépendait à la fois du code, de l'électronique, du câblage et du temps disponible.",
       reflection:
-        "Je n'avais jamais vraiment travaillé avec du matériel embarqué avant ce week-end. Le Raspberry Pi Pico est accessible, mais il impose une autre manière de tester : on charge le code, on regarde le résultat, puis on corrige.\n\nLes animations LED m'ont forcé à faire attention aux timings. Quand quelque chose ne fonctionne pas, il n'y a pas toujours un message d'erreur. Le problème peut venir du code, du câblage ou simplement d'une alimentation mal branchée.\n\nLe format hackathon change aussi la manière de décider. Il n'y a pas le temps de tout rendre propre. Il faut choisir vite, tester directement et accepter une solution imparfaite si elle fonctionne.\n\nÀ la fin, le kart avançait et les clignotants fonctionnaient. Pour une première expérience avec du matériel, c'était déjà un vrai résultat.",
-      strengths: ["Forte curiosité technique", "Autonome et autodidacte"],
-      weaknesses: [],
+        "J'ai surtout travaillé sur la partie Raspberry Pi Pico : code Python, boutons, LED, câblage et soudure. Les animations des LED ont été faites avec un coéquipier.\n\nLe problème le plus pénible venait des boutons. On a eu des soucis de debounce assez étranges, donc certains appuis étaient détectés plusieurs fois ou pas comme prévu. C'est le genre de bug qu'on ne règle pas seulement en relisant le code : il faut aussi regarder le montage.\n\nÀ la fin, tout ce qu'on avait prévu fonctionnait. Le kart avançait et les clignotants étaient utilisables. Le câblage était clairement un peu brouillon, mais pour un proof of concept de hackathon, c'était acceptable.",
+      strengths: [
+        "J'ai travaillé sur toute une partie du prototype : code, boutons, LED, soudure et tests sur le matériel.",
+        "J'ai réussi à avancer malgré des problèmes de debounce et un montage imparfait.",
+      ],
+      weaknesses: [
+        "Le câblage aurait mérité d'être plus propre si le projet avait dû durer après le hackathon.",
+      ],
       proofs: [
         {
           type: "photo",
@@ -435,9 +476,9 @@ export const competencesData: CompetencesData = {
       date: "12 novembre 2025",
       hours: 3,
       context:
-        "Visite organisée par l'EPHEC chez Odoo à Ottignies-Louvain-la-Neuve, le mercredi 12 novembre 2025. Le programme comprenait une présentation de l'entreprise, une présentation sur leurs pratiques de testing et un atelier de 13h30 à 16h30.",
+        "Visite organisée par l'EPHEC chez Odoo à Ottignies-Louvain-la-Neuve, le mercredi 12 novembre 2025. Le programme comprenait une présentation de l'entreprise, une présentation de leurs pratiques de testing et un atelier autour de Runbot, leur outil interne lié aux merge requests.",
       learnings:
-        "J'ai vu comment Odoo organise ses tests dans un produit composé de nombreux modules et utilisé par beaucoup de clients. L'atelier m'a permis de manipuler leurs outils au lieu de rester sur une présentation théorique.",
+        "J'ai vu comment Runbot s'intègre dans leur workflow et j'ai testé un module Python Odoo pendant l'atelier. Ce qui m'a le plus marqué, c'est la durée de leurs suites de tests : plusieurs heures, parfois presque une journée entière.",
       skills: [
         "Testing en production",
         "Pratiques industrielles",
@@ -446,11 +487,16 @@ export const competencesData: CompetencesData = {
         "Découverte entreprise",
       ],
       professionalProjectLink:
-        "Cette visite a préparé le terrain pour mon stage chez 3D-Side. Elle m'a aidé à voir les tests comme une aide au maintien du produit, pas comme une étape administrative.",
+        "Cette visite m'a donné un aperçu d'une entreprise qui doit tester une très grande base de code. Même si je suis surtout resté observateur, ça m'a montré une autre échelle de travail.",
       reflection:
-        "J'avais des attentes assez simples pour cette visite : une présentation d'entreprise, quelques slides, puis retour à l'école. L'atelier a rendu l'activité plus intéressante que prévu.\n\nChez Odoo, le testing n'est pas présenté comme un exercice scolaire. Avec un ERP utilisé par de nombreux clients, chaque changement peut avoir des effets importants. Les tests servent donc à modifier le produit avec moins de risque.\n\nLe fait de travailler sur leurs outils pendant l'atelier m'a aidé à comprendre comment les tests s'intègrent dans un workflow quotidien. Ce n'était pas seulement une démonstration.\n\nQuelques mois plus tard, j'ai retrouvé cette idée pendant mon stage chez 3D-Side, quand j'ai ajouté des tests Vitest à une base de code existante. La visite a donné du contexte à ce que j'ai ensuite pratiqué.",
-      strengths: ["Forte curiosité technique"],
-      weaknesses: [],
+        "Pendant l'atelier, on a testé un module Python Odoo et regardé comment Runbot intervient dans le workflow des merge requests. Je n'ai pas eu un rôle très actif dans les échanges : j'ai surtout observé et suivi l'exercice.\n\nCe qui m'a surpris, c'est le temps nécessaire pour tester une base de code aussi grande. Une suite entière peut prendre plusieurs heures, parfois presque une journée. Ça donne une autre idée de ce que signifie « tester » dans un produit comme Odoo.\n\nJe ne veux pas forcer un lien avec mon stage ou mes projets. Cette visite m'a surtout donné un exemple concret d'outillage interne dans une entreprise logicielle belge.",
+      strengths: [
+        "J'ai découvert un workflow de test utilisé dans une entreprise avec une grande base de code.",
+        "J'ai pu manipuler un module Odoo au lieu de seulement écouter une présentation.",
+      ],
+      weaknesses: [
+        "Je suis surtout resté observateur ; j'aurais pu poser plus de questions pendant l'atelier.",
+      ],
       proofs: [
         {
           type: "attestation",
@@ -458,6 +504,11 @@ export const competencesData: CompetencesData = {
           url: "/proofs/preuve-visite-odoo.pdf",
           description:
             "Email d'invitation à l'atelier Odoo du 12 novembre 2025, envoyé par l'EPHEC",
+        },
+        {
+          type: "link",
+          label: "GitHub : odoo_demo",
+          url: "https://github.com/Simon-Fontaine/odoo_demo",
         },
       ],
     },
