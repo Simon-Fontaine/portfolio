@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   name: "Simon Fontaine",
   title: "Simon Fontaine - Développeur Full-Stack",
   description:
-    "Développeur full-stack passionné, spécialisé en React, Node.js et Next.js. Découvrez mes projets, mon parcours et mes compétences.",
+    "Étudiant en informatique à l'EPHEC, orienté développement full-stack avec React, Node.js et Next.js.",
   url: "https://simonfontaine.com",
   email: "contact@simonfontaine.com",
 };
@@ -15,6 +15,7 @@ export const NAV_ITEMS = [
   { href: "#skills", label: "Compétences" },
   { href: "#projects", label: "Projets" },
   { href: "#contact", label: "Contact" },
+  { href: "/competences", label: "Portfolio" },
 ];
 
 export const SOCIAL_LINKS = [
@@ -33,12 +34,11 @@ export const SOCIAL_LINKS = [
 ];
 
 export const ABOUT_HEADING = "À propos";
-export const ABOUT_SUBHEADING =
-  "Mon parcours et ma passion pour le développement";
+export const ABOUT_SUBHEADING = "Mon parcours et mes centres d'intérêt";
 export const ABOUT_CONTENT = [
-  "Développeur full-stack passionné, je suis actuellement en troisième année de Bachelier en Technologies de l'Informatique à l'EPHEC. J'aime concevoir des applications modernes, performantes, et bien structurées - notamment en mettant l'accent sur la qualité du code et l'expérience utilisateur.",
-  "Au fil de mes projets, j'ai acquis une bonne maîtrise de React, Node.js et PostgreSQL, ainsi que d'outils plus récents comme Next.js et Prisma.",
-  "En outre, je m'intéresse beaucoup à l'architecture backend, à la sécurité des applications web, et à l'auto-hébergement de mes propres services.",
+  "Je suis en troisième année de Bachelier en Technologies de l'Informatique à l'EPHEC. Je travaille surtout sur des applications web full-stack, avec une attention particulière à la structure du code et à l'expérience utilisateur.",
+  "Mes projets m'ont amené à utiliser React, Node.js, PostgreSQL, Next.js et Prisma sur des cas assez différents : portfolio, outils web, bot Discord et projet de gestion d'équipe esport.",
+  "Je m'intéresse aussi à l'architecture back-end, à la sécurité des applications web et à l'auto-hébergement de mes propres services.",
 ];
 
 export const SKILLS_HEADING = "Compétences";
@@ -60,7 +60,15 @@ export const skillsData = [
   {
     title: "Backend",
     icon: Server,
-    skills: ["Node.js", "Express.js", "REST APIs", "SQL", "Python", "Go"],
+    skills: [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "SQL",
+      "PostgreSQL",
+      "Prisma",
+      "Go",
+    ],
   },
   {
     title: "DevOps & Infrastructure",
@@ -91,12 +99,12 @@ export const educationData = [
     institution: "Seneca Polytechnic",
     location: "Toronto, Canada",
     description:
-      "Programme intensif de développement d'applications mobiles multiplateformes",
+      "Programme intensif de développement mobile avec React Native et Expo",
     highlights: [
       "Développement React Native",
-      "Conception d'interfaces modernes",
+      "Conception d'interfaces mobiles",
       "Intégration d'APIs externes",
-      "Travail en équipe internationale (Belgique, Canada, Danemark)",
+      "Travail en équipe internationale (Belgique, Canada)",
       "Authentification avec Supabase",
     ],
   },
@@ -107,11 +115,11 @@ export const educationData = [
     institution: "EPHEC",
     location: "Louvain-la-Neuve, Belgique",
     description:
-      "Formation complète en développement logiciel, réseaux et infrastructure IT avec une approche pratique orientée vers les besoins du marché",
+      "Formation en développement logiciel, réseaux et infrastructure IT, avec beaucoup de pratique",
     highlights: [
       "Développement web (Frontend & Backend)",
       "Programmation avancée (JavaScript, TypeScript, Python, Go)",
-      "Frameworks modernes (React.js, Next.js, Node.js, Express.js)",
+      "Frameworks web (React.js, Next.js, Node.js, Express.js)",
       "Bases de données relationnelles (SQL) et NoSQL",
       "Architecture logicielle et APIs RESTful",
       "Méthodologies Agile et Scrum",
@@ -127,7 +135,7 @@ export const educationData = [
     institution: "Athénée Royal de Waterloo",
     location: "Waterloo, Belgique",
     description: "Enseignement secondaire général",
-    highlights: ["Formation générale complète", "Diplôme d'études secondaires"],
+    highlights: ["Formation générale", "Diplôme d'études secondaires"],
   },
 ];
 
@@ -152,7 +160,7 @@ export const projects: Project[] = [
   {
     title: "Projet Fisheye",
     description:
-      "Système IoT connectant les calendriers des professeurs à un panneau d'affichage LED et une sonnette intelligente. Développé sur Raspberry Pi avec une interface de gestion web.",
+      "Projet IoT sur Raspberry Pi reliant les calendriers des professeurs à un panneau LED et à une sonnette. J'ai travaillé sur le back-end Node.js, MQTT et PostgreSQL.",
     technologies: ["IoT", "Raspberry Pi", "Node.js", "MQTT", "PostgreSQL"],
     githubUrl:
       "https://github.com/bpatureau/Projet-d-integration-groupe-fisheye/tree/dev-backend-new/backend",
@@ -162,7 +170,7 @@ export const projects: Project[] = [
   {
     title: "Book Worm",
     description:
-      "Application mobile développée en équipe internationale (Canada, Danemark, Belgique) avec React Native et Supabase. Permet aux utilisateurs de suivre leurs lectures, noter des livres et découvrir de nouveaux ouvrages.",
+      "Application mobile créée en équipe internationale pendant la Summer School à Toronto. Elle permet de suivre ses lectures et repose sur React Native, Expo et Supabase.",
     technologies: ["React Native", "Supabase", "Mobile"],
     githubUrl:
       "https://github.com/Simon-Fontaine/rnss25-group-7-simon-guillaume-rehat-mostafa",
@@ -172,7 +180,7 @@ export const projects: Project[] = [
   {
     title: "MadBracket",
     description:
-      "Plateforme web complète pour la gestion de tournois. Gère la création d'équipes, les profils des joueurs et le suivi des compétitions.",
+      "Application web de gestion de tournois réalisée en projet scolaire. Elle couvre la création d'équipes, les profils joueurs et le suivi des compétitions.",
     technologies: ["React.js", "Express", "Node.js", "PostgreSQL"],
     githubUrl: "https://github.com/Bistouflere/Dev-Web-2024",
     imageLight: "/images/projects/madbracket-light.png",
@@ -182,7 +190,7 @@ export const projects: Project[] = [
   {
     title: "Portfolio Personnel",
     description:
-      "Site personnel moderne construit avec Next.js et hébergé sur Vercel. Intègre un rate-limit Redis pour le formulaire de contact et Vercel Blob pour la gestion du CV.",
+      "Ce site portfolio est construit avec Next.js et déployé sur Vercel. Le formulaire de contact utilise Redis pour limiter les abus, et le CV est servi via Vercel Blob.",
     technologies: [
       "Next.js",
       "Redis",
@@ -199,7 +207,7 @@ export const projects: Project[] = [
   {
     title: "SurvieCraft Bot",
     description:
-      "Bot Discord en TypeScript pour un serveur de 2000+ membres. Gère les tickets support, la modération automatique et les événements communautaires via une base de données MongoDB.",
+      "Bot Discord TypeScript développé pour un serveur de plus de 2000 membres. Il gère les tickets support, une partie de la modération et des événements communautaires avec MongoDB.",
     technologies: ["TypeScript", "Discord.js", "MongoDB", "Node.js"],
     githubUrl: "https://github.com/Simon-Fontaine/SurvieCraft-V3",
     liveUrl: "https://scbots.gitbook.io/surviecraft/",

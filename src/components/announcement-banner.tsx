@@ -66,7 +66,6 @@ export function AnnouncementBanner({
         >
           <div className="container mx-auto px-3 sm:px-6 lg:px-8 max-w-7xl">
             <div className="relative flex items-center justify-between gap-2 py-2.5 sm:py-3">
-              {/* Contenu principal */}
               <div className="flex items-center gap-2 min-w-0 flex-1">
                 {icon && (
                   <span
@@ -89,7 +88,6 @@ export function AnnouncementBanner({
                 </p>
               </div>
 
-              {/* Bouton de fermeture */}
               {dismissible && (
                 <Button
                   variant="ghost"
@@ -114,10 +112,10 @@ export function InternshipAnnouncementBanner() {
   return (
     <AnnouncementBanner
       icon={<Rocket className="size-4 sm:size-5" />}
-      message="À la recherche d'un stage de fin d'études (février - mai 2026)"
-      variant="warning"
-      ctaLabel="En savoir plus"
-      ctaHref="#internship"
+      message="Mon portfolio de compétences EPHEC est disponible"
+      variant="primary"
+      ctaLabel="Découvrir"
+      ctaHref="/competences"
       dismissible
     />
   );

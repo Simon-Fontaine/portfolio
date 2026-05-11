@@ -46,8 +46,8 @@ export function HeroSection() {
           className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl"
         >
           Étudiant en 3ème année de Bachelier en Technologies de l'Informatique
-          à l'EPHEC. Passionné par le développement et à la recherche d'un stage
-          pour mettre en pratique mes compétences.
+          à l'EPHEC. Passionné par le développement, j&apos;ai réalisé mon stage
+          de fin d&apos;études chez 3D-Side.
         </motion.p>
 
         <motion.div

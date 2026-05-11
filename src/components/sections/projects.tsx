@@ -195,7 +195,6 @@ export function ProjectsSection() {
             </div>
           </Carousel>
 
-          {/* Pagination Indicator */}
           <fieldset
             className="flex items-center justify-center gap-4"
             aria-label="Navigation du carousel"
