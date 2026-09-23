@@ -11,11 +11,10 @@
       "**",
       "!node_modules",
       "!.next",
+      "!.next-production",
       "!dist",
       "!build",
-      "!src/components/ui/carousel.tsx",
-      "!src/components/ui/field.tsx",
-      "!src/components/ui/spinner.tsx"
+      "!src/i18n/generated"
     ]
   },
   "formatter": {

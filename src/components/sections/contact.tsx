@@ -1,33 +1,38 @@
 import { Mail } from "lucide-react";
+import { CvDownload } from "@/components/cv-download";
 import { SectionContainer } from "@/components/section-container";
-import { SocialLinks } from "@/components/social-links";
-import { Button } from "@/components/ui/button";
+import { SectionHeading } from "@/components/section-heading";
+import type { Messages } from "@/i18n/messages";
 import { SITE_CONFIG } from "@/lib/constants";
 
-export function ContactSection() {
+export function ContactSection({ m, locale }: { m: Messages; locale: string }) {
   return (
-    <SectionContainer id="contact" ariaLabel="Me contacter">
-      <div className="max-w-2xl mx-auto text-center space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            Me contacter
-          </h2>
-          <p className="text-base sm:text-lg text-muted-foreground">
-            N&apos;hésitez pas à me contacter par email ou via mes réseaux
-            sociaux.
+    <SectionContainer
+      id="contact"
+      background="muted"
+      ariaLabel={m.common.contact}
+    >
+      <div className="section-layout">
+        <SectionHeading title={m.contact.title} />
+        <div className="flex flex-col gap-8">
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            {m.contact.description}
           </p>
+          <a
+            href={`mailto:${SITE_CONFIG.email}`}
+            className="text-link text-base sm:text-xl break-all"
+          >
+            <Mail className="size-5 shrink-0" aria-hidden="true" />
+            {SITE_CONFIG.email}
+          </a>
+          <div className="flex flex-wrap items-center gap-5">
+            <CvDownload
+              locale={locale}
+              label={m.common.download}
+              variant="outline"
+            />
+          </div>
         </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" asChild>
-            <a href={`mailto:${SITE_CONFIG.email}`}>
-              <Mail className="mr-2 size-4" aria-hidden="true" />
-              {SITE_CONFIG.email}
-            </a>
-          </Button>
-        </div>
-
-        <SocialLinks className="flex items-center justify-center gap-4" />
       </div>
     </SectionContainer>
   );

@@ -1,89 +1,38 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
-  },
-
-  compress: true,
-
-  experimental: {
-    optimizePackageImports: ["lucide-react", "react-icons"],
-  },
-
+  // Keep local development from overwriting the build used by production tests.
+  distDir:
+    process.env.NODE_ENV === "development" ? ".next" : ".next-production",
+  poweredByHeader: false,
+  outputFileTracingIncludes: { "/api/cv/*": ["./documents/*.pdf"] },
+  experimental: { optimizePackageImports: ["lucide-react"] },
   images: {
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 31536000,
-    dangerouslyAllowSVG: false,
+    minimumCacheTTL: 3600,
   },
-
   async headers() {
     return [
       {
         source: "/:path*",
         headers: [
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "origin-when-cross-origin",
-          },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
+            value: "camera=(), microphone=(), geolocation=(), payment=()",
           },
-        ],
-      },
-      {
-        source: "/images/:path*",
-        headers: [
+          // Restrict embedded content without forcing dynamic nonce rendering for static pages.
           {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/:path*.png",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/:path*.jpg",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/:path*.ico",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            key: "Content-Security-Policy",
+            value:
+              "object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; frame-src 'none'; connect-src 'self'; font-src 'self'; img-src 'self' data: blob:",
           },
         ],
       },
     ];
   },
 };
-
-export default nextConfig;
+export default createNextIntlPlugin("./src/i18n/request.ts")(nextConfig);

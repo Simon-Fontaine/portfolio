@@ -1,0 +1,176 @@
+{
+  "locale": {
+    "name": "Français",
+    "lang": "fr",
+    "direction": "ltr",
+    "openGraph": "fr_BE"
+  },
+  "metadata": {
+    "title": "{name} | Développeur logiciel junior, full stack",
+    "description": "Développeur logiciel junior à Nivelles, diplômé de l'EPHEC en juin 2026. Je recherche un premier poste en full stack ou backend. Découvrez mon expérience et mes projets.",
+    "siteName": "{name} - Portfolio",
+    "keywords": "développeur, full stack, junior, Nivelles, React, Node.js, TypeScript, Next.js, portfolio, EPHEC, Belgique, développement web, 3D-Side"
+  },
+  "common": {
+    "role": "Développeur logiciel junior | Full stack",
+    "location": "Nivelles, Belgique",
+    "download": "Télécharger mon CV (PDF)",
+    "contact": "Me contacter",
+    "projects": "Découvrir mes projets",
+    "social": "Profils professionnels",
+    "skip": "Aller au contenu principal",
+    "footer": "© {year} {name}. Tous droits réservés.",
+    "projectLink": "Voir {project} sur GitHub",
+    "technologies": "Technologies de {project}",
+    "newTab": "(nouvel onglet)"
+  },
+  "navigation": {
+    "label": "Navigation principale",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "education": "Formation",
+    "contact": "Contact",
+    "menu": "Menu",
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu",
+    "mobile": "Choisissez une étape du parcours.",
+    "theme": "Changer le thème",
+    "language": "Langue",
+    "hero": "Présentation"
+  },
+  "hero": {
+    "label": "Présentation",
+    "description": "Diplômé de l'EPHEC en juin 2026, je recherche mon premier poste de développeur logiciel, principalement en full stack ou backend. Je travaille surtout avec TypeScript, React, Next.js, Node.js et PostgreSQL. Le frontend m'intéresse également pour un poste orienté développement."
+  },
+  "experience": {
+    "title": "Expérience professionnelle",
+    "period": "Février à mai 2026 · Mont-Saint-Guibert",
+    "role": "Développeur web stagiaire",
+    "description": "Travail sur Customize, une plateforme web de planification chirurgicale, au sein d'une équipe communiquant principalement en anglais.",
+    "tasks": {
+      "tests": "Mise en place de tests TypeScript avec Vitest, dont des tests en navigateur via Playwright, et intégration à GitLab CI pour leur exécution à chaque merge request.",
+      "viewers": "Refactorisation de composants Vue.js de visualisation 2D et 3D pour adapter les contrôles aux interactions disponibles.",
+      "local": "Modification de la configuration Docker et Vite pour tester un package partagé en local sans devoir publier une nouvelle version.",
+      "review": "Correction de bugs, documentation des vérifications et prise en compte des retours de code review."
+    },
+    "studentJobs": {
+      "title": "Jobs étudiants",
+      "period": "2020 à 2025 · Nivelles, Belgique",
+      "employers": "Colruyt Group et CHU Helora"
+    }
+  },
+  "projects": {
+    "title": "Projets sélectionnés",
+    "description": "Des applications web, un projet connecté et des expériences de développement en équipe.",
+    "items": {
+      "scrimflow": {
+        "context": "Travail de fin d'études · 2026",
+        "description": "Une application web pour gérer des équipes Overwatch, organiser des matchs d'entraînement et suivre les résultats.",
+        "contributionTitle": "Ma contribution",
+        "contributions": {
+          "app": "Développement de l'interface, de l'API et du modèle de données, avec gestion des comptes, des sessions et des permissions.",
+          "gemini": "Intégration de Gemini pour extraire les informations de captures d'écran et préremplir les résultats, avec vérification et validation par l'utilisateur.",
+          "deployment": "Configuration du déploiement avec Docker Compose et Caddy."
+        }
+      },
+      "fisheye": {
+        "context": "Projet d'intégration EPHEC en équipe · 2025",
+        "description": "Un système de sonnette et d'affichage connecté pour signaler les visites et la disponibilité des professeurs.",
+        "contributionTitle": "Ma contribution au backend",
+        "contributions": {
+          "api": "Développement du backend : API REST en TypeScript avec Express, modèle de données PostgreSQL avec Prisma et échanges MQTT avec les appareils.",
+          "mqtt": "Gestion de la reconnexion au broker, du réabonnement aux topics et des tentatives de renvoi de messages."
+        }
+      },
+      "bookworm": {
+        "context": "Summer School à Seneca, équipe internationale · Juillet 2025",
+        "description": "Application mobile de suivi et de partage de livres développée en équipe internationale à Toronto. Elle permet notamment d'organiser les livres lus, en cours de lecture et à lire.",
+        "imageAlt": "Aperçu de l'application mobile Bookworm"
+      },
+      "surviecraft": {
+        "context": "Projet personnel",
+        "description": "Bot Discord pour gérer le support par tickets, la modération et des événements communautaires. Développement des commandes et des interactions, avec stockage des données dans MongoDB.",
+        "imageAlt": "Logo du bot Discord SurvieCraft"
+      }
+    }
+  },
+  "skills": {
+    "title": "Compétences",
+    "label": "Compétences techniques",
+    "description": "Une pratique centrée sur JavaScript, TypeScript et le développement web. J'utilise aussi Python dans mes projets académiques.",
+    "groups": {
+      "languages": "Langages",
+      "frontend": "Frontend",
+      "backend": "Backend et données",
+      "tools": "Tests et outils"
+    }
+  },
+  "education": {
+    "title": "Formation et langues",
+    "degree": {
+      "period": "2022 à 2026 · Louvain-la-Neuve",
+      "title": "Bachelier en informatique, orientation Technologies de l'informatique",
+      "description": "Diplôme obtenu en juin 2026."
+    },
+    "summer": {
+      "period": "Juillet 2025 · Toronto, Canada",
+      "title": "Summer School en développement mobile React Native",
+      "description": "Développement de Bookworm en équipe internationale avec React Native et Expo."
+    },
+    "languages": {
+      "title": "Langues",
+      "french": "Français",
+      "frenchLevel": "Langue maternelle",
+      "english": "Anglais",
+      "englishLevel": "C1, évalué par eLAO (Forem, août 2026)."
+    }
+  },
+  "contact": {
+    "title": "Parlons de votre poste.",
+    "description": "Vous recrutez un développeur junior ? Vous pouvez me contacter par email ou sur LinkedIn pour échanger sur le poste et mes projets."
+  },
+  "errors": {
+    "notFoundTitle": "Page introuvable",
+    "notFoundDescription": "Cette page n'existe pas ou n'est plus disponible.",
+    "home": "Retour au portfolio",
+    "errorTitle": "Impossible d'afficher cette page",
+    "errorDescription": "Une erreur est survenue. Vous pouvez réessayer ou revenir au portfolio.",
+    "retry": "Réessayer"
+  },
+  "sharing": {
+    "availability": "À la recherche de mon premier poste"
+  },
+  "footer": {
+    "back": "Retour en haut",
+    "privacy": "Confidentialité"
+  },
+  "settings": {
+    "language": "Langue",
+    "theme": "Apparence",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "session": "Vos choix sont conservés uniquement pendant cette session de navigation.",
+    "pending": "Changement de langue…",
+    "error": "Le changement de langue a échoué. Réessayez."
+  },
+  "privacy": {
+    "title": "Confidentialité",
+    "description": "Comment ce portfolio utilise les données et les préférences de navigation.",
+    "intro": "Ce portfolio présente mon parcours et mes projets. Il ne comporte ni compte utilisateur, ni formulaire de contact, ni publicité, ni outil de mesure d'audience.",
+    "ownerTitle": "Responsable et contact",
+    "owner": "Simon Fontaine, à Nivelles en Belgique, est responsable de ce site. Pour toute question sur vos données ou pour exercer vos droits, vous pouvez me contacter à {email}.",
+    "preferencesTitle": "Vos préférences",
+    "preferences": "Deux cookies internes peuvent mémoriser vos choix explicites : NEXT_LOCALE pour la langue et theme pour l'apparence. Ils ne contiennent aucun identifiant de suivi et n'ont pas de date d'expiration persistante. Ils sont limités à la session du navigateur, dont la restauration peut prolonger leur présence. Sans choix, le site suit la langue et le thème du navigateur. Aucun stockage local persistant ni cookie publicitaire n'est utilisé.",
+    "hostingTitle": "Hébergement et données techniques",
+    "hosting": "Le site est prévu pour un hébergement sur Vercel. Lors d'une consultation, l'hébergeur reçoit les informations nécessaires à la réponse HTTP, notamment l'adresse IP, l'URL demandée et les informations du navigateur. Des journaux techniques peuvent être traités pour la fourniture et la sécurité du service. Leurs conditions de conservation et de traitement relèvent de la configuration et de la documentation de l'hébergeur. Vercel Analytics et Speed Insights ne sont pas intégrés à ce site.",
+    "contactTitle": "Email et liens externes",
+    "contact": "Le lien email ouvre votre application de messagerie. Aucun message n'est transmis par le portfolio lui-même. Les échanges reçus par email servent à répondre à votre demande et sont conservés seulement aussi longtemps que nécessaire à cet échange. GitHub et LinkedIn ne reçoivent pas de requête du site avant que vous n'ouvriez leurs liens. Leurs propres politiques s'appliquent alors.",
+    "rightsTitle": "Vos droits",
+    "rights": "Selon le traitement concerné, vous pouvez demander l'accès, la rectification ou l'effacement de vos données, la limitation du traitement ou vous y opposer. Vous pouvez également adresser une réclamation à l'Autorité de protection des données belge. Aucun profilage ni décision automatisée n'est effectué par ce portfolio.",
+    "resourcesTitle": "Pour en savoir plus",
+    "authority": "Autorité de protection des données",
+    "host": "Confidentialité chez Vercel"
+  }
+}
