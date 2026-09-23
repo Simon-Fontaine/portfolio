@@ -2,9 +2,8 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  // Keep local development from overwriting the build used by production tests.
-  distDir:
-    process.env.NODE_ENV === "development" ? ".next" : ".next-production",
+  // Isolate the dev server while keeping the standard production output for hosting.
+  distDir: process.env.NODE_ENV === "development" ? ".next-dev" : ".next",
   poweredByHeader: false,
   outputFileTracingIncludes: { "/api/cv/*": ["./documents/*.pdf"] },
   experimental: { optimizePackageImports: ["lucide-react"] },

@@ -14,7 +14,8 @@
       "!.next-production",
       "!dist",
       "!build",
-      "!src/i18n/generated"
+      "!src/i18n/generated",
+      "!.next-dev"
     ]
   },
   "formatter": {

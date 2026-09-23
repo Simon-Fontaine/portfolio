@@ -6,7 +6,7 @@ outil de mesure d’audience ou service publicitaire.
 
 ## Développement et validation
 
-Node.js 22.18 ou plus récent, npm et fichiers de polices locaux.
+Node.js 22.x, npm et fichiers de polices locaux.
 
 ```sh
 npm ci
@@ -35,7 +35,7 @@ Aucune suite de tests automatisés ni installation de navigateur n’est nécess
   visible et la préférence de réduction des animations.
 - Télécharger les deux CV et vérifier leur nom, leur contenu et leurs liens.
 
-Le développement utilise `.next` et le build de production `.next-production`
+Le développement utilise `.next-dev` et le build de production `.next`
 pour qu’un aperçu de développement ne puisse pas écraser les fichiers de production.
 
 L’override PostCSS 8.5.28 corrige la dépendance transitive de Next.js 15 sans
