@@ -45,7 +45,7 @@
     "postcss": "8.5.28"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": "22.x"
   },
   "type": "module"
 }
