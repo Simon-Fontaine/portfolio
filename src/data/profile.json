@@ -1,0 +1,89 @@
+{
+  "name": "Simon Fontaine",
+  "shortName": "Simon",
+  "url": "https://www.simonfontaine.com",
+  "email": "simon.fontaine@live.com",
+  "phone": "+32 472 04 05 75",
+  "cvBase": "Simon_Fontaine_CV",
+  "employer": "3D-Side",
+  "school": "EPHEC",
+  "summerSchool": "Seneca Polytechnic",
+  "social": [
+    {
+      "name": "github",
+      "url": "https://github.com/Simon-Fontaine",
+      "label": "GitHub"
+    },
+    {
+      "name": "linkedin",
+      "url": "https://www.linkedin.com/in/fontaine-simon/",
+      "label": "LinkedIn"
+    }
+  ],
+  "skills": {
+    "languages": ["TypeScript", "JavaScript", "Python", "SQL"],
+    "frontend": ["React", "Next.js", "Tailwind CSS"],
+    "backend": [
+      "Node.js",
+      "Express",
+      "REST API",
+      "PostgreSQL",
+      "Prisma",
+      "Drizzle"
+    ],
+    "tools": ["Vitest", "Playwright", "Git", "GitLab CI", "Docker", "Linux"]
+  },
+  "projects": [
+    {
+      "id": "scrimflow",
+      "title": "Scrimflow",
+      "featured": true,
+      "technologies": [
+        "TypeScript",
+        "React / Next.js",
+        "Hono / Bun",
+        "PostgreSQL",
+        "Drizzle",
+        "Gemini",
+        "Docker Compose",
+        "Caddy"
+      ],
+      "githubUrl": "https://github.com/Simon-Fontaine/tfe-2026"
+    },
+    {
+      "id": "fisheye",
+      "title": "Fisheye",
+      "featured": true,
+      "technologies": [
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Prisma",
+        "MQTT"
+      ],
+      "githubUrl": "https://github.com/bpatureau/Projet-d-integration-groupe-fisheye"
+    },
+    {
+      "id": "bookworm",
+      "title": "Bookworm",
+      "featured": false,
+      "technologies": ["React Native", "Expo", "TypeScript"],
+      "githubUrl": "https://github.com/Simon-Fontaine/rnss25-group-7-simon-guillaume-rehat-mostafa",
+      "image": "/images/projects/book-worm.png"
+    },
+    {
+      "id": "surviecraft",
+      "title": "SurvieCraft V3",
+      "featured": false,
+      "technologies": [
+        "JavaScript",
+        "Node.js",
+        "Discord.js",
+        "MongoDB / Mongoose"
+      ],
+      "githubUrl": "https://github.com/Simon-Fontaine/surviecraft-v3",
+      "image": "/images/projects/surviecraft.png"
+    }
+  ]
+}

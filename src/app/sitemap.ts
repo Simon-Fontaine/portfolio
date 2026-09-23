@@ -1,49 +1,28 @@
 import type { MetadataRoute } from "next";
+import { locales } from "@/i18n/generated/locales";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const languages = {
+    ...Object.fromEntries(
+      locales.map((locale) => [locale, `${SITE_CONFIG.url}/${locale}`]),
+    ),
+    "x-default": SITE_CONFIG.url,
+  };
   return [
-    {
-      url: SITE_CONFIG.url,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+    ...locales.map((locale) => ({
+      url: `${SITE_CONFIG.url}/${locale}`,
+      changeFrequency: "monthly" as const,
       priority: 1,
-    },
-    {
-      url: `${SITE_CONFIG.url}#about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_CONFIG.url}#skills`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_CONFIG.url}#education`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_CONFIG.url}#projects`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_CONFIG.url}#contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_CONFIG.url}/competences`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
+      alternates: { languages },
+    })),
+    ...locales.map((locale) => ({
+      url: `${SITE_CONFIG.url}/${locale}/privacy`,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${SITE_CONFIG.url}/${l}/privacy`]),
+        ),
+      },
+    })),
   ];
 }

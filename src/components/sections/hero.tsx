@@ -1,101 +1,48 @@
-"use client";
-
-import { ArrowRight, Mail, MapPin } from "lucide-react";
-import { motion } from "motion/react";
-import { NavLink } from "@/components/nav-link";
+import { ArrowDown, Mail, MapPin } from "lucide-react";
+import { CvDownload } from "@/components/cv-download";
 import { SectionContainer } from "@/components/section-container";
-import { SocialLinks } from "@/components/social-links";
 import { Button } from "@/components/ui/button";
+import type { Messages } from "@/i18n/messages";
 import { SITE_CONFIG } from "@/lib/constants";
 
-export function HeroSection() {
+export function HeroSection({ m, locale }: { m: Messages; locale: string }) {
   return (
     <SectionContainer
       id="hero"
-      ariaLabel="Section d'introduction"
-      className="pt-32 sm:pt-36 lg:pt-40 relative overflow-hidden"
+      fullHeight
+      className="hero-section"
+      ariaLabel={m.hero.label}
     >
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
-
-        <div className="absolute top-20 right-1/4 w-72 h-72 bg-primary/20 rounded-full blur-2xl animate-blob" />
-        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-2xl animate-blob animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-primary/10 rounded-full blur-2xl animate-blob animation-delay-4000" />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-      </div>
-
-      <div className="space-y-6 max-w-6xl mx-auto relative z-10">
-        <div className="space-y-2">
-          <p className="text-primary font-medium text-base sm:text-lg">
-            Bonjour, je suis
-          </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+      <div className="max-w-4xl flex flex-col gap-8 sm:flex flex-col gap-10">
+        <p className="flex items-center gap-2 text-sm text-muted-foreground">
+          <MapPin className="size-4" aria-hidden="true" />
+          {m.common.location}
+        </p>
+        <div className="flex flex-col gap-5">
+          <h1 className="hero-title">
             {SITE_CONFIG.name}
+            <span className="text-primary">.</span>
           </h1>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-muted-foreground">
-            Développeur Full-Stack
-          </h2>
+          <p className="text-xl sm:text-3xl font-medium">{m.common.role}</p>
         </div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl"
-        >
-          Étudiant en 3ème année de Bachelier en Technologies de l'Informatique
-          à l'EPHEC. Passionné par le développement, j&apos;ai réalisé mon stage
-          de fin d&apos;études chez 3D-Side.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground"
-        >
-          <MapPin className="size-4 flex-shrink-0" aria-hidden="true" />
-          <span>Nivelles, Belgique</span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 pt-4"
-        >
-          <Button
-            size="lg"
-            asChild
-            className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-all"
-          >
-            <NavLink href="#projects">
-              Voir mes projets
-              <ArrowRight className="ml-2" aria-hidden="true" />
-            </NavLink>
+        <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          {m.hero.description}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <CvDownload locale={locale} label={m.common.download} />
+          <Button size="lg" variant="outline" asChild>
+            <a href="#contact">
+              <Mail aria-hidden="true" />
+              {m.common.contact}
+            </a>
           </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            asChild
-            className="w-full sm:w-auto border-2 hover:bg-primary/10 hover:border-primary transition-all"
-          >
-            <NavLink href="#contact">
-              <Mail className="mr-2" aria-hidden="true" />
-              Me contacter
-            </NavLink>
-          </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          <SocialLinks className="flex items-center gap-3 pt-6" />
-        </motion.div>
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-5 max-w-2xl pt-2">
+          <a className="text-link" href="#projects">
+            {m.common.projects}
+            <ArrowDown className="size-4" aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </SectionContainer>
   );

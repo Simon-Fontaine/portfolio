@@ -14,7 +14,7 @@ export function SectionContainer({
   id,
   children,
   className,
-  fullHeight = true,
+  fullHeight = false,
   background = "default",
   ariaLabel,
 }: SectionContainerProps) {
@@ -22,14 +22,15 @@ export function SectionContainer({
     <section
       id={id}
       className={cn(
-        "flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20",
-        fullHeight && "min-h-screen",
+        "content-section flex items-center justify-center",
+        fullHeight && "min-h-svh",
         background === "muted" && "bg-muted/30",
         className,
       )}
       aria-label={ariaLabel}
+      tabIndex={-1}
     >
-      <div className="container max-w-7xl w-full mx-auto">{children}</div>
+      <div className="content-width">{children}</div>
     </section>
   );
 }
