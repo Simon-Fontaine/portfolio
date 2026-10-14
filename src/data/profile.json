@@ -3,7 +3,6 @@
   "shortName": "Simon",
   "url": "https://www.simonfontaine.com",
   "email": "simon.fontaine@live.com",
-  "phone": "+32 472 04 05 75",
   "cvBase": "Simon_Fontaine_CV",
   "employer": "3D-Side",
   "school": "EPHEC",
@@ -21,7 +20,7 @@
     }
   ],
   "skills": {
-    "languages": ["TypeScript", "JavaScript", "Python", "SQL"],
+    "languages": ["TypeScript", "JavaScript", "Java", "Python", "SQL"],
     "frontend": ["React", "Next.js", "Tailwind CSS"],
     "backend": [
       "Node.js",

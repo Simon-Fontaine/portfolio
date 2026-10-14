@@ -118,6 +118,18 @@
       "title": "Summer School en développement mobile React Native",
       "description": "Développement de Bookworm en équipe internationale avec React Native et Expo."
     },
+    "previous": {
+      "secondary": {
+        "period": "2016 à 2022 · Waterloo, Belgique",
+        "title": "Enseignement Secondaire",
+        "school": "Athénée Royal de Waterloo"
+      },
+      "primary": {
+        "period": "2010 à 2016 · Ottawa, Canada",
+        "title": "Enseignement Primaire",
+        "school": "Terre-des-Jeunes"
+      }
+    },
     "languages": {
       "title": "Langues",
       "french": "Français",
