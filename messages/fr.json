@@ -7,13 +7,13 @@
   },
   "metadata": {
     "title": "{name} | Développeur logiciel junior, full stack",
-    "description": "Développeur logiciel junior à Nivelles, diplômé de l'EPHEC en juin 2026. Je recherche un premier poste en full stack ou backend. Découvrez mon expérience et mes projets.",
+    "description": "Développeur logiciel junior à Uccle, diplômé de l'EPHEC en juin 2026. Je recherche un premier poste en full stack ou backend. Découvrez mon expérience et mes projets.",
     "siteName": "{name} - Portfolio",
-    "keywords": "développeur, full stack, junior, Nivelles, React, Node.js, TypeScript, Next.js, portfolio, EPHEC, Belgique, développement web, 3D-Side"
+    "keywords": "développeur, full stack, junior, Uccle, React, Node.js, TypeScript, Next.js, portfolio, EPHEC, Belgique, développement web, 3D-Side"
   },
   "common": {
     "role": "Développeur logiciel junior | Full stack",
-    "location": "Nivelles, Belgique",
+    "location": "Uccle, Belgique",
     "download": "Télécharger mon CV (PDF)",
     "contact": "Me contacter",
     "projects": "Découvrir mes projets",
@@ -172,7 +172,7 @@
     "description": "Comment ce portfolio utilise les données et les préférences de navigation.",
     "intro": "Ce portfolio présente mon parcours et mes projets. Il ne comporte ni compte utilisateur, ni formulaire de contact, ni publicité, ni outil de mesure d'audience.",
     "ownerTitle": "Responsable et contact",
-    "owner": "Simon Fontaine, à Nivelles en Belgique, est responsable de ce site. Pour toute question sur vos données ou pour exercer vos droits, vous pouvez me contacter à {email}.",
+    "owner": "Simon Fontaine, à Uccle en Belgique, est responsable de ce site. Pour toute question sur vos données ou pour exercer vos droits, vous pouvez me contacter à {email}.",
     "preferencesTitle": "Vos préférences",
     "preferences": "Deux cookies internes peuvent mémoriser vos choix explicites : NEXT_LOCALE pour la langue et theme pour l'apparence. Ils ne contiennent aucun identifiant de suivi et n'ont pas de date d'expiration persistante. Ils sont limités à la session du navigateur, dont la restauration peut prolonger leur présence. Sans choix, le site suit la langue et le thème du navigateur. Aucun stockage local persistant ni cookie publicitaire n'est utilisé.",
     "hostingTitle": "Hébergement et données techniques",

@@ -7,13 +7,13 @@
   },
   "metadata": {
     "title": "{name} | Junior software developer, full stack",
-    "description": "Junior software developer based in Nivelles, Belgium. EPHEC graduate, June 2026, looking for my first full stack or backend role. Explore my experience and projects.",
+    "description": "Junior software developer based in Uccle, Belgium. EPHEC graduate, June 2026, looking for my first full stack or backend role. Explore my experience and projects.",
     "siteName": "{name} - Portfolio",
-    "keywords": "software developer, full stack, junior, Nivelles, React, Node.js, TypeScript, Next.js, portfolio, EPHEC, Belgium, web development, 3D-Side"
+    "keywords": "software developer, full stack, junior, Uccle, React, Node.js, TypeScript, Next.js, portfolio, EPHEC, Belgium, web development, 3D-Side"
   },
   "common": {
     "role": "Junior software developer | Full stack",
-    "location": "Nivelles, Belgium",
+    "location": "Uccle, Belgium",
     "download": "Download my CV (PDF)",
     "contact": "Contact me",
     "projects": "Explore my projects",
@@ -172,7 +172,7 @@
     "description": "How this portfolio handles data and browsing preferences.",
     "intro": "This portfolio presents my experience and projects. It has no user accounts, contact form, advertising or audience analytics.",
     "ownerTitle": "Owner and contact",
-    "owner": "Simon Fontaine, based in Nivelles, Belgium, is responsible for this website. For questions about your data or to exercise your rights, contact me at {email}.",
+    "owner": "Simon Fontaine, based in Uccle, Belgium, is responsible for this website. For questions about your data or to exercise your rights, contact me at {email}.",
     "preferencesTitle": "Your preferences",
     "preferences": "Two first-party cookies can remember your explicit choices: NEXT_LOCALE for language and theme for appearance. They contain no tracking identifier and have no persistent expiry date. They last for the browser session, although session restoration may extend their presence. Without a choice, the site follows your browser language and system theme. No persistent local storage or advertising cookies are used.",
     "hostingTitle": "Hosting and technical data",
