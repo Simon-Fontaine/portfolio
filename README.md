@@ -1,151 +1,232 @@
-# Portfolio de Simon Fontaine
+# simonfontaine.com
 
-Portfolio bilingue destiné aux recruteurs. Next.js 15, React 19, TypeScript,
-Tailwind CSS 4 et primitives shadcn/ui (Radix). Aucun compte, formulaire serveur,
-outil de mesure d’audience ou service publicitaire.
+Bilingual (French / English) portfolio of Simon Fontaine, with **CVs generated
+from the same content as the website**. Edit one file, and the website, the
+French CV and the English CV all update together.
 
-## Développement et validation
+**Stack:** Next.js 16 (App Router, static pages) · React 19 · TypeScript ·
+Tailwind CSS 4 · `@react-pdf/renderer` for the CVs · Biome · Node's test runner.
 
-Node.js 22.x, npm et fichiers de polices locaux.
+## Quick start
+
+Requires Node.js 22.12+.
 
 ```sh
 npm ci
-npm run dev
+npm run dev        # generates the CVs, then starts http://localhost:3000
 ```
+
+| Command              | What it does                                                       |
+| -------------------- | ------------------------------------------------------------------ |
+| `npm run dev`        | Generate the CVs and start the development server                  |
+| `npm run cv`         | Regenerate the public CVs into `public/cv/`                        |
+| `npm run cv:private` | Generate CVs with your phone number into `private/cv/` (see below) |
+| `npm run build`      | Generate the CVs and build the production site                     |
+| `npm start`          | Serve the production build                                         |
+| `npm run check`      | Lint + type-check + tests (run this before pushing)                |
+| `npm run format`     | Auto-format and auto-fix lint issues                               |
+
+## Updating content
+
+All content lives in **`src/content/`**:
+
+| File                     | Contains                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------- |
+| `src/content/profile.ts` | Everything about you: headline, contact, experience, projects, education, skills, languages |
+| `src/content/ui.ts`      | Interface text: section titles, buttons, privacy page, error pages                          |
+
+### Conventions
+
+- **Translated text** is written as `{ fr: "…", en: "…" }`. If one language is
+  missing, TypeScript refuses to build, so the two versions can't drift apart.
+- **Text that is the same in both languages** (names, technologies, URLs) is a
+  plain string.
+- **Dates** are `"2026"` or `"2026-02"`. Omit `end` for a single date, or use
+  `end: "present"` for something ongoing. They are formatted automatically:
+  `02/2026 – 05/2026` on the CV, `February 2026 – May 2026` on the website.
+- **Order** in each list is the display order (most recent first).
+- **`cv: false`** keeps an entry on the website only. Projects are the main use:
+  the website shows them all, the CV only the ones without `cv: false`.
+
+### Common tasks
+
+**Add a project:** copy an existing block in `projects` and edit it.
+
+```ts
+{
+  id: "my-project",              // unique, used as a React key
+  cv: false,                     // website only (remove to also show it on the CV)
+  name: "My Project",            // or { fr: "Mon projet", en: "My Project" }
+  context: { fr: "Projet personnel", en: "Personal project" },
+  period: { start: "2026-09" },  // optional
+  summary: { fr: "…", en: "…" },
+  highlights: [{ fr: "…", en: "…" }],    // optional bullet points
+  tech: ["TypeScript", "Next.js"],
+  repository: "https://github.com/…",    // optional
+  demo: "https://…",                     // optional
+  featured: true,                        // full write-up (otherwise a compact entry under "More projects")
+  screenshot: { src: "/images/projects/my-project.webp", alt: { fr: "…", en: "…" } }, // optional, featured only
+  image: { src: "/images/projects/my-project.png", alt: { fr: "…", en: "…" } },       // optional logo, compact entries
+},
+```
+
+Images go in `public/images/projects/`. A `screenshot` (about 1600×1000) is
+shown under the project's summary. Projects without one are presented as text
+only: nothing is faked.
+
+**New job:** add an entry at the top of `experience`.
+**Change your headline, summary or availability:** edit the top of
+`profile.ts`. The headline is split on `|`: the part before it is the role,
+the rest is shown after a dash.
+**Change the personal note in the introduction:** edit `about` in
+`profile.ts`. This is the one place where the site should sound like you.
+**Add a skill:** add it to the right group in `skills` (a plain string, or
+`{ fr, en }` if it needs translating, like `"routage"` / `"routing"`).
+
+Then run:
 
 ```sh
-npm run prepare:locales
-npm run check:locales
-npm run lint
-npm run typecheck
-npm audit --audit-level=moderate
-npm run build
+npm run check   # catches empty text, bad dates, missing images, a CV over one page…
+npm run cv      # regenerate the PDFs (optional: build and dev do it too)
 ```
 
-La CI vérifie les traductions, le code, les dépendances et le build sans déployer.
-Aucune suite de tests automatisés ni installation de navigateur n’est nécessaire.
+## The CVs
 
-### Vérification manuelle
+There are two kinds, generated from the same content and the same layout:
 
-- Parcourir les sections, les ancres et le sommaire, à la souris et au clavier.
-- Changer de langue depuis la navigation et le footer, y compris depuis une
-  section et la page de confidentialité. Vérifier la conservation de l’ancre.
-- Vérifier les thèmes clair, sombre et système, puis changer de langue.
-- Contrôler la lisibilité sur mobile, tablette et desktop, ainsi que le focus
-  visible et la préférence de réduction des animations.
-- Télécharger les deux CV et vérifier leur nom, leur contenu et leurs liens.
+|                                           | Command              | Written to    | Phone number |
+| ----------------------------------------- | -------------------- | ------------- | ------------ |
+| **Public** (served by the website)        | `npm run cv`         | `public/cv/`  | never        |
+| **Private** (to send with an application) | `npm run cv:private` | `private/cv/` | yes          |
 
-Le développement utilise `.next-dev` et le build de production `.next`
-pour qu’un aperçu de développement ne puisse pas écraser les fichiers de production.
+The public CVs are served at `/cv/Simon_Fontaine_CV_<LANG>.pdf` and linked
+from the website. Every build regenerates them, so **the published CVs always
+match the website**. They are not committed (`public/cv/` is git-ignored).
 
-L’override PostCSS 8.5.28 corrige la dépendance transitive de Next.js 15 sans
-migration majeure. Le réévaluer lors des futures mises à jour de Next.js.
+### Private CV (phone number)
 
-## Structure et design
+The phone number is not part of the content. It exists only in `.env.local`
+on your own machine:
 
-- `src/components/sections` : contenu rendu sur le serveur.
-- Navigation : un seul calcul de progression à partir des positions des six
-  sections. Rail fixe de 216 px à partir de 1280 px, sommaire en Sheet en dessous.
-- Introduction plein écran, autres sections à hauteur naturelle. Aucun scroll
-  snapping. Les ancres restent utilisables sans JavaScript.
-- Tokens visuels dans le CSS global : couleurs sémantiques, largeur de contenu,
-  espacements fluides et échelle typographique. Les contrôles ont des cibles de
-  44 px minimum. Les états actifs ne reposent pas uniquement sur la couleur.
-- Réglages complets dans le footer et liens directs de langue dans la navigation,
-  visibles aussi sur mobile. Le thème système est le défaut. Une courte
-  animation au téléchargement du CV est chargée à la demande, une fois par page.
-  `prefers-reduced-motion` supprime cet effet et les transitions de défilement.
+```sh
+# .env.local (git-ignored, never deployed)
+CV_PHONE="your number, written as it should appear"
+```
 
-Geist est servi localement. Licence SIL OFL dans `src/app/fonts/OFL.txt`.
-Les WOFF2 proviennent de la distribution Next.js.
+`npm run cv:private` reads it and writes the CVs to `private/cv/`, which is
+also git-ignored. Nothing else reads that variable: the website, the build and
+the public CVs cannot contain it. `npm test` checks this (no `tel:` link in
+the public PDFs, no phone number in any file that would be committed).
 
-## Contenu et traductions
+Do not put the number in `src/content/`, and do not set `CV_PHONE` on Vercel.
 
-Les coordonnées, identifiants, technologies et URL sont centralisés dans
-`src/data/profile.json`. Le texte éditorial et les libellés sont dans
-`messages/fr.json` et `messages/en.json`, y compris confidentialité, erreurs,
-métadonnées. Les CV sont des PDF fournis manuellement, indépendants des traductions du site.
+### Details
 
-Pour ajouter une langue : copier `fr.json` vers `<code>.json`, traduire toutes
-les valeurs en conservant les clés et paramètres (`{name}`, `{email}`, etc.),
-puis renseigner `locale.name`, `locale.lang`, `locale.direction` et
-`locale.openGraph`. Redémarrer le serveur ou reconstruire le site.
+- **One page:** the script warns, and `npm test` fails, if a CV no longer fits
+  on one A4 page (with or without the phone number). Shorten some text or set
+  `cv: false` on an entry.
+- **ATS-friendly:** single column, real selectable text, standard section
+  headings, ligatures disabled so text extraction is exact, PDF metadata (title,
+  author, language, keywords) filled in.
+- **Design:** `src/cv/cv-document.tsx`. The CV is deliberately independent
+  from the website's look, because it is often sent on its own: black on white,
+  Source Sans, one column, no icons or colour. It prints cleanly and includes a
+  labelled link to the portfolio. Content never goes in that file.
 
-Les hooks `predev` et `prebuild` découvrent les dictionnaires et génèrent les
-chargeurs, options de langue et images de partage. Les clés absentes,
-vides, supplémentaires ou les paramètres incompatibles font échouer le build.
-Les routes, métadonnées et entrées du sitemap suivent les langues découvertes.
-Le sélecteur segmenté est généré à partir du même registre.
+## Languages
 
-Ne pas modifier directement `src/i18n/generated` ou `public/og`.
-Après modification du texte, relancer `npm run prepare:locales` pour actualiser
-les assets. Pour retirer une langue, supprimer son dictionnaire et ses assets
-générés avant de reconstruire.
+French is the default. `/` redirects to `/fr` or `/en` based on the browser's
+language (`src/proxy.ts`). Each page has `hreflang` alternates and the
+language switch keeps the current section (`/fr#projects` → `/en#projects`).
 
-## CV et moteurs de recherche
+To add a language (e.g. Dutch):
 
-Les deux CV sont créés et remplacés manuellement :
+1. Add `"nl"` to `locales` in `src/i18n/config.ts` and an entry in `localeInfo`.
+2. Run `npm run typecheck`: TypeScript lists every `{ fr, en }` that now needs
+   an `nl` value. Fill them in.
+3. `npm run check && npm run build`. A `/nl` site and a `Simon_Fontaine_CV_NL.pdf` appear.
 
-- Français : `documents/Simon_Fontaine_CV_FR.pdf`.
-- Anglais : `documents/Simon_Fontaine_CV_EN.pdf`.
+## Design
 
-Remplacer directement ces fichiers en conservant leur nom, puis reconstruire
-et déployer le site pour publier les nouvelles versions. Aucun script ne génère
-ni ne modifie les PDF. Les fichiers actuels restent disponibles jusqu’à leur remplacement.
-Pour une autre langue, fournir `documents/Simon_Fontaine_CV_<CODE>.pdf`, avec
-le code de langue en majuscules. Un PDF absent retourne 404.
+The icons set the tone. [Papicons](https://github.com/PapillonApp/papicons)
+are rounded, filled and sturdy, and the rest of the site is built to match
+them. The rules live at the top of `src/app/globals.css`; in short:
 
-Les fichiers sont hors de `public` et inclus explicitement dans le bundle serveur.
-Seules les routes GET/HEAD `/api/cv/fr`, `/api/cv/en` et celles des langues
-ajoutées les distribuent. Réponses PDF avec nom de téléchargement, revalidation
-du cache et `X-Robots-Tag: noindex, nofollow, nosnippet`.
+|                | Rule                                                                                                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Typography** | Bricolage Grotesque for the name and headings, Figtree for everything that is read or clicked (`src/app/fonts.ts`).                                                                                                      |
+| **Colour**     | Warm paper, ink, one accent. The accent means "you can act on this" or "you are here". Nothing else is coloured.                                                                                                         |
+| **Shape**      | Pill-shaped controls, rounded tiles and panels, 2px lines. Filled surfaces instead of thin outlines.                                                                                                                     |
+| **Icons**      | One icon per section, shown in the navigation and next to the section title. Other icons label a fact or an action; none is decorative. All are imported through `src/components/icons.tsx`.                             |
+| **States**     | Hover changes colour only (120ms). Press scales the control slightly. Focus shows a 2px accent ring. The current section is tinted in the navigation.                                                                    |
+| **Motion**     | The timelines and the navigation track fill as you scroll; the menu slides; the theme cross-fades; the copy button swaps its label in place. Nothing moves on its own, and `prefers-reduced-motion` turns all of it off. |
+| **Writing**    | First person, short sentences, facts. No slogans.                                                                                                                                                                        |
 
-Les moteurs peuvent explorer ces routes pour lire la directive. Aucun PDF dans
-le sitemap. Les anciennes URL publiques et l’alias `/api/cv` retournent 404.
-Ce dispositif limite l’indexation par les moteurs coopératifs, sans constituer
-une protection d’accès. Une URL déjà indexée peut nécessiter un nouveau passage
-du moteur ou une demande de retrait dans Search Console.
+Layout:
 
-## Confidentialité
+- **Navigation:** a fixed rail on large screens, a top bar with a progress line
+  and a slide-in menu on smaller ones.
+- **Timelines** (experience, education): dates sit in their own column and stay
+  pinned while the entry is read. On phones the date moves above the entry.
+- **Projects:** featured projects are panels with the description on the left
+  and "my contribution" on the right. Panels are used for projects only.
+- **Skills and languages:** ruled rows, with technologies written as sentences.
 
-Aucune variable d’environnement n’est requise. Les anciens services Resend,
-Turnstile, Redis, Blob, Analytics et Speed Insights ont été supprimés.
+`.npmrc` sets `legacy-peer-deps=true`: Papicons depends on
+`react-native-svg`, whose `react-native` peer would otherwise add ~500 MB
+of packages the website never loads.
 
-| Mécanisme | Déclenchement | Contenu | Durée |
-| --- | --- | --- | --- |
-| Cookie `NEXT_LOCALE` | Choix explicite d’une langue | Code de langue | Session navigateur |
-| Cookie `theme` | Choix explicite du thème | `light`, `dark`, `system` | Session navigateur |
-| État en mémoire | Navigation et animation CV | Progression, thème, effet déjà joué | Page chargée |
+## Project structure
 
-Les cookies sont first-party, `SameSite=Lax`, `Path=/` et `Secure` sous HTTPS,
-sans `Max-Age` ni `Expires`. La restauration de session d’un navigateur peut
-prolonger leur présence. Pas de localStorage, de tracking ou d’identifiant visiteur.
-Les réglages fonctionnent en mémoire si l’écriture des cookies est bloquée.
+```
+src/
+  content/          ← edit these: profile.ts (career data), ui.ts (interface text), types.ts
+  cv/               CV layout (react-pdf), independent from the site design
+  app/
+    [locale]/       pages: home, privacy, error boundary, social preview image
+    global-not-found.tsx  bilingual 404 for every unknown URL
+    sitemap.ts, robots.ts, icons
+  components/       journey rail, timeline, copy button, icons, page sections
+  i18n/             locale list, Accept-Language negotiation, localize()
+  lib/              content access, date formatting, CV file names, theme script
+  proxy.ts          "/" → "/fr" or "/en"
+scripts/generate-cv.tsx   writes the PDFs
+tests/                    content integrity, i18n, CV rendering
+```
 
-Les URL explicites imposent toujours leur langue. `/` utilise une préférence
-de session valide, puis la langue compatible du navigateur, puis le français.
-La détection seule ne crée aucun cookie. Les ressources et les API restent hors
-du routage linguistique. Les liens externes ne sont pas préchargés.
+## Quality and deployment
 
-Pas de bannière de consentement : les seuls stockages sont les préférences
-temporaires expressément choisies. La page `/fr/privacy` et sa traduction
-expliquent leur rôle et les traitements techniques d’hébergement. Cette décision
-doit être réévaluée avant tout ajout de tracking, widget externe ou persistance.
+- **CI** (`.github/workflows/quality.yml`) runs on every push: lint,
+  type-check, tests, `npm audit`, production build, then uploads the CVs as an
+  artifact.
+- **Deployment:** Vercel, with default settings. `npm run build` generates the
+  CVs before building, so nothing else needs configuring. All pages, the
+  sitemap and the social images are prerendered at build time.
+- **Domain:** taken from `profile.website` (canonical URLs, sitemap, Open
+  Graph, JSON-LD). Change it there if the domain changes.
 
-Références : [APD, cookies et autres traceurs](https://www.autoriteprotectiondonnees.be/cookies-et-autres-traceurs),
-[Google, directives robots HTTP](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag).
+## SEO, accessibility and privacy
 
-## Avant un déploiement
+- Per-language `<title>`, description, canonical URL, `hreflang`, Open Graph
+  and Twitter cards, a generated 1200×630 social image per language, sitemap,
+  and schema.org `Person` structured data. All of it comes from `profile.ts`.
+- The CV PDFs are sent with `X-Robots-Tag: noindex` to keep them out of search
+  results. The old `/api/cv/<lang>` URLs permanently redirect to the new files.
+- Semantic landmarks, skip link, one `h1` per page, visible focus, 44 px touch
+  targets, `prefers-reduced-motion` support, AA colour contrast in both themes.
+- **No phone number anywhere public:** see "Private CV" above.
+- **No cookies, no analytics, no third-party requests.** The only browser
+  storage is the `theme` key in `localStorage`, written only when the visitor
+  clicks the theme button (documented on the privacy page). Re-check the privacy
+  page in `ui.ts` before adding any tracking, embed or external service.
+- Security headers (CSP, `X-Frame-Options`, `Referrer-Policy`,
+  `Permissions-Policy`) are in `next.config.ts`. The CSP allows
+  `'unsafe-eval'` **only under `next dev`**: React's development build uses
+  `eval()` for debugging (without it you get "eval() is not supported in this
+  environment"). Production builds never call `eval()` and keep the strict policy.
 
-- Vérifier les intégrations, scripts injectés et paramètres de journalisation du
-  projet Vercel. La suppression des packages ne modifie pas le tableau de bord.
-- Confirmer la politique et les durées de conservation de l’hébergement, puis
-  préciser la notice si la configuration introduit des traitements supplémentaires.
-- Vérifier en HTTPS les cookies de session, headers PDF et absence d’analytics.
-- Conserver le domaine canonique `https://www.simonfontaine.com` ou mettre à jour
-  sa source unique si le domaine change.
-
-La CSP limite connexions, images, polices, formulaires et contenus embarqués.
-Elle ne prétend pas être une protection XSS complète : les scripts inline requis
-par le rendu statique Next.js restent compatibles, sans nonce dynamique.
-Les fichiers non versionnés n’utilisent pas de cache immutable forcé.
+Fonts: [Bricolage Grotesque](https://github.com/ateliertriay/bricolage) and
+[Figtree](https://github.com/erikdkennedy/figtree) on the website,
+[Source Sans 3](https://github.com/adobe-fonts/source-sans) in the CVs (all
+SIL Open Font License, loaded from npm packages). Icons:
+[Papicons](https://github.com/PapillonApp/papicons) (MIT).

@@ -1,75 +1,49 @@
-import { SectionContainer } from "@/components/section-container";
-import { SectionHeading } from "@/components/section-heading";
-import type { Messages } from "@/i18n/messages";
-import { SITE_CONFIG } from "@/lib/constants";
+import { ExternalLink, Section } from "@/components/section";
+import { Timeline, TimelineItem } from "@/components/timeline";
+import type { Content } from "@/lib/content";
+import { formatPeriod, formatPlace } from "@/lib/format";
 
-export function EducationSection({ m }: { m: Messages["education"] }) {
+export function EducationSection({ content }: { content: Content }) {
+  const { profile: p, t, locale } = content;
   return (
-    <SectionContainer id="education" ariaLabel={m.title}>
-      <div className="section-layout">
-        <SectionHeading title={m.title} />
-        <div>
-          <div className="education-list">
-            {Object.entries(m.previous)
-              .reverse()
-              .map(([id, school]) => (
-                <article className="education-item" key={id}>
-                  <span className="education-marker" aria-hidden="true" />
-                  <p className="text-sm text-muted-foreground">
-                    {school.period}
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    <h3 className="text-xl font-semibold">{school.title}</h3>
-                    <p>{school.school}</p>
-                  </div>
-                </article>
-              ))}
-            {(
-              [
-                ["summer", SITE_CONFIG.summerSchool],
-                ["degree", SITE_CONFIG.school],
-              ] as const
-            ).map(([id, school]) => {
-              const course = m[id];
-              return (
-                <article
-                  className={`education-item${id === "degree" ? " education-item--featured" : ""}`}
-                  key={id}
-                >
-                  <span className="education-marker" aria-hidden="true" />
-                  <p className="text-sm text-muted-foreground">
-                    {course.period}
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    <h3 className="text-xl font-semibold">{course.title}</h3>
-                    <p>{school}</p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {course.description}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-          <div className="border-t mt-10 pt-8">
-            <h3 className="text-xl font-semibold mb-5">{m.languages.title}</h3>
-            <dl className="flex flex-col gap-5">
-              <div>
-                <dt className="font-medium">{m.languages.french}</dt>
-                <dd className="text-muted-foreground">
-                  {m.languages.frenchLevel}
-                </dd>
-              </div>
-              <div>
-                <dt className="font-medium">{m.languages.english}</dt>
-                <dd className="text-muted-foreground leading-relaxed">
-                  {m.languages.englishLevel}
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
+    <Section id="education" title={t.sections.education}>
+      <Timeline>
+        {p.education.map((item) => (
+          <TimelineItem
+            key={item.id}
+            date={formatPeriod(item.period, locale, t.labels.present, "long")}
+          >
+            <h3 className={item.summary ? "text-2xl" : "text-xl"}>
+              {item.degree}
+            </h3>
+            <p className="meta mt-1.5 flex flex-wrap gap-x-3">
+              <span className="font-semibold text-foreground">
+                {item.url ? (
+                  <ExternalLink href={item.url} newTabLabel={t.labels.newTab}>
+                    {item.school}
+                  </ExternalLink>
+                ) : (
+                  item.school
+                )}
+              </span>
+              <span>{formatPlace(item.location)}</span>
+            </p>
+            {item.summary && <p className="mt-4">{item.summary}</p>}
+          </TimelineItem>
+        ))}
+      </Timeline>
+
+      <div className="mt-14 max-w-[48rem]">
+        <h3 className="subhead">{t.sections.languages}</h3>
+        <dl className="rows mt-5">
+          {p.languages.map((language) => (
+            <div key={language.name}>
+              <dt>{language.name}</dt>
+              <dd>{language.level}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
-    </SectionContainer>
+    </Section>
   );
 }

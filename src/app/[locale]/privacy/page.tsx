@@ -1,85 +1,88 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
-import { locales } from "@/i18n/generated/locales";
-import { loadMessages } from "@/i18n/generated/messages";
-import { message } from "@/i18n/messages";
-import { SITE_CONFIG } from "@/lib/constants";
+import { notFound } from "next/navigation";
+import { isLocale } from "@/i18n/config";
+import { getContent } from "@/lib/content";
+import { alternates, openGraphLocales } from "@/lib/site";
 
-type Props = { params: Promise<{ locale: string }> };
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps<"/[locale]/privacy">): Promise<Metadata> {
   const { locale } = await params;
-  const m = await loadMessages(locale);
+  if (!isLocale(locale)) notFound();
+  const { t } = getContent(locale);
   return {
-    title: `${m.privacy.title} | ${SITE_CONFIG.name}`,
-    description: m.privacy.description,
-    alternates: {
-      canonical: `/${locale}/privacy`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}/privacy`])),
-    },
+    title: t.privacy.title,
+    description: t.privacy.description,
+    alternates: alternates(locale, "/privacy"),
     openGraph: {
-      title: `${m.privacy.title} | ${SITE_CONFIG.name}`,
-      description: m.privacy.description,
+      title: t.privacy.title,
+      description: t.privacy.description,
       url: `/${locale}/privacy`,
-    },
-    twitter: {
-      title: `${m.privacy.title} | ${SITE_CONFIG.name}`,
-      description: m.privacy.description,
+      ...openGraphLocales(locale),
     },
   };
 }
-export default async function Privacy({ params }: Props) {
+
+export default async function PrivacyPage({
+  params,
+}: PageProps<"/[locale]/privacy">) {
   const { locale } = await params;
-  setRequestLocale(locale);
-  const { privacy: m } = await loadMessages(locale);
+  if (!isLocale(locale)) notFound();
+  const { profile: p, t } = getContent(locale);
+  const { sections } = t.privacy;
+  const blocks = [
+    {
+      id: "owner",
+      title: sections.owner.title,
+      text: sections.owner.text(p.email),
+    },
+    sections.preferences,
+    sections.hosting,
+    sections.contact,
+    sections.rights,
+  ];
+
   return (
-    <article className="content-section legal-page">
-      <div className="content-width max-w-prose flex flex-col gap-10">
-        <h1 className="section-title">{m.title}</h1>
-        <p className="text-lg">{m.intro}</p>
-        <section>
-          <h2>{m.ownerTitle}</h2>
-          <p>{message(m.owner, { email: SITE_CONFIG.email })}</p>
-          <a className="text-link" href={`mailto:${SITE_CONFIG.email}`}>
-            {SITE_CONFIG.email}
-          </a>
-        </section>
-        <section>
-          <h2>{m.preferencesTitle}</h2>
-          <p>{m.preferences}</p>
-        </section>
-        <section>
-          <h2>{m.hostingTitle}</h2>
-          <p>{m.hosting}</p>
-        </section>
-        <section>
-          <h2>{m.contactTitle}</h2>
-          <p>{m.contact}</p>
-        </section>
-        <section>
-          <h2>{m.rightsTitle}</h2>
-          <p>{m.rights}</p>
-        </section>
-        <section>
-          <h2>{m.resourcesTitle}</h2>
-          <ul>
-            <li>
-              <a
-                className="text-link"
-                href="https://www.autoriteprotectiondonnees.be/cookies-et-autres-traceurs"
-              >
-                {m.authority}
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-link"
-                href="https://vercel.com/legal/privacy-policy"
-              >
-                {m.host}
-              </a>
-            </li>
-          </ul>
-        </section>
+    <article className="container-page py-16 sm:py-24">
+      <div className="reading">
+        <h1 className="text-4xl sm:text-5xl">{t.privacy.title}</h1>
+        <p className="mt-6 text-lg text-muted-foreground">{t.privacy.intro}</p>
+        <div className="mt-12 grid gap-10">
+          {blocks.map((block) => (
+            <section key={block.title}>
+              <h2 className="text-2xl">{block.title}</h2>
+              <p className="mt-3 text-muted-foreground">{block.text}</p>
+            </section>
+          ))}
+          <section>
+            <h2 className="text-2xl">{t.privacy.resourcesTitle}</h2>
+            <ul className="mt-3 grid gap-2">
+              <li>
+                <a
+                  className="link"
+                  href="https://www.autoriteprotectiondonnees.be/"
+                  hrefLang={locale}
+                >
+                  {t.privacy.authority}
+                </a>
+              </li>
+              <li>
+                <a
+                  className="link"
+                  href="https://vercel.com/legal/privacy-policy"
+                  hrefLang="en"
+                >
+                  {t.privacy.host}
+                </a>
+              </li>
+              <li>
+                <a className="link" href={`mailto:${p.email}`}>
+                  {p.email}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
       </div>
     </article>
   );

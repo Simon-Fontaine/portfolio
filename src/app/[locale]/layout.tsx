@@ -1,115 +1,104 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { NextIntlClientProvider } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
-import { Footer } from "@/components/footer";
-import { JourneyNavigation } from "@/components/journey-navigation";
-import { localeOptions, locales } from "@/i18n/generated/locales";
-import { loadMessages } from "@/i18n/generated/messages";
-import { message } from "@/i18n/messages";
-import { SITE_CONFIG } from "@/lib/constants";
-import { themeScript } from "@/lib/preferences";
+import { Journey } from "@/components/journey";
+import { SiteFooter } from "@/components/site-footer";
+import { isLocale, locales } from "@/i18n/config";
+import { getContent } from "@/lib/content";
+import { cvHref } from "@/lib/cv";
+import { alternates, openGraphLocales, sectionIds, siteUrl } from "@/lib/site";
+import { themeScript } from "@/lib/theme";
+import { fontVariables } from "../fonts";
 import "../globals.css";
 
-const geistSans = localFont({
-  src: "../fonts/geist-latin.woff2",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-  display: "swap",
-});
-type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
+// Only /fr and /en exist: any other first segment is a 404.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbfaf8" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1917" },
+  ],
+};
+
 export async function generateMetadata({
   params,
-}: Omit<Props, "children">): Promise<Metadata> {
+}: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
-  if (!locales.includes(locale)) notFound();
-  const m = await loadMessages(locale);
-  const title = message(m.metadata.title, { name: SITE_CONFIG.name });
-  const description = m.metadata.description;
-  const image = {
-    url: `/og/${locale}.png`,
-    width: 1200,
-    height: 630,
-    alt: `${SITE_CONFIG.name} | ${m.common.role}`,
-  };
+  if (!isLocale(locale)) notFound();
+  const { profile: p, t } = getContent(locale);
+  const title = `${p.name} | ${p.headline}`;
   return {
-    metadataBase: new URL(SITE_CONFIG.url),
-    title,
-    description,
-    keywords: m.metadata.keywords.split(",").map((k) => k.trim()),
-    authors: [{ name: SITE_CONFIG.name, url: SITE_CONFIG.url }],
-    creator: SITE_CONFIG.name,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        ...Object.fromEntries(locales.map((l) => [l, `/${l}`])),
-        "x-default": "/",
-      },
-    },
+    metadataBase: siteUrl,
+    title: { default: title, template: `%s | ${p.name}` },
+    description: p.summary,
+    applicationName: `${p.name} – ${t.meta.siteName}`,
+    authors: [{ name: p.name, url: siteUrl.href }],
+    creator: p.name,
+    alternates: alternates(locale),
     openGraph: {
-      type: "website",
-      locale: m.locale.openGraph,
-      alternateLocale: localeOptions
-        .filter((o) => o.code !== locale)
-        .map((o) => o.openGraph),
+      type: "profile",
+      firstName: p.name.split(" ")[0],
+      lastName: p.name.split(" ").slice(1).join(" "),
+      siteName: `${p.name} – ${t.meta.siteName}`,
+      title,
+      description: p.summary,
       url: `/${locale}`,
-      title,
-      description,
-      siteName: message(m.metadata.siteName, { name: SITE_CONFIG.name }),
-      images: [image],
+      ...openGraphLocales(locale),
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
-    },
-    robots: { index: true, follow: true },
-    icons: { icon: "/icon.png", apple: "/apple-icon.png" },
+    twitter: { card: "summary_large_image", title, description: p.summary },
+    formatDetection: { telephone: false },
   };
 }
 
-export default async function LocaleLayout({ children, params }: Props) {
+export default async function LocaleLayout({
+  children,
+  params,
+}: LayoutProps<"/[locale]">) {
   const { locale } = await params;
-  if (!locales.includes(locale)) notFound();
-  setRequestLocale(locale);
-  const m = await loadMessages(locale);
+  if (!isLocale(locale)) notFound();
+  const content = getContent(locale);
+  const { profile: p, t } = content;
+
   return (
-    <html
-      lang={m.locale.lang}
-      dir={m.locale.direction}
-      suppressHydrationWarning
-    >
+    <html lang={locale} className={fontVariables} suppressHydrationWarning>
       <head>
-        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static theme bootstrap without user input, before first paint. */}
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static theme bootstrap (no user input), must run before first paint. */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${geistSans.variable} antialiased`}>
-        <NextIntlClientProvider locale={locale} messages={{ errors: m.errors }}>
-          <a href="#main-content" className="skip-to-main">
-            {m.common.skip}
-          </a>
-          <JourneyNavigation
-            locale={locale}
-            labels={m.navigation}
-            languageLabels={{
-              pending: m.settings.pending,
-              error: m.settings.error,
-            }}
-          />
-          <div className="page-shell">
-            <main id="main-content" tabIndex={-1}>
-              {children}
-            </main>
-            <Footer locale={locale} m={m} />
-          </div>
-        </NextIntlClientProvider>
+      <body className="flex min-h-svh flex-col">
+        <a
+          href="#main"
+          className="btn btn-primary fixed top-2 left-2 z-50 -translate-y-24 focus:translate-y-0"
+        >
+          {t.nav.skip}
+        </a>
+        <Journey
+          locale={locale}
+          name={p.name}
+          steps={(["top", ...sectionIds] as const).map((id) => ({
+            id,
+            label: t.navItems[id],
+          }))}
+          cv={{ href: cvHref(locale), label: t.actions.downloadCv }}
+          labels={{
+            nav: t.nav.label,
+            open: t.nav.open,
+            close: t.nav.close,
+            menu: t.nav.menu,
+            theme: t.theme.toggle,
+            language: t.nav.language,
+          }}
+        />
+        <div className="page-shell flex flex-1 flex-col">
+          <main id="main" tabIndex={-1} className="flex-1">
+            {children}
+          </main>
+          <SiteFooter content={content} />
+        </div>
       </body>
     </html>
   );

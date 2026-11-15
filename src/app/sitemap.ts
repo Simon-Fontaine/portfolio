@@ -1,28 +1,22 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/i18n/generated/locales";
-import { SITE_CONFIG } from "@/lib/constants";
+import { locales } from "@/i18n/config";
+import { siteUrl } from "@/lib/site";
+
+const pages = [
+  { path: "", priority: 1 },
+  { path: "/privacy", priority: 0.2 },
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const languages = {
-    ...Object.fromEntries(
-      locales.map((locale) => [locale, `${SITE_CONFIG.url}/${locale}`]),
-    ),
-    "x-default": SITE_CONFIG.url,
-  };
-  return [
-    ...locales.map((locale) => ({
-      url: `${SITE_CONFIG.url}/${locale}`,
-      changeFrequency: "monthly" as const,
-      priority: 1,
-      alternates: { languages },
-    })),
-    ...locales.map((locale) => ({
-      url: `${SITE_CONFIG.url}/${locale}/privacy`,
+  const url = (locale: string, path: string) =>
+    new URL(`/${locale}${path}`, siteUrl).href;
+  return pages.flatMap(({ path, priority }) =>
+    locales.map((locale) => ({
+      url: url(locale, path),
+      priority,
       alternates: {
-        languages: Object.fromEntries(
-          locales.map((l) => [l, `${SITE_CONFIG.url}/${l}/privacy`]),
-        ),
+        languages: Object.fromEntries(locales.map((l) => [l, url(l, path)])),
       },
     })),
-  ];
+  );
 }

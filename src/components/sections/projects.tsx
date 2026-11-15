@@ -1,142 +1,131 @@
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { SectionContainer } from "@/components/section-container";
-import { SectionHeading } from "@/components/section-heading";
-import { Badge } from "@/components/ui/badge";
-import { type Messages, message } from "@/i18n/messages";
-import { type Project, projects } from "@/lib/constants";
+import { ExternalLink, Section, TechList } from "@/components/section";
+import type { Content } from "@/lib/content";
+import { formatPeriod } from "@/lib/format";
 
-function ProjectLink({
-  project,
-  common,
-}: {
-  project: Project;
-  common: Messages["common"];
-}) {
+type Project = Content["profile"]["projects"][number];
+
+export function ProjectsSection({ content }: { content: Content }) {
+  const { profile: p, t, locale } = content;
+  const featured = p.projects.filter((project) => project.featured);
+  const others = p.projects.filter((project) => !project.featured);
+
+  const meta = (project: Project) =>
+    [
+      project.context,
+      project.period &&
+        formatPeriod(project.period, locale, t.labels.present, "long"),
+    ]
+      .filter(Boolean)
+      .join(", ");
+
+  const links = (project: Project) =>
+    (project.repository || project.demo) && (
+      <p className="mt-5 flex flex-wrap gap-x-6 gap-y-1 font-semibold">
+        {project.demo && (
+          <ExternalLink href={project.demo} newTabLabel={t.labels.newTab}>
+            {t.actions.demo}
+          </ExternalLink>
+        )}
+        {project.repository && (
+          <ExternalLink href={project.repository} newTabLabel={t.labels.newTab}>
+            <span aria-hidden="true">{t.actions.sourceCode}</span>
+            <span className="sr-only">{t.labels.onGithub(project.name)}</span>
+          </ExternalLink>
+        )}
+      </p>
+    );
+
   return (
-    <a
-      href={project.githubUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-link"
-    >
-      {message(common.projectLink, { project: project.title })}
-      <span className="sr-only"> {common.newTab}</span>
-      <ArrowUpRight className="size-4 shrink-0" aria-hidden="true" />
-    </a>
-  );
-}
-function Technologies({
-  project,
-  common,
-}: {
-  project: Project;
-  common: Messages["common"];
-}) {
-  return (
-    <ul
-      className="flex flex-wrap gap-2"
-      aria-label={message(common.technologies, { project: project.title })}
-    >
-      {project.technologies.map((tech) => (
-        <li key={tech}>
-          <Badge variant="outline">{tech}</Badge>
-        </li>
-      ))}
-    </ul>
-  );
-}
-export function ProjectsSection({
-  m,
-  common,
-}: {
-  m: Messages["projects"];
-  common: Messages["common"];
-}) {
-  const contentById: Record<
-    string,
-    Messages["projects"]["items"][keyof Messages["projects"]["items"]]
-  > = m.items;
-  return (
-    <SectionContainer id="projects" ariaLabel={m.title}>
-      <div className="flex flex-col gap-12">
-        <SectionHeading title={m.title} description={m.description} />
-        <div className="divide-y divide-border border-y">
-          {projects
-            .filter((p) => p.featured)
-            .map((project) => {
-              const content = contentById[project.id];
-              if (!content || !("contributions" in content))
-                throw new Error(
-                  `Missing featured project content: ${project.id}`,
-                );
-              return (
-                <article key={project.id} className="project-feature">
-                  <div className="flex flex-col gap-5">
-                    <p className="text-sm text-muted-foreground">
-                      {content.context}
-                    </p>
-                    <h3 className="text-3xl font-semibold">{project.title}</h3>
-                    <p className="leading-relaxed text-muted-foreground">
-                      {content.description}
-                    </p>
-                    <ProjectLink project={project} common={common} />
-                  </div>
-                  <div className="flex flex-col gap-6">
-                    <h4 className="font-semibold">
-                      {content.contributionTitle}
-                    </h4>
-                    <ul className="detail-list">
-                      {Object.entries(content.contributions).map(
-                        ([id, text]) => (
-                          <li key={id}>{text}</li>
-                        ),
-                      )}
-                    </ul>
-                    <Technologies project={project} common={common} />
-                  </div>
-                </article>
-              );
-            })}
-        </div>
-        <div className="grid gap-8 md:grid-cols-2">
-          {projects
-            .filter((p) => !p.featured)
-            .map((project) => {
-              const content = contentById[project.id];
-              if (!content || !("imageAlt" in content))
-                throw new Error(`Missing project content: ${project.id}`);
-              return (
-                <article key={project.id} className="project-small">
+    <Section id="projects" title={t.sections.projects}>
+      {/* Featured projects: what it is on the left, what I did on the right. */}
+      <div className="grid gap-5">
+        {featured.map((project) => (
+          <article
+            key={project.id}
+            className="panel"
+            aria-labelledby={`project-${project.id}`}
+          >
+            <div className="grid gap-x-12 gap-y-8 lg:grid-cols-2">
+              <div>
+                <p className="meta">{meta(project)}</p>
+                <h3
+                  id={`project-${project.id}`}
+                  className="mt-1.5 text-[clamp(1.75rem,4vw,2.25rem)]"
+                >
+                  {project.name}
+                </h3>
+                <p className="mt-4">{project.summary}</p>
+                <TechList
+                  items={project.tech}
+                  label={t.labels.technologies}
+                  className="mt-4"
+                />
+                {links(project)}
+              </div>
+              {project.highlights && (
+                <div>
+                  <h4 className="subhead">{t.labels.contribution}</h4>
+                  <ul className="bullets mt-3">
+                    {project.highlights.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            {project.screenshot && (
+              <Image
+                src={project.screenshot.src}
+                alt={project.screenshot.alt}
+                width={1600}
+                height={1000}
+                sizes="(min-width: 1280px) 52rem, 92vw"
+                className="mt-8 h-auto w-full rounded-[0.875rem]"
+              />
+            )}
+          </article>
+        ))}
+      </div>
+
+      {/* Smaller projects. */}
+      {others.length > 0 && (
+        <>
+          <h3 className="subhead mt-12">{t.labels.moreProjects}</h3>
+          <ul className="mt-5 grid gap-5 md:grid-cols-2">
+            {others.map((project) => (
+              <li key={project.id} className="panel">
+                <article>
                   <div className="flex items-center gap-4">
                     {project.image && (
                       <Image
-                        src={project.image}
-                        alt={content.imageAlt}
-                        width={64}
-                        height={64}
-                        className="size-16 shrink-0 rounded-lg object-contain bg-white p-1"
+                        src={project.image.src}
+                        alt={project.image.alt}
+                        width={48}
+                        height={48}
+                        className="logo-tile"
                       />
                     )}
-                    <div>
-                      <h3 className="text-2xl font-semibold">
-                        {project.title}
-                      </h3>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {content.context}
-                      </p>
+                    <div className="min-w-0">
+                      <h4 className="font-display text-2xl leading-tight font-bold tracking-[-0.025em]">
+                        {project.name}
+                      </h4>
+                      <p className="meta">{meta(project)}</p>
                     </div>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {content.description}
-                  </p>
-                  <Technologies project={project} common={common} />
-                  <ProjectLink project={project} common={common} />
+                  <p className="mt-4">{project.summary}</p>
+                  <TechList
+                    items={project.tech}
+                    label={t.labels.technologies}
+                    className="mt-4"
+                  />
+                  {links(project)}
                 </article>
-              );
-            })}
-        </div>
-      </div>
-    </SectionContainer>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </Section>
   );
 }

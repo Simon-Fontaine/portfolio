@@ -1,39 +1,46 @@
-import { Mail } from "lucide-react";
-import { CvDownload } from "@/components/cv-download";
-import { SectionContainer } from "@/components/section-container";
-import { SectionHeading } from "@/components/section-heading";
-import type { Messages } from "@/i18n/messages";
-import { SITE_CONFIG } from "@/lib/constants";
+import { CopyButton } from "@/components/copy-button";
+import { DownloadIcon } from "@/components/icons";
+import { ExternalLink, Section } from "@/components/section";
+import type { Content } from "@/lib/content";
+import { cvHref } from "@/lib/cv";
 
-export function ContactSection({ m, locale }: { m: Messages; locale: string }) {
+export function ContactSection({ content }: { content: Content }) {
+  const { profile: p, t, locale } = content;
+  const linkedin = p.social.find((link) => link.id === "linkedin");
   return (
-    <SectionContainer
-      id="contact"
-      background="muted"
-      ariaLabel={m.common.contact}
-    >
-      <div className="section-layout">
-        <SectionHeading title={m.contact.title} />
-        <div className="flex flex-col gap-8">
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            {m.contact.description}
-          </p>
-          <a
-            href={`mailto:${SITE_CONFIG.email}`}
-            className="text-link text-base sm:text-xl break-all"
-          >
-            <Mail className="size-5 shrink-0" aria-hidden="true" />
-            {SITE_CONFIG.email}
-          </a>
-          <div className="flex flex-wrap items-center gap-5">
-            <CvDownload
-              locale={locale}
-              label={m.common.download}
-              variant="outline"
-            />
-          </div>
-        </div>
+    <Section id="contact" title={t.sections.contact}>
+      <p className="reading text-lg">{t.contact.text}</p>
+      <p className="mt-7">
+        <a
+          href={`mailto:${p.email}`}
+          className="link font-display text-[clamp(1.5rem,5.4vw,2.75rem)] leading-tight font-bold tracking-[-0.02em] break-all"
+        >
+          {p.email}
+        </a>
+      </p>
+      <div className="mt-7 flex flex-wrap items-center gap-2.5">
+        <CopyButton
+          value={p.email}
+          label={t.actions.copyEmail}
+          copiedLabel={t.actions.copied}
+        />
+        <a href={cvHref(locale)} download className="btn btn-secondary">
+          <DownloadIcon aria-hidden="true" />
+          {t.actions.downloadCv}
+        </a>
       </div>
-    </SectionContainer>
+      {linkedin && (
+        <p className="mt-7 text-muted-foreground">
+          {t.contact.linkedin}{" "}
+          <ExternalLink
+            href={linkedin.url}
+            newTabLabel={t.labels.newTab}
+            className="font-semibold text-foreground"
+          >
+            LinkedIn
+          </ExternalLink>
+        </p>
+      )}
+    </Section>
   );
 }
