@@ -166,11 +166,16 @@ Layout:
 
 - **Navigation:** a fixed rail on large screens, a top bar with a progress line
   and a slide-in menu on smaller ones.
-- **Timelines** (experience, education): dates sit in their own column and stay
-  pinned while the entry is read. On phones the date moves above the entry.
-- **Projects:** featured projects are panels with the description on the left
-  and "my contribution" on the right. Panels are used for projects only.
-- **Skills and languages:** ruled rows, with technologies written as sentences.
+- **Timelines** (experience, education): the year or years sit in their own
+  column and stay pinned while the entry is read. Periods shorter than a year
+  add their months underneath ("2026 / Février – mai"). On phones the date
+  moves above the entry.
+- **Projects:** each featured project has its story on one side (summary and
+  "my contribution") and a fact sheet on the other (context, date,
+  technologies, link, and the screenshot if there is one). The sides alternate
+  from one project to the next.
+- **Skills and languages:** one section, ruled rows, with technologies written
+  as sentences.
 
 `.npmrc` sets `legacy-peer-deps=true`: Papicons depends on
 `react-native-svg`, whose `react-native` peer would otherwise add ~500 MB

@@ -21,6 +21,7 @@ export default function GlobalNotFound() {
     <html
       lang={defaultLocale}
       className={fontVariables}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>

@@ -1,7 +1,7 @@
 import { ExternalLink, Section } from "@/components/section";
 import { Timeline, TimelineItem } from "@/components/timeline";
 import type { Content } from "@/lib/content";
-import { formatPeriod, formatPlace } from "@/lib/format";
+import { formatMonths, formatPlace, formatYears } from "@/lib/format";
 
 export function EducationSection({ content }: { content: Content }) {
   const { profile: p, t, locale } = content;
@@ -11,7 +11,8 @@ export function EducationSection({ content }: { content: Content }) {
         {p.education.map((item) => (
           <TimelineItem
             key={item.id}
-            date={formatPeriod(item.period, locale, t.labels.present, "long")}
+            years={formatYears(item.period, t.labels.present)}
+            months={formatMonths(item.period, locale)}
           >
             <h3 className={item.summary ? "text-2xl" : "text-xl"}>
               {item.degree}
@@ -32,18 +33,6 @@ export function EducationSection({ content }: { content: Content }) {
           </TimelineItem>
         ))}
       </Timeline>
-
-      <div className="mt-14 max-w-[48rem]">
-        <h3 className="subhead">{t.sections.languages}</h3>
-        <dl className="rows mt-5">
-          {p.languages.map((language) => (
-            <div key={language.name}>
-              <dt>{language.name}</dt>
-              <dd>{language.level}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
     </Section>
   );
 }

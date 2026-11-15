@@ -30,14 +30,13 @@ export const ui = {
   sections: {
     experience: { fr: "Expérience professionnelle", en: "Work Experience" },
     projects: { fr: "Projets", en: "Projects" },
-    skills: { fr: "Compétences techniques", en: "Technical Skills" },
+    skills: { fr: "Compétences et langues", en: "Skills and Languages" },
     education: { fr: "Formation", en: "Education" },
     languages: { fr: "Langues", en: "Languages" },
     contact: { fr: "Contact", en: "Contact" },
   },
-  // CV-only headings.
+  // CV-only labels.
   cv: {
-    skillsTitle: { fr: "Compétences et langues", en: "Skills and Languages" },
     portfolio: { fr: "Portfolio", en: "Portfolio" },
   },
   // Short navigation labels (website header).
@@ -74,6 +73,8 @@ export const ui = {
     present: { fr: "Aujourd'hui", en: "Present" },
     newTab: { fr: "(nouvel onglet)", en: "(opens in a new tab)" },
     technologies: { fr: "Technologies", en: "Technologies" },
+    context: { fr: "Cadre", en: "Context" },
+    date: { fr: "Date", en: "Date" },
     contribution: { fr: "Ma contribution", en: "My contribution" },
     moreProjects: { fr: "Autres projets", en: "More projects" },
     onGithub: {
@@ -102,15 +103,15 @@ export const ui = {
   errors: {
     notFoundTitle: { fr: "Page introuvable", en: "Page not found" },
     notFoundText: {
-      fr: "Cette page n'existe pas ou n'est plus disponible.",
-      en: "This page does not exist or is no longer available.",
+      fr: "Cette page n'existe pas, ou elle n'existe plus.",
+      en: "This page doesn't exist, or no longer does.",
     },
     errorTitle: {
       fr: "Impossible d'afficher cette page",
       en: "Unable to display this page",
     },
     errorText: {
-      fr: "Une erreur est survenue. Vous pouvez réessayer ou revenir à l'accueil.",
+      fr: "Quelque chose s'est mal passé. Vous pouvez réessayer ou revenir à l'accueil.",
       en: "Something went wrong. You can try again or go back to the home page.",
     },
     retry: { fr: "Réessayer", en: "Try again" },
@@ -119,28 +120,28 @@ export const ui = {
   privacy: {
     title: { fr: "Confidentialité", en: "Privacy" },
     description: {
-      fr: "Comment ce portfolio traite les données et les préférences de navigation.",
-      en: "How this portfolio handles data and browsing preferences.",
+      fr: "Ce que ce site enregistre, et surtout ce qu'il n'enregistre pas.",
+      en: "What this site stores, and above all what it doesn't.",
     },
     intro: {
-      fr: "Ce portfolio présente mon parcours et mes projets. Il ne comporte ni compte utilisateur, ni formulaire, ni publicité, ni outil de mesure d'audience, et n'utilise aucun cookie.",
-      en: "This portfolio presents my background and projects. It has no user accounts, forms, advertising or audience analytics, and uses no cookies.",
+      fr: "Ce site présente mon parcours et mes projets. Il n'a ni compte utilisateur, ni formulaire, ni publicité, ni mesure d'audience, et il n'utilise aucun cookie.",
+      en: "This site presents my background and my projects. It has no user accounts, no forms, no advertising and no audience measurement, and it uses no cookies.",
     },
     sections: {
       owner: {
         title: { fr: "Responsable et contact", en: "Owner and contact" },
         text: {
           fr: (email: string) =>
-            `Simon Fontaine, domicilié à Uccle (Belgique), est responsable de ce site. Pour toute question sur vos données ou pour exercer vos droits, écrivez à ${email}.`,
+            `Ce site est celui de Simon Fontaine, à Uccle (Belgique). Pour toute question sur vos données ou pour exercer vos droits, écrivez-moi à ${email}.`,
           en: (email: string) =>
-            `Simon Fontaine, based in Uccle, Belgium, is responsible for this website. For questions about your data or to exercise your rights, write to ${email}.`,
+            `This is the website of Simon Fontaine, based in Uccle, Belgium. For any question about your data or to exercise your rights, write to me at ${email}.`,
         },
       },
       preferences: {
         title: { fr: "Vos préférences", en: "Your preferences" },
         text: {
-          fr: "Si vous choisissez explicitement le thème clair ou sombre, ce choix est enregistré dans le stockage local de votre navigateur (clé « theme ») afin de l'appliquer lors de vos prochaines visites. Il ne contient aucun identifiant et vous pouvez le supprimer à tout moment depuis les réglages de votre navigateur. Sans choix de votre part, le site suit le thème de votre système, et la langue proposée à l'arrivée dépend de celle de votre navigateur.",
-          en: "If you explicitly choose the light or dark theme, this choice is saved in your browser's local storage (key “theme”) so that it can be applied on your next visits. It contains no identifier and you can delete it at any time from your browser settings. Without a choice, the site follows your system theme, and the language offered on arrival depends on your browser language.",
+          fr: "Si vous choisissez le thème clair ou sombre, ce choix est enregistré dans votre navigateur (stockage local, clé « theme ») pour être appliqué à votre prochaine visite. Il ne contient aucun identifiant et vous pouvez le supprimer depuis les réglages de votre navigateur. Sans choix de votre part, le site suit le thème de votre système. La langue proposée à l'arrivée dépend de celle de votre navigateur.",
+          en: "If you choose the light or dark theme, that choice is saved in your browser (local storage, key “theme”) and applied on your next visit. It contains no identifier and you can delete it from your browser settings. If you don't choose, the site follows your system theme. The language offered when you arrive depends on your browser's language.",
         },
       },
       hosting: {
@@ -149,8 +150,8 @@ export const ui = {
           en: "Hosting and technical data",
         },
         text: {
-          fr: "Le site est hébergé par Vercel. Lors d'une visite, l'hébergeur reçoit les informations nécessaires pour répondre à la requête, notamment l'adresse IP, l'URL demandée et les informations du navigateur. Des journaux techniques peuvent être traités pour fournir et sécuriser le service, selon la documentation de l'hébergeur. Aucun outil d'analyse (Vercel Analytics, Speed Insights ou autre) n'est intégré.",
-          en: "The website is hosted by Vercel. When you visit, the host receives the information needed to respond to the request, including your IP address, the requested URL and browser information. Technical logs may be processed to provide and secure the service, as described in the host's documentation. No analytics tool (Vercel Analytics, Speed Insights or other) is integrated.",
+          fr: "Le site est hébergé par Vercel. À chaque visite, l'hébergeur reçoit ce qu'il lui faut pour afficher la page : votre adresse IP, la page demandée et des informations sur votre navigateur. Il peut conserver des journaux techniques pour faire fonctionner et sécuriser le service. Je n'utilise aucun outil d'analyse (ni Vercel Analytics, ni Speed Insights, ni autre).",
+          en: "The site is hosted by Vercel. On each visit, the host receives what it needs to display the page: your IP address, the page requested and information about your browser. It may keep technical logs to run and secure the service. I use no analytics tool (no Vercel Analytics, no Speed Insights, nothing else).",
         },
       },
       contact: {
@@ -159,15 +160,15 @@ export const ui = {
           en: "Email and external links",
         },
         text: {
-          fr: "Le lien email ouvre votre application de messagerie : le site n'envoie aucun message lui-même. Les emails reçus servent uniquement à répondre à votre demande et ne sont conservés que le temps nécessaire. GitHub, LinkedIn et les autres sites liés ne reçoivent aucune requête avant que vous n'ouvriez leurs liens ; leurs propres politiques s'appliquent alors.",
-          en: "The email link opens your email application: the website itself sends no messages. Emails received are only used to reply to your enquiry and are kept only as long as necessary. GitHub, LinkedIn and other linked sites receive no request before you open their links; their own policies then apply.",
+          fr: "Le lien email ouvre votre application de messagerie : le site n'envoie rien lui-même. Je n'utilise les emails reçus que pour vous répondre, et je ne les garde pas plus longtemps que nécessaire. GitHub, LinkedIn et les autres sites liés ne reçoivent rien tant que vous n'ouvrez pas leurs liens. Ensuite, ce sont leurs propres règles qui s'appliquent.",
+          en: "The email link opens your own email application: the site sends nothing itself. I only use the emails I receive to reply to you, and I don't keep them longer than necessary. GitHub, LinkedIn and the other linked sites receive nothing until you open their links. After that, their own policies apply.",
         },
       },
       rights: {
         title: { fr: "Vos droits", en: "Your rights" },
         text: {
-          fr: "Selon le traitement concerné, vous pouvez demander l'accès, la rectification ou l'effacement de vos données, la limitation du traitement ou vous y opposer. Vous pouvez également introduire une réclamation auprès de l'Autorité de protection des données. Ce site n'effectue aucun profilage ni aucune décision automatisée.",
-          en: "Depending on the processing involved, you may request access to, correction or erasure of your data, restrict processing or object to it. You may also lodge a complaint with the Belgian Data Protection Authority. This website performs no profiling or automated decision-making.",
+          fr: "Vous pouvez me demander d'accéder à vos données, de les corriger ou de les effacer, ou vous opposer à leur utilisation. Vous pouvez aussi introduire une réclamation auprès de l'Autorité de protection des données. Ce site ne fait ni profilage ni décision automatisée.",
+          en: "You can ask me for access to your data, ask me to correct or delete it, or object to its use. You can also lodge a complaint with the Belgian Data Protection Authority. This site does no profiling and makes no automated decisions.",
         },
       },
     },

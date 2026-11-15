@@ -324,7 +324,7 @@ export function CvDocument({
           ))}
         </Section>
 
-        <Section title={t.cv.skillsTitle}>
+        <Section title={t.sections.skills}>
           {lines.map((line) => (
             <Text key={line.label} style={s.line}>
               <Text style={s.label}>

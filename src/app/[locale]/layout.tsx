@@ -64,7 +64,12 @@ export default async function LocaleLayout({
   const { profile: p, t } = content;
 
   return (
-    <html lang={locale} className={fontVariables} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static theme bootstrap (no user input), must run before first paint. */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

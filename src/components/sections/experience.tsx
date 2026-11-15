@@ -1,7 +1,7 @@
 import { ExternalLink, Section, TechList } from "@/components/section";
 import { Timeline, TimelineItem } from "@/components/timeline";
 import type { Content } from "@/lib/content";
-import { formatPeriod, formatPlace } from "@/lib/format";
+import { formatMonths, formatPlace, formatYears } from "@/lib/format";
 
 export function ExperienceSection({ content }: { content: Content }) {
   const { profile: p, t, locale } = content;
@@ -11,7 +11,8 @@ export function ExperienceSection({ content }: { content: Content }) {
         {p.experience.map((job) => (
           <TimelineItem
             key={job.id}
-            date={formatPeriod(job.period, locale, t.labels.present, "long")}
+            years={formatYears(job.period, t.labels.present)}
+            months={formatMonths(job.period, locale)}
           >
             <h3 className="text-2xl">{job.role}</h3>
             <p className="meta mt-1.5 flex flex-wrap gap-x-3">

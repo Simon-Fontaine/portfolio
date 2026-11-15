@@ -15,17 +15,26 @@ export function Timeline({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * `years` is always shown ("2026", "2020 – 2025"), so every entry reads the
+ * same way down the line. `months` adds detail for short periods ("Février – mai").
+ */
 export function TimelineItem({
-  date,
+  years,
+  months,
   children,
 }: {
-  date: string;
+  years: string;
+  months?: string;
   children: ReactNode;
 }) {
   return (
     <li className="timeline-item">
       <span className="timeline-dot" aria-hidden="true" />
-      <p className="timeline-date">{date}</p>
+      <p className="timeline-date">
+        {years}
+        {months && <span>{months}</span>}
+      </p>
       <article className="reading">{children}</article>
     </li>
   );

@@ -22,12 +22,12 @@ export const profile: Profile = {
     en: "Junior IT Specialist | Software Development, Data and Systems",
   },
   summary: {
-    fr: "Diplômé de l'EPHEC en juin 2026, je recherche mon premier poste en informatique, en priorité dans le développement logiciel. Je travaille surtout avec TypeScript, React, Next.js, Node.js et PostgreSQL, et je m'intéresse aussi aux données, aux systèmes et aux réseaux.",
-    en: "I graduated from EPHEC in June 2026 and am looking for my first IT role, with a focus on software development. I work mainly with TypeScript, React, Next.js, Node.js and PostgreSQL, and I am also interested in data, systems and networking.",
+    fr: "Diplômé de l'EPHEC en juin 2026, je cherche mon premier poste en informatique, de préférence en développement logiciel. J'ai surtout développé des applications web, et je m'intéresse aussi aux données, aux systèmes et aux réseaux.",
+    en: "I graduated from EPHEC in June 2026 and I'm looking for my first IT job, preferably in software development. I have mostly built web applications, and I'm also interested in data, systems and networks.",
   },
   about: {
-    fr: "J'ai grandi entre Ottawa et la Belgique, je travaille donc aussi bien en français qu'en anglais. J'aime les projets qui ont un usage concret : une application pour organiser des matchs d'entraînement, une sonnette connectée pour des professeurs, un bot pour une communauté Discord.",
-    en: "I grew up between Ottawa and Belgium, so I work in French and in English. I like projects with a concrete use: an app to organise practice matches, a connected doorbell for teachers, a bot for a Discord community.",
+    fr: "J'ai grandi entre Ottawa et la Belgique, je travaille donc aussi bien en français qu'en anglais. J'aime les projets qui servent à quelque chose de concret : une application pour organiser des matchs d'entraînement, une sonnette connectée pour des professeurs, un bot pour une communauté Discord.",
+    en: "I grew up between Ottawa and Belgium, so I work in French as easily as in English. I like projects that serve a concrete purpose: an app to organise practice matches, a connected doorbell for teachers, a bot for a Discord community.",
   },
   availability: {
     fr: "Disponible pour un premier poste",
@@ -71,24 +71,24 @@ export const profile: Profile = {
       },
       summary: {
         fr: "Participation au développement et à la maintenance de Customize, une plateforme web de planification chirurgicale, au sein d'une équipe travaillant principalement en anglais.",
-        en: "Contributed to the development and maintenance of Customize, a web-based surgical planning platform, in a team working mainly in English.",
+        en: "Took part in the development and maintenance of Customize, a web platform for surgical planning, in a team that works mainly in English.",
       },
       highlights: [
         {
           fr: "Création de tests automatisés pour vérifier le bon fonctionnement de l'application, notamment dans le navigateur, et intégration de leur exécution au processus de validation du code.",
-          en: "Wrote automated tests to check the application's behaviour, including in the browser, and integrated them into the code validation pipeline.",
+          en: "Wrote automated tests to check that the application works properly, including in the browser, and added them to the code validation process.",
         },
         {
           fr: "Réorganisation et adaptation des composants de visualisation 2D et 3D pour ajuster leurs commandes aux fonctionnalités disponibles.",
-          en: "Restructured and adapted the 2D and 3D visualisation components so that their controls matched the available features.",
+          en: "Reorganised and adapted the 2D and 3D viewing components so that their controls match the features available.",
         },
         {
           fr: "Adaptation de l'environnement de développement pour faciliter les tests de modules partagés en local, sans devoir publier de nouvelles versions.",
-          en: "Adapted the development environment so that shared modules could be tested locally without publishing new versions.",
+          en: "Adapted the development environment so that shared modules can be tested locally, without having to publish new versions.",
         },
         {
           fr: "Correction de bugs, documentation des vérifications effectuées et prise en compte des retours de l'équipe lors des revues de code.",
-          en: "Fixed bugs, documented the checks performed and addressed team feedback during code reviews.",
+          en: "Fixed bugs, documented the checks I carried out and took the team's feedback into account during code reviews.",
         },
       ],
       tech: [
@@ -128,24 +128,24 @@ export const profile: Profile = {
       period: { start: "2026" },
       summary: {
         fr: "Développement d'une application web permettant aux équipes de joueurs d'Overwatch d'organiser des matchs d'entraînement et d'enregistrer leurs résultats.",
-        en: "Developed a web application that lets Overwatch teams organise practice matches and record their results.",
+        en: "Developed a web application that lets teams of Overwatch players organise practice matches and record their results.",
       },
       highlights: [
         {
           fr: "Conception de la base de données et développement de l'interface et de l'API permettant la communication entre les différentes parties de l'application.",
-          en: "Designed the database and developed the interface and the API connecting the different parts of the application.",
+          en: "Designed the database and developed the interface and the API that lets the different parts of the application communicate.",
         },
         {
           fr: "Mise en place de la gestion des comptes utilisateurs, des sessions de connexion et des droits d'accès aux différentes fonctionnalités.",
-          en: "Implemented user accounts, login sessions and access control for the application's features.",
+          en: "Set up user accounts, login sessions and access rights to the different features.",
         },
         {
           fr: "Intégration de l'intelligence artificielle Gemini pour extraire automatiquement des résultats depuis des captures d'écran, avec possibilité de vérification et de correction par l'utilisateur.",
-          en: "Integrated Gemini AI to extract results automatically from screenshots, which users can then review and correct.",
+          en: "Integrated the Gemini artificial intelligence to extract results automatically from screenshots, which the user can then check and correct.",
         },
         {
           fr: "Configuration de l'environnement de déploiement de l'application à l'aide de Docker Compose et Caddy.",
-          en: "Configured the application's deployment environment with Docker Compose and Caddy.",
+          en: "Set up the application's deployment environment with Docker Compose and Caddy.",
         },
       ],
       tech: [
@@ -171,16 +171,16 @@ export const profile: Profile = {
       period: { start: "2026" },
       summary: {
         fr: "Réalisation en équipe d'un projet associant une application web à une infrastructure réseau, avec séparation des services en différentes zones de sécurité.",
-        en: "Team project combining a web application with a network infrastructure, with services separated into different security zones.",
+        en: "Team project combining a web application and a network infrastructure, with the services separated into different security zones.",
       },
       highlights: [
         {
           fr: "Mise en place d'un environnement utilisant des conteneurs Docker et configuration d'un processus automatisé pour déployer l'application.",
-          en: "Set up a Docker container environment and an automated process to deploy the application.",
+          en: "Set up an environment based on Docker containers and an automated process to deploy the application.",
         },
         {
           fr: "Configuration de sauvegardes de la base de données PostgreSQL pour faciliter la récupération des données en cas de problème.",
-          en: "Configured PostgreSQL database backups to make data recovery easier if problems occur.",
+          en: "Set up backups of the PostgreSQL database so that data can be recovered if something goes wrong.",
         },
       ],
       tech: ["Linux", "Docker", "PostgreSQL", "Gitea", "SSH"],
@@ -197,17 +197,17 @@ export const profile: Profile = {
       },
       period: { start: "2025" },
       summary: {
-        fr: "Système de sonnette et d'affichage connecté pour signaler les visites et la disponibilité des professeurs.",
-        en: "A connected doorbell and display system that notifies teachers of visitors and shows their availability.",
+        fr: "Réalisation en équipe d'une sonnette connectée avec écran, qui prévient les professeurs d'une visite et affiche leur disponibilité.",
+        en: "Built as a team: a connected doorbell with a display that tells teachers someone is at the door and shows whether they are available.",
       },
       highlights: [
         {
-          fr: "Développement du backend : API REST en TypeScript avec Express, modèle de données PostgreSQL avec Prisma et échanges MQTT avec les appareils.",
-          en: "Developed the backend: a TypeScript REST API with Express, a PostgreSQL data model with Prisma and MQTT communication with the devices.",
+          fr: "Développement de la partie serveur, qui enregistre les données et échange des messages avec les sonnettes et les écrans.",
+          en: "Developed the server side, which stores the data and exchanges messages with the doorbells and displays.",
         },
         {
-          fr: "Gestion de la reconnexion au broker, du réabonnement aux topics et des tentatives de renvoi de messages.",
-          en: "Implemented broker reconnection, topic resubscription and message retries.",
+          fr: "Gestion des coupures de connexion : le serveur se reconnecte seul et renvoie les messages qui n'ont pas été reçus.",
+          en: "Handled connection drops: the server reconnects on its own and resends the messages that were not received.",
         },
       ],
       tech: [
@@ -231,8 +231,8 @@ export const profile: Profile = {
       },
       period: { start: "2025-07" },
       summary: {
-        fr: "Application mobile de suivi et de partage de livres développée à Toronto. Elle permet notamment d'organiser ses livres en listes « lus », « en cours » et « à lire ».",
-        en: "A mobile app for tracking and sharing books, developed in Toronto. Users can organise their books into read, currently reading and to-read lists.",
+        fr: "Application mobile pour suivre ses lectures et partager des livres, développée à Toronto. Elle permet de classer ses livres en trois listes : lus, en cours et à lire.",
+        en: "A mobile app to keep track of your reading and share books, built in Toronto. You can sort your books into three lists: read, reading and to read.",
       },
       tech: ["React Native", "Expo", "TypeScript"],
       repository:
@@ -251,8 +251,8 @@ export const profile: Profile = {
       name: "SurvieCraft V3",
       context: { fr: "Projet personnel", en: "Personal project" },
       summary: {
-        fr: "Bot Discord pour gérer le support par tickets, la modération et des événements communautaires, avec stockage des données dans MongoDB.",
-        en: "A Discord bot for support tickets, moderation and community events, with data stored in MongoDB.",
+        fr: "Bot Discord qui gère les demandes d'aide des membres, la modération et les événements d'une communauté.",
+        en: "A Discord bot that handles members' requests for help, moderation and events for a community.",
       },
       tech: ["JavaScript", "Node.js", "Discord.js", "MongoDB/Mongoose"],
       repository: "https://github.com/Simon-Fontaine/surviecraft-v3",
@@ -283,7 +283,7 @@ export const profile: Profile = {
       },
       summary: {
         fr: "Diplôme obtenu en juin 2026. Formation polyvalente couvrant le développement logiciel, la conception et la gestion de bases de données, l'administration des systèmes et réseaux, la cybersécurité et les aspects juridiques de l'informatique, notamment le RGPD.",
-        en: "Graduated in June 2026. A broad programme covering software development, database design and management, systems and network administration, cybersecurity and the legal aspects of IT, including the GDPR.",
+        en: "Graduated in June 2026. A broad programme covering software development, database design and management, system and network administration, cybersecurity and the legal side of IT, including the GDPR.",
       },
     },
     {
@@ -298,7 +298,7 @@ export const profile: Profile = {
       location: { city: "Toronto", country: "Canada" },
       summary: {
         fr: "Conception et développement de Bookworm, une application mobile permettant de suivre ses lectures et de partager des livres, avec React Native et Expo, au sein d'une équipe internationale.",
-        en: "Designed and developed Bookworm, a mobile app for tracking your reading and sharing books, with React Native and Expo in an international team.",
+        en: "Designed and developed Bookworm, a mobile app to keep track of your reading and share books, with React Native and Expo, in an international team.",
       },
     },
     {

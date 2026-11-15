@@ -45,6 +45,34 @@ export function formatPeriod(
   return capitalize(`${start} – ${end}`);
 }
 
+/** Years only, for the timeline: "2026", "2020 – 2025", "2024 – Present". */
+export function formatYears(period: Period, presentLabel: string) {
+  const start = parseDate(period.start).year;
+  if (!period.end) return String(start);
+  if (period.end === "present") return `${start} – ${presentLabel}`;
+  const end = parseDate(period.end).year;
+  return end === start ? String(start) : `${start} – ${end}`;
+}
+
+/**
+ * Months of a period that fits within one year, shown under the year on the
+ * timeline: "Février – mai", "July". Longer periods return nothing: their
+ * years say enough.
+ */
+export function formatMonths(period: Period, locale: Locale) {
+  const start = parseDate(period.start);
+  if (!start.month || period.end === "present") return undefined;
+  const month = (value: number) =>
+    new Intl.DateTimeFormat(locale, { month: "long", timeZone: "UTC" }).format(
+      new Date(Date.UTC(start.year, value - 1, 1)),
+    );
+  if (!period.end || period.end === period.start)
+    return capitalize(month(start.month));
+  const end = parseDate(period.end);
+  if (end.year !== start.year || !end.month) return undefined;
+  return capitalize(`${month(start.month)} – ${month(end.month)}`);
+}
+
 export function formatPlace(place: Localize<Place>) {
   return `${place.city}, ${place.country}`;
 }

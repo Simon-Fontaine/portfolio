@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 import { negotiateLocale } from "@/i18n/config";
 import { localize } from "@/i18n/localize";
-import { formatPeriod } from "@/lib/format";
+import { formatMonths, formatPeriod, formatYears } from "@/lib/format";
 
 describe("negotiateLocale", () => {
   test("falls back to French", () => {
@@ -34,6 +34,36 @@ describe("localize", () => {
     assert.deepEqual(en.list, ["React", "routing"]);
     assert.equal(en.nested.n, 3);
     assert.equal(en.nested.f(2), "2 en");
+  });
+});
+
+describe("timeline dates", () => {
+  test("years", () => {
+    assert.equal(
+      formatYears({ start: "2026-02", end: "2026-05" }, "x"),
+      "2026",
+    );
+    assert.equal(
+      formatYears({ start: "2016-09", end: "2022-06" }, "x"),
+      "2016 – 2022",
+    );
+    assert.equal(formatYears({ start: "2025-07" }, "x"), "2025");
+    assert.equal(
+      formatYears({ start: "2024", end: "present" }, "Present"),
+      "2024 – Present",
+    );
+  });
+  test("months only when the period fits in one year", () => {
+    assert.equal(
+      formatMonths({ start: "2026-02", end: "2026-05" }, "fr"),
+      "Février – mai",
+    );
+    assert.equal(formatMonths({ start: "2025-07" }, "en"), "July");
+    assert.equal(
+      formatMonths({ start: "2016-09", end: "2022-06" }, "fr"),
+      undefined,
+    );
+    assert.equal(formatMonths({ start: "2020", end: "2025" }, "fr"), undefined);
   });
 });
 
