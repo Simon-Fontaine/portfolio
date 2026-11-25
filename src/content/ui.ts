@@ -1,6 +1,7 @@
 /**
- * Interface text for the website and the CV (labels, headings, legal pages).
- * Career content lives in `profile.ts`.
+ * Interface text for the website (labels, headings, legal pages). The CV and
+ * cover-letter labels live in `documents/render/labels.ts`.
+ * Career content lives in `cvs/generic.md`.
  *
  * Same convention: `{ fr: "…", en: "…" }`. Values can be functions when
  * they need variables (e.g. a year or a project name).
@@ -26,7 +27,7 @@ export const ui = {
       en: "Lire ce site en français",
     },
   },
-  // Section titles are shared by the website and the CV.
+  // Section titles of the website.
   sections: {
     experience: { fr: "Expérience professionnelle", en: "Work Experience" },
     projects: { fr: "Projets", en: "Projects" },
@@ -34,10 +35,6 @@ export const ui = {
     education: { fr: "Formation", en: "Education" },
     languages: { fr: "Langues", en: "Languages" },
     contact: { fr: "Contact", en: "Contact" },
-  },
-  // CV-only labels.
-  cv: {
-    portfolio: { fr: "Portfolio", en: "Portfolio" },
   },
   // Short navigation labels (website header).
   navItems: {

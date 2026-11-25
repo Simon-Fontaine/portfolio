@@ -17,12 +17,13 @@ export interface Place {
   country: Text;
 }
 
-/** Shared by every entry: set `cv: false` to show it on the website only. */
-interface Visibility {
-  cv?: boolean;
+/** A bullet point. The `id` is unique within its entry (CV variants use it). */
+export interface Highlight {
+  id: string;
+  text: Text;
 }
 
-export interface Experience extends Visibility {
+export interface Experience {
   id: string;
   role: Text;
   organization: Text;
@@ -30,18 +31,18 @@ export interface Experience extends Visibility {
   period: Period;
   location: Place;
   summary?: Text;
-  highlights?: Text[];
+  highlights?: Highlight[];
   tech?: string[];
 }
 
-export interface Project extends Visibility {
+export interface Project {
   id: string;
   name: Text;
   /** Short context line, e.g. "Final-year project" or "Personal project". */
   context: Text;
   period?: Period;
   summary: Text;
-  highlights?: Text[];
+  highlights?: Highlight[];
   tech: string[];
   /** Source code repository. */
   repository?: string;
@@ -62,7 +63,7 @@ export interface Project extends Visibility {
   screenshot?: { src: string; alt: Text };
 }
 
-export interface Education extends Visibility {
+export interface Education {
   id: string;
   degree: Text;
   school: string;

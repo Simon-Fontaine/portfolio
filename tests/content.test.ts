@@ -4,10 +4,11 @@
  * these tests catch what types cannot (empty text, bad dates, broken paths…).
  */
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, test } from "node:test";
-import { profile } from "@/content/profile";
+import { BASE_FILE, CVS_DIR, parseProfile, profile } from "@/content/master";
+import { parseMarkdown } from "@/content/read";
 import type { Period } from "@/content/types";
 import { ui } from "@/content/ui";
 import { locales } from "@/i18n/config";
@@ -73,6 +74,17 @@ describe("content", () => {
     }
   });
 
+  test("bullet ids are unique within each entry", () => {
+    for (const entry of [...profile.experience, ...profile.projects]) {
+      const ids = (entry.highlights ?? []).map((h) => h.id);
+      assert.equal(
+        new Set(ids).size,
+        ids.length,
+        `duplicate bullet id in ${entry.id}`,
+      );
+    }
+  });
+
   test("dates are valid and periods are in order", () => {
     const periods: [string, Period | undefined][] = [
       ...profile.experience.map((e) => [e.id, e.period] as [string, Period]),
@@ -117,5 +129,36 @@ describe("content", () => {
 
   test("email looks valid", () => {
     assert.match(profile.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  });
+
+  test("the profile loader reports mistakes with the field name", () => {
+    const broken = (patch: (p: Record<string, unknown>) => void) => {
+      // Start from the raw YAML, exactly as written in the file.
+      const source = readFileSync(path.join(CVS_DIR, BASE_FILE), "utf8");
+      const { data } = parseMarkdown(source, BASE_FILE);
+      const copy = (data as { profile: Record<string, unknown> }).profile;
+      assert.doesNotThrow(() => parseProfile(copy, BASE_FILE));
+      patch(copy);
+      return () => parseProfile(copy, BASE_FILE);
+    };
+    assert.throws(
+      broken((p) => {
+        p.headline = { fr: "seulement" };
+      }),
+      /profile\.headline: needs a text for each language \(missing: en\)/,
+    );
+    assert.throws(
+      broken((p) => {
+        (p.experience as { period: { start: string } }[])[0].period.start =
+          "2026-13";
+      }),
+      /profile\.experience\[0\]\.period\.start: must be a date/,
+    );
+    assert.throws(
+      broken((p) => {
+        p.projets = [];
+      }),
+      /unknown field `projets`/,
+    );
   });
 });

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { profile } from "@/content/profile";
+import { profile } from "@/content/master";
 import { defaultLocale, type Locale, localeInfo, locales } from "@/i18n/config";
 
 /** Canonical origin, taken from the content so there is a single place to change it. */

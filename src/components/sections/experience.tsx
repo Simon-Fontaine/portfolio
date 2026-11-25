@@ -31,7 +31,7 @@ export function ExperienceSection({ content }: { content: Content }) {
             {job.highlights && (
               <ul className="bullets mt-4">
                 {job.highlights.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item.id}>{item.text}</li>
                 ))}
               </ul>
             )}

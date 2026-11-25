@@ -61,7 +61,7 @@ export function ProjectsSection({ content }: { content: Content }) {
                   <h4 className="subhead mt-7">{t.labels.contribution}</h4>
                   <ul className="bullets mt-3">
                     {project.highlights.map((item) => (
-                      <li key={item}>{item}</li>
+                      <li key={item.id}>{item.text}</li>
                     ))}
                   </ul>
                 </>
